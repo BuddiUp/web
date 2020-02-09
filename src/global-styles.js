@@ -31,4 +31,14 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Circular Std', Arial, Helvetica, sans-serif;
         transition: all 0.3s ease 0s;
     }
+    
+    button{
+        border-top: none;
+        border: none;
+    }
+    
+    .vanta-canvas{
+        opacity: .7;
+        width: 100% !important;
+    }
 `;

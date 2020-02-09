@@ -21,12 +21,12 @@ const NavContent = styled.div`
 const NavLogo = styled.h1`
     position: absolute;
     color: ${(props) => props.theme.gray800};
-    left: 54px;
+    left: 10px;
 `;
 
 const NavList = styled.ul`
     position: ${(props) => (props.auth ? 'absolute' : '')};
-    right: ${(props) => (props.auth ? '54px' : '')};
+    right: ${(props) => (props.auth ? '10px' : '')};
 `;
 
 const NavItems = styled.li`
@@ -35,12 +35,12 @@ const NavItems = styled.li`
 
 const StyledLink = styled(Link)`
     color: ${(props) => props.theme.gray800};
-    font-weight: ${(props) => (props.navLogo ? '900' : '600')};
-    letter-spacing: ${(props) => (props.navLogo ? '' : '0.5px')};
+    font-weight: ${(props) => (props.navlogo ? '900' : '600')};
+    letter-spacing: ${(props) => (props.navlogo ? '' : '0.5px')};
     padding: 15px;
     text-decoration: none;
     &:hover {
-        color: #6b7cff;
+        color: ${(props) => props.theme.primary};
         opacity: 0.8;
     }
 `;
@@ -50,7 +50,7 @@ export default () => {
         <NavContainer>
             <NavContent>
                 <NavLogo>
-                    <StyledLink navLogo>
+                    <StyledLink navlogo='true'>
                         BuddiUp
                         <span style={{ color: '#6b7cff' }}>.</span>
                     </StyledLink>

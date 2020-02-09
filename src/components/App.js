@@ -1,17 +1,11 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 import history from '../history';
-import styled, { ThemeProvider } from 'styled-components';
-import Navigation from './navigation/Navigation';
-import { GlobalStyle } from '../global-styles';
 import BaseRouter from '../router';
+import { GlobalStyle } from '../global-styles';
 import { theme } from '../theme';
-
-const Container = styled.div`
-    width: 1375px;
-    padding: 0px 25px;
-    margin: 0px auto;
-`;
+import Navigation from './navigation/Navigation';
 
 export default () => {
     return (
@@ -19,9 +13,7 @@ export default () => {
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
                 <Navigation />
-                <Container>
-                    <BaseRouter />
-                </Container>
+                <BaseRouter />
             </ThemeProvider>
         </Router>
     );
