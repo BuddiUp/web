@@ -17,7 +17,7 @@ const FooterContent = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 45px 155px;
+    padding: 45px 0px;
 `;
 
 const FooterListUL = styled.ul`

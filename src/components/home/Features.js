@@ -16,7 +16,7 @@ const FeatureContainer = styled.div`
     justify-items: center;
     grid-template-columns: repeat(2, 1fr);
 
-    @media ${device.tablet} {
+    @media ${device.tabletL} {
         grid-gap: 20px;
     }
 
@@ -38,7 +38,7 @@ const FeatureCards = styled.div`
         box-shadow: 0px 8.5px 23px 0px rgba(0, 0, 0, 0.13);
     }
 
-    @media ${device.tablet} {
+    @media ${device.tabletL} {
         width: unset;
     }
 `;

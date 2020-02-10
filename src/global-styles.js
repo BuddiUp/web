@@ -56,11 +56,11 @@ export const Container = styled.div`
         width: 905px;
     }
 
-    @media ${device.tablet} {
+    @media ${device.tabletM} {
         width: 726px;
     }
 
-    @media ${device.mobileL} {
+    @media ${device.tabletL} {
         width: unset;
     }
 `;
