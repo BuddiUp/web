@@ -6,6 +6,7 @@ import BaseRouter from '../router';
 import { GlobalStyle } from '../global-styles';
 import { theme } from '../theme';
 import Navigation from './navigation/Navigation';
+import Footer from '../components/footer/Footer';
 
 export default () => {
     return (
@@ -14,6 +15,7 @@ export default () => {
                 <GlobalStyle />
                 <Navigation />
                 <BaseRouter />
+                <Footer />
             </ThemeProvider>
         </Router>
     );

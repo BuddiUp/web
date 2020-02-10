@@ -10,6 +10,7 @@ export const theme = {
     gray450: '#9e9e9e',
     gray500: '#838383',
     gray800: '#414042',
+    darkBox: '#404040',
     interactiveLight: '#dfdfdf',
     interactive400: '#6092d6',
     interactive500: '#69a4f3',

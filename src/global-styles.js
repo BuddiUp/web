@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
    @font-face {
@@ -24,7 +24,6 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 500;
         font-style: normal;
     }
-
     * {
         margin: 0;
         padding: 0;
@@ -41,4 +40,10 @@ export const GlobalStyle = createGlobalStyle`
         opacity: .7;
         width: 100% !important;
     }
+`;
+
+export const Container = styled.div`
+    width: 1375px;
+    padding: 0px 25px;
+    margin: 0px auto;
 `;
