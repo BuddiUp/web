@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon } from 'antd';
 import { Container } from '../../global-styles';
+import { device } from '../../theme';
 import featureBG from '../../assets/images/featureBG.png';
 
 const FeatureBG = styled.div`
@@ -14,6 +15,14 @@ const FeatureContainer = styled.div`
     grid-gap: 70px 0px;
     justify-items: center;
     grid-template-columns: repeat(2, 1fr);
+
+    @media ${device.tablet} {
+        grid-gap: 20px;
+    }
+
+    @media ${device.tabletM} {
+        grid-template-columns: repeat(1, 1fr);
+    }
 `;
 
 const FeatureCards = styled.div`
@@ -27,6 +36,10 @@ const FeatureCards = styled.div`
     &:hover {
         background-color: ${(props) => props.theme.white};
         box-shadow: 0px 8.5px 23px 0px rgba(0, 0, 0, 0.13);
+    }
+
+    @media ${device.tablet} {
+        width: unset;
     }
 `;
 

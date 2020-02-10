@@ -18,3 +18,17 @@ export const theme = {
     error: '#ff7373',
     success: '#14ce4c'
 };
+
+const size = {
+    tabletM: '786px',
+    tabletL: '960px',
+    laptopS: '1172px',
+    laptopM: '1442px'
+};
+
+export const device = {
+    tabletM: `(max-width: ${size.tabletM})`,
+    tabletL: `(max-width: ${size.tabletL})`,
+    laptopS: `(max-width: ${size.laptopS})`,
+    laptopM: `(max-width: ${size.laptopM})`
+};

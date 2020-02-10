@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import { device } from '../src/theme';
 
 export const GlobalStyle = createGlobalStyle`
    @font-face {
@@ -30,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Circular Std', Arial, Helvetica, sans-serif;
         transition: all 0.3s ease 0s;
     }
-    
+
     button{
         border-top: none;
         border: none;
@@ -46,4 +47,20 @@ export const Container = styled.div`
     width: 1375px;
     padding: 0px 25px;
     margin: 0px auto;
+
+    @media ${device.laptopM} {
+        width: 1105px;
+    }
+
+    @media ${device.laptopS} {
+        width: 905px;
+    }
+
+    @media ${device.tablet} {
+        width: 726px;
+    }
+
+    @media ${device.mobileL} {
+        width: unset;
+    }
 `;
