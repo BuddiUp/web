@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AuthLogin from './AuthLogin';
 import AuthRegister from './AuthRegister';
+import { device } from '../../theme';
 
 const AuthSideColor = styled.div`
     height: 100vh;
@@ -29,6 +30,13 @@ const AuthCard = styled.div`
     border-radius: 25px;
     box-shadow: 0px 0px 33px 0px rgba(0, 0, 0, 0.14);
     background-color: ${(props) => props.theme.white};
+
+    @media ${device.mobileL} {
+        width: 265px;
+    }
+    @media ${device.mobileS} {
+        width: 218px;
+    }
 `;
 
 const AuthType = styled.h1`
@@ -37,6 +45,9 @@ const AuthType = styled.h1`
     font-weight: ${(props) => (props.heading ? '600' : '500')};
     text-transform: ${(props) => (props.heading ? 'none' : 'uppercase')};
     color: ${(props) => (props.heading ? props.theme.gray800 : props.theme.gray400)};
+    @media ${device.mobileS} {
+        font-size: ${(props) => (props.heading ? '40px' : '14px')};
+    }
 `;
 
 const Authentication = ({ isTypeLogin }) => {
