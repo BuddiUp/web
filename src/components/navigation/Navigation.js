@@ -50,7 +50,7 @@ export default () => {
         <NavContainer>
             <NavContent>
                 <NavLogo>
-                    <StyledLink navlogo='true'>
+                    <StyledLink navlogo='true' to='/'>
                         BuddiUp
                         <span style={{ color: '#6b7cff' }}>.</span>
                     </StyledLink>

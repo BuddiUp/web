@@ -43,7 +43,7 @@ export const FormButton = styled.button`
     }
 `;
 
-export const FormRoute = styled(Link)`
+export const FormLink = styled(Link)`
     text-decoration: none;
     color: ${(props) => props.theme.primary};
     &:hover {
@@ -53,6 +53,6 @@ export const FormRoute = styled(Link)`
 export const FormMsg = styled.p`
     color: ${(props) => props.theme.gray500};
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     margin-bottom: 9px;
 `;

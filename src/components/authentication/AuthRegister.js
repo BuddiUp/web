@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormContainer, FormInput, FormButton, FormRoute, FormMsg } from './AuthStyles';
+import { FormContainer, FormInput, FormButton, FormLink, FormMsg } from './AuthStyles';
 
 export default () => {
     return (
@@ -10,7 +10,7 @@ export default () => {
             <FormMsg>
                 Already have an
                 <span>
-                    <FormRoute to='/login'> account</FormRoute>
+                    <FormLink to='/login'> account</FormLink>
                 </span>
                 ?
             </FormMsg>

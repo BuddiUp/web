@@ -7,7 +7,6 @@ import featureBG from '../../assets/images/featureBG.png';
 
 const FeatureBG = styled.div`
     background: url(${featureBG}) center no-repeat;
-    background-size: cover;
 `;
 
 const FeatureContainer = styled.div`
@@ -55,15 +54,15 @@ const IconPadding = styled.div`
 const FeatureContent = styled.h2`
     padding-right: 50px;
     margin-bottom: 15px;
-    font-size: ${(props) => (props.subText ? '20px' : '29px')};
+    font-size: ${(props) => (props.subText ? '18px' : '29px')};
     color: ${(props) => (props.subText ? props.theme.gray500 : props.theme.gray800)};
     font-weight: ${(props) => (props.subText ? '500' : '600')};
 `;
 
 export default () => {
     return (
-        <Container style={{ margin: '75px auto' }}>
-            <FeatureBG>
+        <FeatureBG>
+            <Container style={{ margin: '75px auto' }}>
                 <FeatureContainer>
                     <FeatureCards>
                         <IconPadding>
@@ -142,7 +141,7 @@ export default () => {
                         </FeatureContent>
                     </FeatureCards>
                 </FeatureContainer>
-            </FeatureBG>
-        </Container>
+            </Container>
+        </FeatureBG>
     );
 };

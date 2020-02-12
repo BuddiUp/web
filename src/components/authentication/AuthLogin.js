@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormContainer, FormInput, FormButton, FormRoute, FormMsg } from './AuthStyles';
+import { FormContainer, FormInput, FormButton, FormLink, FormMsg } from './AuthStyles';
 
 export default () => {
     return (
@@ -10,18 +10,18 @@ export default () => {
             <FormMsg>
                 New to
                 <span>
-                    <FormRoute to='/register'> BuddiUp</FormRoute>
+                    <FormLink to='/register'> BuddiUp</FormLink>
                 </span>
                 ?
             </FormMsg>
             <FormMsg>
                 Forgot your
                 <span>
-                    <FormRoute> email </FormRoute>
+                    <FormLink> email </FormLink>
                 </span>
                 or
                 <span>
-                    <FormRoute> password</FormRoute>
+                    <FormLink> password</FormLink>
                 </span>
                 ?
             </FormMsg>
