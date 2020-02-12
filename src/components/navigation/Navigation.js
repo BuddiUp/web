@@ -64,8 +64,8 @@ export default () => {
                 </NavList>
                 <NavList auth>
                     <NavItems>
-                        <StyledLink to='/'>Login</StyledLink>
-                        <StyledLink to='/'>Sign Up</StyledLink>
+                        <StyledLink to='/login'>Login</StyledLink>
+                        <StyledLink to='/register'>Sign Up</StyledLink>
                     </NavItems>
                 </NavList>
             </NavContent>
