@@ -46,6 +46,7 @@ export const FormButton = styled.button`
     width: 100%;
     color: ${(props) => props.theme.white};
     background-color: ${(props) => props.theme.primary};
+
     &:hover {
         cursor: pointer;
         background-color: ${(props) => props.theme.darkPrimary};
@@ -69,4 +70,8 @@ export const FormMsg = styled.p`
 export const FormError = styled.p`
     color: ${(props) => props.theme.error};
     margin-bottom: 15px;
+`;
+
+export const FormDate = styled.div`
+    background-color: red;
 `;

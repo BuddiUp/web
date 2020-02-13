@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { device } from '../src/theme';
+import { device } from './theme';
 
 export const GlobalStyle = createGlobalStyle`
    @font-face {
@@ -28,14 +28,20 @@ export const GlobalStyle = createGlobalStyle`
     * {
         margin: 0;
         padding: 0;
-        font-family: 'Circular Std', Arial, Helvetica, sans-serif;
+        font-family: 'Circular Std', Arial, Helvetica, sans-serif !important;
         transition: all 0.3s ease 0s;
+        font-variant: none;
+        font-feature-settings: normal
+        /* font-variant-base: tabular-nums;
+        font-feature-settings-base: 'tnum'; */
+
     }
 
     button{
         border-top: none;
         border: none;
     }
+    
     
     .vanta-canvas{
         opacity: .7;

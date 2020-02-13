@@ -6,7 +6,9 @@ import AuthRegister from './AuthRegister';
 import { device } from '../../theme';
 
 const AuthSideColor = styled.div`
-    height: 100vh;
+    display: flex;
+    align-items: center;
+    min-height: 82vw;
     width: 50%;
     background-color: ${(props) => props.theme.primary};
 `;
@@ -15,7 +17,7 @@ const AuthContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    /* height: 100vh; */
     width: 100%;
     position: absolute;
 `;
@@ -24,7 +26,7 @@ const AuthCard = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 500px;
+    min-height: 500px;
     width: 400px;
     padding: 55px;
     border-radius: 25px;
