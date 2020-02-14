@@ -8,18 +8,20 @@ import { device } from '../../theme';
 const AuthSideColor = styled.div`
     display: flex;
     align-items: center;
-    min-height: 82vw;
-    width: 50%;
-    background-color: ${(props) => props.theme.primary};
+    min-height: 100vh;
+    background: linear-gradient(
+        90deg,
+        ${(props) => props.theme.primary} 50%,
+        #ffffff00 0%
+    );
 `;
 
 const AuthContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    /* height: 100vh; */
     width: 100%;
-    position: absolute;
+    margin: 70px 0px;
 `;
 
 const AuthCard = styled.div`
@@ -27,14 +29,14 @@ const AuthCard = styled.div`
     flex-direction: column;
     align-items: center;
     min-height: 500px;
-    width: 400px;
+    width: 430px;
     padding: 55px;
     border-radius: 25px;
     box-shadow: 0px 0px 33px 0px rgba(0, 0, 0, 0.14);
     background-color: ${(props) => props.theme.white};
 
     @media ${device.mobileL} {
-        width: 265px;
+        width: 355px;
     }
     @media ${device.mobileS} {
         width: 218px;

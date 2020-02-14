@@ -30,11 +30,6 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         font-family: 'Circular Std', Arial, Helvetica, sans-serif !important;
         transition: all 0.3s ease 0s;
-        font-variant: none;
-        font-feature-settings: normal
-        /* font-variant-base: tabular-nums;
-        font-feature-settings-base: 'tnum'; */
-
     }
 
     button{
@@ -42,11 +37,29 @@ export const GlobalStyle = createGlobalStyle`
         border: none;
     }
     
-    
     .vanta-canvas{
         opacity: .7;
         width: 100% !important;
     }
+    
+    /* ---------------------- */
+    /* SCROLLBAR PROPERTIES */
+    /* ---------------------- */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background: #a4a4a4;
+    }
+    
+    
 `;
 
 export const Container = styled.div`

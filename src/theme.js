@@ -20,7 +20,7 @@ export const theme = {
 };
 
 const size = {
-    mobileS: '401px',
+    mobileS: '488px',
     mobileL: '570px',
     tabletM: '786px',
     tabletL: '960px',
