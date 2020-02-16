@@ -1,5 +1,6 @@
 import buddiup from '../../apis/buddiup';
 import { AUTH_START, AUTH_SUCCESS, AUTH_FAIL, AUTH_LOGOUT } from './action.types';
+import history from '../../history';
 
 export const authStart = () => {
     return { type: AUTH_START };
@@ -14,7 +15,17 @@ export const authFail = (error) => {
 };
 
 export const authLogout = () => {
+    localStorage.removeItem('token');
     return { type: AUTH_LOGOUT };
+};
+
+export const authCheck = () => (dispatch) => {
+    const userToken = localStorage.getItem('token');
+
+    if (!userToken) {
+        dispatch(authLogout());
+    }
+    dispatch(authSucces(userToken));
 };
 
 export const authSignUp = (userData) => (dispatch) => {
@@ -23,9 +34,7 @@ export const authSignUp = (userData) => (dispatch) => {
             'Content-Type': 'application/json'
         }
     };
-
     dispatch(authStart());
-    console.log('Auth Signup fired');
     buddiup
         .post('/api/auth/register', userData, config)
         .then((res) => {
@@ -39,6 +48,18 @@ export const authSignUp = (userData) => (dispatch) => {
         });
 };
 
-// export const authLogin = (userData) => (dispatch) => {
-//     buddiup.post('/api/auth/login', userData).then((res) => {});
-// };
+export const authLogin = (userData) => (dispatch) => {
+    dispatch(authStart());
+    buddiup
+        .post('/api/auth/login', userData)
+        .then((res) => {
+            const userToken = res.data.token;
+            localStorage.setItem('token', userToken);
+            console.log(`Logged in: ${JSON.stringify(res.data, null, 2)}`);
+            dispatch(authSucces(userToken));
+            history.push('/');
+        })
+        .catch((error) => {
+            dispatch(authFail(error));
+        });
+};
