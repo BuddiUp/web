@@ -18,15 +18,24 @@ export const authLogout = () => {
 };
 
 export const authSignUp = (userData) => (dispatch) => {
+    const config = {
+        header: {
+            'Content-Type': 'application/json'
+        }
+    };
+
     dispatch(authStart());
+    console.log('Auth Signup fired');
     buddiup
-        .post('/api/auth/register', userData)
+        .post('/api/auth/register', userData, config)
         .then((res) => {
-            console.log(res);
+            const userToken = res.data.token;
+            localStorage.setItem('token', userToken);
+            dispatch(authSucces(userToken));
         })
         .catch((err) => {
             dispatch(authFail(err));
-            console.log(err);
+            console.log(`Sign up error: ${err}`);
         });
 };
 
