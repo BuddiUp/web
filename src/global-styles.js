@@ -38,9 +38,10 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     .vanta-canvas{
-        opacity: .7;
+        opacity: .8;
         width: 100% !important;
     }
+    
     
     /* ---------------------- */
     /* SCROLLBAR PROPERTIES */

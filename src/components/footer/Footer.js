@@ -58,13 +58,13 @@ export default () => {
             <FooterContent>
                 <FooterListUL>
                     <FooterList>
-                        <FooterItem>Help Center</FooterItem>
+                        <FooterItem to='/'>Help Center</FooterItem>
                     </FooterList>
                     <FooterList>
-                        <FooterItem>Terms of Service</FooterItem>
+                        <FooterItem to='/'>Terms of Service</FooterItem>
                     </FooterList>
                     <FooterList>
-                        <FooterItem>Privacy Policy</FooterItem>
+                        <FooterItem to='/'>Privacy Policy</FooterItem>
                     </FooterList>
                 </FooterListUL>
                 <FooterBranding>&copy; 2020 BuddiUp.</FooterBranding>

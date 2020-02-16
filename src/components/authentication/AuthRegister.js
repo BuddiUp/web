@@ -1,7 +1,9 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik, Form, useField } from 'formik';
 import * as yup from 'yup';
+import { authSignUp } from '../../store/actions/action.auth';
 
 import {
     FormContainer,
@@ -18,6 +20,11 @@ import {
 const td = new Date().getFullYear();
 
 const validationSchema = yup.object().shape({
+    username: yup
+        .string()
+        .min(3, 'Username must be longer than 3 characters')
+        .max(12, "Username can't exceed 12 characters")
+        .required('Username is required!'),
     email: yup
         .string()
         .email('You must use a valid email')
@@ -26,23 +33,27 @@ const validationSchema = yup.object().shape({
         .string()
         .min(6, 'Password must be atleast 6 characters')
         .max(50, 'Password cannot exceed 50 characters')
-        .required('Password is required!'),
-    firstName: yup.string().required('Please enter your first name'),
-    lastName: yup.string().required('Please enter your last name'),
-    dobMonth: yup
-        .number()
-        .min(1, 'Invalid month')
-        .max(12, 'Invalid month')
-        .required('Month is required'),
-    dobDay: yup
-        .number()
-        .min(1, 'Invalid day')
-        .max(31, 'Invalid day')
-        .required('Day is required'),
-    dobYear: yup
-        .number()
-        .max(td, 'Invalid year')
-        .required('Year is required')
+        .required('Password is required!')
+    // password2: yup
+    //     .string()
+    //     .oneOf([yup.ref('password'), null], 'Passwords must match')
+    //     .required('You must confirm your password'),
+    // first_name: yup.string().required('Please enter your first name'),
+    // last_name: yup.string().required('Please enter your last name'),
+    // dobMonth: yup
+    //     .number()
+    //     .min(1, 'Invalid month')
+    //     .max(12, 'Invalid month')
+    //     .required('Month is required'),
+    // dobDay: yup
+    //     .number()
+    //     .min(1, 'Invalid day')
+    //     .max(31, 'Invalid day')
+    //     .required('Day is required'),
+    // dobYear: yup
+    //     .number()
+    //     .max(td, 'Invalid year')
+    //     .required('Year is required')
 });
 
 // TODO: NEED A BETTER WAY TO DISPLAY THE ERRORS FOR THE DATE PICKER
@@ -57,30 +68,40 @@ const TextField = ({ placeholder, isDateType, ...props }) => {
     );
 };
 
+// ! NEED TO FILTER OUT NON CHARACTER FOR USERNAME
 const AuthRegister = () => {
+    // const loading = useSelector((state) => state.loading);
+    const dispatch = useDispatch();
+
     return (
         <Formik
             initialValues={{
+                username: '',
                 email: '',
-                password: '',
-                firstName: '',
-                lastName: '',
-                dobDay: '',
-                dobMonth: 0,
-                dobYear: ''
+                password: ''
+                // first_name: '',
+                // last_name: '',
+                // dobDay: '',
+                // dobMonth: 0,
+                // dobYear: ''
             }}
             validationSchema={validationSchema}
-            onSubmit={(data, { setSubmitting }) => {
-                setSubmitting(true);
-                // Make async call to API
-                console.log(data);
-                setSubmitting(false);
+            onSubmit={(data) => {
+                // setSubmitting(true);
+                dispatch(authSignUp(data));
             }}
         >
             {/*  Remove later */}
             {({ values, errors }) => (
                 <Form>
                     <FormContainer>
+                        <TextField
+                            name='username'
+                            type='text'
+                            placeholder='Create a username'
+                            as={FormInput}
+                        />
+
                         <TextField
                             name='email'
                             type='email'
@@ -93,14 +114,21 @@ const AuthRegister = () => {
                             placeholder='Enter your password'
                             as={FormInput}
                         />
+                        {/* <TextField
+                            name='password2'
+                            type='password'
+                            placeholder='Confirm your password'
+                            as={FormInput}
+                        />
+
                         <TextField
-                            name='firstName'
+                            name='first_name'
                             type='text'
                             placeholder='Enter your first name'
                             as={FormInput}
                         />
                         <TextField
-                            name='lastName'
+                            name='last_name'
                             type='text'
                             placeholder='Enter your last name'
                             as={FormInput}
@@ -139,7 +167,7 @@ const AuthRegister = () => {
                                 placeholder='Year'
                                 as={FormInput}
                             />
-                        </FormDate>
+                        </FormDate> */}
                         <FormButton type='submit'>Sign Up</FormButton>
                     </FormContainer>
 

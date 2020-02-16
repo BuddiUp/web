@@ -6,6 +6,7 @@ export const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 25px;
+    width: 375px;
     @media ${device.mobileS} {
         width: 279px;
     }

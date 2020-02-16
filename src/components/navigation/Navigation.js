@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const NavContainer = styled.nav`
     display: flex;
@@ -45,7 +46,7 @@ const StyledLink = styled(Link)`
     }
 `;
 
-export default () => {
+const Navigation = ({ isAuthenticated }) => {
     return (
         <NavContainer>
             <NavContent>
@@ -57,18 +58,34 @@ export default () => {
                 </NavLogo>
                 <NavList>
                     <NavItems>
-                        <StyledLink to='/'>Home</StyledLink>
-                        <StyledLink to='/'>For You</StyledLink>
-                        <StyledLink to='/'>Discover</StyledLink>
+                        {isAuthenticated ? (
+                            <>
+                                <StyledLink to='/'>Home</StyledLink>
+                                <StyledLink to='/foryou'>For You</StyledLink>
+                                <StyledLink to='/discover'>Discover</StyledLink>
+                            </>
+                        ) : null}
                     </NavItems>
                 </NavList>
                 <NavList auth>
                     <NavItems>
-                        <StyledLink to='/login'>Login</StyledLink>
-                        <StyledLink to='/register'>Sign Up</StyledLink>
+                        {isAuthenticated ? (
+                            <StyledLink to='/login'>Username</StyledLink>
+                        ) : (
+                            <>
+                                <StyledLink to='/login'>Login</StyledLink>
+                                <StyledLink to='/register'>Sign Up</StyledLink>
+                            </>
+                        )}
                     </NavItems>
                 </NavList>
             </NavContent>
         </NavContainer>
     );
 };
+
+Navigation.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired
+};
+
+export default Navigation;

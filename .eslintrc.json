@@ -21,9 +21,11 @@
     "plugins": ["react"],
     "rules": {
         "no-unused-vars": "warn",
-        "no-console": "off",
+        "no-console": "warn",
         "indent": "off",
         "func-names": "off",
+        "no-confusing-arrow": "off",
+        "implicit-arrow-linebreak": "off",
         "no-process-exit": "off",
         "object-shorthand": "off",
         "class-methods-use-this": "off",
@@ -36,6 +38,8 @@
         "react/jsx-indent": "off",
         "jsx-quotes": "off",
         "arrow-body-style": "off",
+        "object-curly-newline": "off",
+        "react/jsx-curly-newline": "off",
         "react/jsx-indent-props": "off",
         "react/jsx-props-no-spreading": "off",
         "react/jsx-filename-extension": [
