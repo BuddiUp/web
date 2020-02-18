@@ -5,6 +5,13 @@ import { Container } from '../../global-styles';
 import { device } from '../../theme';
 import featureBG from '../../assets/images/featureBG.png';
 
+const colors = {
+    orange: '#ffa600',
+    green: '#6ac969',
+    blue: '#54d6ff',
+    red: '#ff6565'
+};
+
 const FeatureBG = styled.div`
     background: url(${featureBG}) center no-repeat;
 `;
@@ -24,6 +31,11 @@ const FeatureContainer = styled.div`
     }
 `;
 
+const FeatureIcon = styled(Icon)`
+    display: flex;
+    font-size: 30px;
+`;
+
 const FeatureCards = styled.div`
     display: flex;
     flex-direction: column;
@@ -31,10 +43,16 @@ const FeatureCards = styled.div`
     padding: 35px;
     height: 300px;
     width: 350px;
+    border-bottom: 3px solid transparent;
+
+    ${FeatureIcon} {
+        color: ${(props) => props.cardColor};
+    }
 
     &:hover {
         background-color: ${(props) => props.theme.white};
         box-shadow: 0px 8.5px 23px 0px rgba(0, 0, 0, 0.13);
+        border-bottom: 3px solid ${(props) => props.cardColor};
     }
 
     @media ${device.tabletL} {
@@ -64,73 +82,39 @@ export default () => {
         <FeatureBG>
             <Container style={{ margin: '75px auto' }}>
                 <FeatureContainer>
-                    <FeatureCards>
+                    <FeatureCards cardColor={colors.orange}>
                         <IconPadding>
-                            <Icon
-                                type='euro'
-                                style={{
-                                    display: 'flex',
-                                    fontSize: '30px',
-                                    color: '#ffa600'
-                                }}
-                            />
+                            <FeatureIcon type='thunderbolt' />
                         </IconPadding>
-                        <FeatureContent>
-                            Hello I have no idea what to put here
-                        </FeatureContent>
+                        <FeatureContent>Share your interests with others</FeatureContent>
                         <FeatureContent subText='true'>
-                            Tempor est ad esse magna Lorem incididunt labore nisi pariatur
-                            et nulla nisi id.
+                            Choose the activities that you love and we’ll find buddies who
+                            are intersted as well.
                         </FeatureContent>
                     </FeatureCards>
-                    <FeatureCards>
+                    <FeatureCards cardColor={colors.green}>
                         <IconPadding>
-                            <Icon
-                                type='euro'
-                                style={{
-                                    display: 'flex',
-                                    fontSize: '30px',
-                                    color: '#6ac969'
-                                }}
-                            />
+                            <FeatureIcon type='radar-chart' />
                         </IconPadding>
-                        <FeatureContent>
-                            Hello I have no idea what to put here
-                        </FeatureContent>
+                        <FeatureContent>Find others near you</FeatureContent>
                         <FeatureContent subText='true'>
-                            Tempor est ad esse magna Lorem incididunt labore nisi pariatur
-                            et nulla nisi id.
+                            No need for incessant scrolling, we’ll pair you with a buddy
+                            close by, based on your location.
                         </FeatureContent>
                     </FeatureCards>
-                    <FeatureCards>
+                    <FeatureCards cardColor={colors.blue}>
                         <IconPadding>
-                            <Icon
-                                type='euro'
-                                style={{
-                                    display: 'flex',
-                                    fontSize: '30px',
-                                    color: '#54d6ff'
-                                }}
-                            />
+                            <FeatureIcon type='read' />
                         </IconPadding>
-                        <FeatureContent>
-                            Hello I have no idea what to put here
-                        </FeatureContent>
+                        <FeatureContent>Explore your area</FeatureContent>
                         <FeatureContent subText='true'>
-                            Tempor est ad esse magna Lorem incididunt labore nisi pariatur
-                            et nulla nisi id.
+                            New to town? Visiting for a little bit? Find a buddy to check
+                            out the local haunts.
                         </FeatureContent>
                     </FeatureCards>
-                    <FeatureCards>
+                    <FeatureCards cardColor={colors.red}>
                         <IconPadding>
-                            <Icon
-                                type='euro'
-                                style={{
-                                    display: 'flex',
-                                    fontSize: '30px',
-                                    color: '#ff6565'
-                                }}
-                            />
+                            <FeatureIcon type='euro' />
                         </IconPadding>
                         <FeatureContent>
                             Hello I have no idea what to put here

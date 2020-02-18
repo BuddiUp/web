@@ -25,21 +25,21 @@ const HeaderText = styled.h1`
 `;
 
 const HeaderButton = styled.button`
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 8px;
-    padding: 5px 21px;
+    padding: 9px 25px;
     margin-top: 17px;
     color: ${(props) => props.theme.white};
     background-color: ${(props) => props.theme.darkPrimary};
 
     &:hover {
         cursor: pointer;
-        padding: 5px 32px;
+        padding: 9px 38px;
         background-color: #4f65ff;
     }
 `;
 
-export default (props) => {
+export default () => {
     const [vantaEffect, setVantaEffect] = useState(0);
     const myRef = useRef(null);
     useEffect(() => {

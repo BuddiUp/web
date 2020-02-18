@@ -1,21 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Icon } from 'antd';
 import { Container } from '../../global-styles';
 
 const AboutContainer = styled.div`
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     justify-content: center;
     height: 300px;
-    margin-top: 45px;
-    border-radius: 15px;
-    background-color: #e0e0e0;
+    margin: 85px 0px;
+`;
+
+const AboutContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 713px;
+    text-align: center;
+`;
+
+const AboutIcon = styled(Icon)`
+    font-size: 65px;
+    color: ${(props) => props.theme.primary};
+`;
+
+const AboutHeader = styled.h1`
+    font-size: 35px;
+    margin-bottom: 20px;
+    color: ${(props) => props.theme.gray800};
+`;
+
+const AboutText = styled.p`
+    font-size: 23px;
+    font-weight: 500;
+    color: ${(props) => props.theme.gray600};
 `;
 
 export default () => {
     return (
         <Container>
-            <AboutContainer>What should go here?</AboutContainer>
+            <AboutContainer>
+                <AboutContent>
+                    <AboutIcon type='usergroup-add' />
+                    <AboutHeader>What is BuddiUp?</AboutHeader>
+                    <AboutText>
+                        BuddiUp is here to make it easy for you to share the things you
+                        love with the people who share your passions. Whether it’s hiking
+                        outdoors or taking a cooking class, there’s no need to wait for
+                        companionship.
+                    </AboutText>
+                </AboutContent>
+            </AboutContainer>
         </Container>
     );
 };

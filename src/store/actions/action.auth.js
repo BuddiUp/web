@@ -1,13 +1,23 @@
 import buddiup from '../../apis/buddiup';
-import { AUTH_START, AUTH_SUCCESS, AUTH_FAIL, AUTH_LOGOUT } from './action.types';
+import {
+    AUTH_START,
+    AUTH_SUCCESS,
+    AUTH_FAIL,
+    AUTH_LOGOUT,
+    FETCH_USER
+} from './action.types';
 import history from '../../history';
 
 export const authStart = () => {
     return { type: AUTH_START };
 };
 
-export const authSucces = (token) => {
-    return { type: AUTH_SUCCESS, payload: token };
+export const authSucces = (data) => {
+    return { type: AUTH_SUCCESS, payload: data };
+};
+
+export const fetchUser = (data) => {
+    return { type: FETCH_USER, payload: data };
 };
 
 export const authFail = (error) => {
@@ -21,30 +31,42 @@ export const authLogout = () => {
 
 export const authCheck = () => (dispatch) => {
     const userToken = localStorage.getItem('token');
-
     if (!userToken) {
         dispatch(authLogout());
+    } else {
+        const config = {
+            headers: {
+                Authorization: `Token ${userToken}`
+            }
+        };
+        buddiup
+            .get('/api/auth/user', config)
+            .then((res) => {
+                dispatch(fetchUser(res.data));
+            })
+            .catch((err) => {
+                dispatch(authFail(err));
+            });
     }
-    dispatch(authSucces(userToken));
 };
 
 export const authSignUp = (userData) => (dispatch) => {
+    dispatch(authStart());
     const config = {
-        header: {
+        headers: {
             'Content-Type': 'application/json'
         }
     };
-    dispatch(authStart());
     buddiup
         .post('/api/auth/register', userData, config)
         .then((res) => {
             const userToken = res.data.token;
             localStorage.setItem('token', userToken);
-            dispatch(authSucces(userToken));
+            dispatch(authSucces(res.data));
+            history.push('/');
         })
         .catch((err) => {
             dispatch(authFail(err));
-            console.log(`Sign up error: ${err}`);
         });
 };
 
@@ -55,8 +77,7 @@ export const authLogin = (userData) => (dispatch) => {
         .then((res) => {
             const userToken = res.data.token;
             localStorage.setItem('token', userToken);
-            console.log(`Logged in: ${JSON.stringify(res.data, null, 2)}`);
-            dispatch(authSucces(userToken));
+            dispatch(authSucces(res.data));
             history.push('/');
         })
         .catch((error) => {

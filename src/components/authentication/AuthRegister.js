@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik, Form, useField } from 'formik';
 import * as yup from 'yup';
@@ -23,7 +23,7 @@ const validationSchema = yup.object().shape({
     username: yup
         .string()
         .min(3, 'Username must be longer than 3 characters')
-        .max(12, "Username can't exceed 12 characters")
+        .max(14, "Username can't exceed 12 characters")
         .required('Username is required!'),
     email: yup
         .string()
@@ -70,7 +70,6 @@ const TextField = ({ placeholder, isDateType, ...props }) => {
 
 // ! NEED TO FILTER OUT NON CHARACTER FOR USERNAME
 const AuthRegister = () => {
-    // const loading = useSelector((state) => state.loading);
     const dispatch = useDispatch();
 
     return (

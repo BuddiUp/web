@@ -1,7 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { authLogout } from '../../store/actions/action.auth';
 
 const NavContainer = styled.nav`
     display: flex;
@@ -46,7 +48,9 @@ const StyledLink = styled(Link)`
     }
 `;
 
-const Navigation = ({ isAuthenticated }) => {
+const Navigation = ({ isAuthenticated, username }) => {
+    const dispatch = useDispatch();
+
     return (
         <NavContainer>
             <NavContent>
@@ -70,7 +74,12 @@ const Navigation = ({ isAuthenticated }) => {
                 <NavList auth>
                     <NavItems>
                         {isAuthenticated ? (
-                            <StyledLink to='/login'>Username</StyledLink>
+                            <StyledLink
+                                to='/login'
+                                onClick={() => dispatch(authLogout())}
+                            >
+                                {username}
+                            </StyledLink>
                         ) : (
                             <>
                                 <StyledLink to='/login'>Login</StyledLink>
@@ -85,7 +94,12 @@ const Navigation = ({ isAuthenticated }) => {
 };
 
 Navigation.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired
+    isAuthenticated: PropTypes.bool.isRequired,
+    username: PropTypes.string
+};
+
+Navigation.defaultProps = {
+    username: ''
 };
 
 export default Navigation;

@@ -14,7 +14,7 @@ export default () => {
     const { isAuthenticated, user } = useSelector(
         (state) => ({
             isAuthenticated: state.authReducer.token !== null,
-            user: console.log(state)
+            user: state.authReducer.user
         }),
         shallowEqual
     );
@@ -22,14 +22,13 @@ export default () => {
 
     useEffect(() => {
         dispatch(authCheck());
-        // console.log(isAuthenticated);
-    });
+    }, [dispatch]);
 
     return (
         <Router history={history}>
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
-                <Navigation isAuthenticated={isAuthenticated} />
+                <Navigation isAuthenticated={isAuthenticated} username={user.username} />
                 <BaseRouter isAuthenticated={isAuthenticated} />
                 <Footer />
             </ThemeProvider>

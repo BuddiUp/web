@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
+    margin-top: 45px;
     background-color: ${(props) => props.theme.darkBox};
 `;
 
