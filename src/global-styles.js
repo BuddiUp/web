@@ -42,6 +42,17 @@ export const GlobalStyle = createGlobalStyle`
         width: 100% !important;
     }
     
+    /* ---------------------- */
+    /* SLICK PROPERTIES */
+    /* ---------------------- */
+    .slick-prev:before, .slick-next:before{
+        color: ${(props) => props.theme.gray800};
+    }
+    
+    .slick-slide {
+        padding: 0 8px;
+        box-sizing: border-box;
+    }
     
     /* ---------------------- */
     /* SCROLLBAR PROPERTIES */
@@ -59,6 +70,7 @@ export const GlobalStyle = createGlobalStyle`
         border-radius: 8px;
         background: #a4a4a4;
     }
+    
     
     
 `;
@@ -81,6 +93,6 @@ export const Container = styled.div`
     }
 
     @media ${device.tabletL} {
-        width: unset;
+        width: 90%;
     }
 `;

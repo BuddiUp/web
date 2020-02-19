@@ -48,6 +48,9 @@ const StyledLink = styled(Link)`
     }
 `;
 
+// TODO: Look into NavLink
+// to="/" activeClassName="test"
+
 const Navigation = ({ isAuthenticated, username }) => {
     const dispatch = useDispatch();
 

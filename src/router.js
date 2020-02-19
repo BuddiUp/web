@@ -2,13 +2,14 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from './components/home/Home';
+import Discover from './components/discover/Discover';
 import Authentication from './components/authentication/Authentication';
 import PrivateRoute from './router.private';
 
 const BaseRouter = ({ isAuthenticated }) => (
     <div>
         <Route exact path='/' component={Home} />
-        <PrivateRoute
+        {/* <PrivateRoute
             exact
             path='/foryou'
             isAuthenticated={isAuthenticated}
@@ -18,14 +19,15 @@ const BaseRouter = ({ isAuthenticated }) => (
             exact
             path='/discover'
             isAuthenticated={isAuthenticated}
-            component={Home}
+            component={Discover}
         />
         <PrivateRoute
             exact
             path='/settings'
             isAuthenticated={isAuthenticated}
             component={Home}
-        />
+        /> */}
+        <Route exact path='/discover' component={Discover} />
         <Route exact path='/login' render={() => <Authentication isTypeLogin />} />
         <Route
             exact
