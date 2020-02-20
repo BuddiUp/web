@@ -4,7 +4,7 @@ const settings = {
     lazyLoad: true,
     speed: 300,
     slidesToShow: 5,
-    slidesToScroll: 4,
+    slidesToScroll: 3,
     responsive: [
         {
             breakpoint: 1105,

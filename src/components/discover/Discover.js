@@ -16,6 +16,7 @@ const CategoryHeader = styled.div`
     align-items: center;
     justify-content: center;
     height: 250px;
+    background-color: #ffc300;
 `;
 
 const DiscoverHeader = styled.h1`

@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import { Container } from '../../global-styles';
 import testFace from '../../assets/images/testFace.jpg';
+import homeHeader from '../../assets/images/homeHeader.png';
 import settings from './slider.settings';
 
 const SliderContainer = styled.div`
     display: flex;
     justify-content: center;
     margin-top: -30px;
+    transition: 5s ease-in-out;
 `;
 
 const SliderLink = styled(Link)`
@@ -20,41 +22,46 @@ const SliderLink = styled(Link)`
 `;
 
 const SliderItem = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 8px;
     height: 316px;
-    border: 1px solid ${(props) => props.theme.gray400};
 `;
 
-const ImageContainer = styled.div`
-    height: 59%;
+const ProfileImage = styled.div`
+    border-radius: 8px;
+    background: url(${testFace});
+    background-size: cover;
+    background-position: center;
+    height: 100%;
     width: 100%;
-    overflow: hidden;
+    position: relative;
 `;
 
-const ProfileImage = styled.img`
-    border-radius: 7px 7px 0px 0px;
-    object-fit: cover;
-    height: 186px;
-    width: 100%;
+const ProfileFade = styled.div`
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 65%, #000000bf 100%);
+    border-radius: 8px;
+    height: 100%;
 `;
 
 const ProfileContent = styled.div`
-    text-align: center;
-    margin-top: 15px;
+    width: -webkit-fill-available;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 8px;
+    padding: 6px 15px;
 `;
 
-const ProfileName = styled.h2`
-    margin-bottom: 9px;
-    color: ${(props) => props.theme.gray800};
-    font-size: 19px;
+const ProfileName = styled.h1`
+    font-size: 23px;
+    color: ${(props) => props.theme.white};
 `;
 
-const ProfileItem = styled.p`
-    font-weight: 600;
-    color: ${(props) => props.theme.gray500};
-    & > span {
-        color: ${(props) => props.theme.primary};
-    }
+const ProfileSubText = styled.p`
+    font-size: 16px;
+    color: ${(props) => props.theme.white};
 `;
 
 // * Delete later *
@@ -64,17 +71,15 @@ const TempGen = () => {
         items.push(
             <SliderLink to='/' key={i}>
                 <SliderItem>
-                    <ImageContainer>
-                        <ProfileImage src={testFace} alt='' />
-                    </ImageContainer>
-                    <ProfileContent>
-                        <ProfileName>Victoria</ProfileName>
-                        <ProfileItem>
-                            Age:
-                            <span> 18</span>
-                        </ProfileItem>
-                        <ProfileItem>San Fransisco, CA</ProfileItem>
-                    </ProfileContent>
+                    <ProfileImage>
+                        <ProfileFade>
+                            <ProfileContent>
+                                <ProfileName>Victoria</ProfileName>
+                                <ProfileSubText>Age: 18</ProfileSubText>
+                                <ProfileSubText>San Fransisco, CA</ProfileSubText>
+                            </ProfileContent>
+                        </ProfileFade>
+                    </ProfileImage>
                 </SliderItem>
             </SliderLink>
         );
