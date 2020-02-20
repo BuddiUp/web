@@ -9,7 +9,7 @@ import PrivateRoute from './router.private';
 const BaseRouter = ({ isAuthenticated }) => (
     <div>
         <Route exact path='/' component={Home} />
-        {/* <PrivateRoute
+        <PrivateRoute
             exact
             path='/foryou'
             isAuthenticated={isAuthenticated}
@@ -26,8 +26,7 @@ const BaseRouter = ({ isAuthenticated }) => (
             path='/settings'
             isAuthenticated={isAuthenticated}
             component={Home}
-        /> */}
-        <Route exact path='/discover' component={Discover} />
+        />
         <Route exact path='/login' render={() => <Authentication isTypeLogin />} />
         <Route
             exact

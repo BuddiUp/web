@@ -29,8 +29,7 @@ const fetchUser = (state, action) =>
     updateObject(state, {
         token: localStorage.getItem('token'),
         user: action.payload,
-        error: null,
-        loading: false
+        error: null
     });
 
 const authFail = (state, action) =>

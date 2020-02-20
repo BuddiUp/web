@@ -22,7 +22,7 @@ export default () => {
 
     useEffect(() => {
         dispatch(authCheck());
-    }, [dispatch]);
+    }, []);
 
     return (
         <Router history={history}>

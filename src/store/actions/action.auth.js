@@ -12,7 +12,7 @@ export const authStart = () => {
     return { type: AUTH_START };
 };
 
-export const authSucces = (data) => {
+export const authSuccess = (data) => {
     return { type: AUTH_SUCCESS, payload: data };
 };
 
@@ -62,7 +62,7 @@ export const authSignUp = (userData) => (dispatch) => {
         .then((res) => {
             const userToken = res.data.token;
             localStorage.setItem('token', userToken);
-            dispatch(authSucces(res.data));
+            dispatch(authSuccess(res.data));
             history.push('/');
         })
         .catch((err) => {
@@ -77,7 +77,7 @@ export const authLogin = (userData) => (dispatch) => {
         .then((res) => {
             const userToken = res.data.token;
             localStorage.setItem('token', userToken);
-            dispatch(authSucces(res.data));
+            dispatch(authSuccess(res.data));
             history.push('/');
         })
         .catch((error) => {

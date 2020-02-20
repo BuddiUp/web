@@ -19,6 +19,7 @@ const CategoryHeader = styled.div`
 `;
 
 const DiscoverHeader = styled.h1`
+    letter-spacing: 1px;
     color: ${(props) => (props.pageHeader ? props.theme.white : props.theme.gray800)};
     font-weight: ${(props) => (props.pageHeader ? '900' : '600')};
     font-size: ${(props) => (props.pageHeader ? '50px' : '27px')};
