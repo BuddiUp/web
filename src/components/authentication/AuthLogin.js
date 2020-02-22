@@ -14,11 +14,10 @@ import {
 } from './AuthStyles';
 
 const validationSchema = yup.object().shape({
-    username: yup
+    email: yup
         .string()
-        .min(3, 'Username must be longer than 3 characters')
-        .max(14, "Username can't exceed 12 characters")
-        .required('Username is required!'),
+        .email('You must use a valid email')
+        .required('Email is required!'),
     password: yup
         .string()
         .min(6, 'Password must be atleast 6 characters')
@@ -43,7 +42,7 @@ const AuthLogin = () => {
     return (
         <Formik
             initialValues={{
-                username: '',
+                email: '',
                 password: ''
             }}
             validationSchema={validationSchema}
@@ -55,9 +54,9 @@ const AuthLogin = () => {
                 <Form>
                     <FormContainer>
                         <TextField
-                            name='username'
+                            name='email'
                             type='text'
-                            placeholder='Enter your username'
+                            placeholder='Enter your email'
                             as={FormInput}
                         />
 
