@@ -28,11 +28,12 @@ const NavLogo = styled.h1`
 `;
 
 const NavList = styled.ul`
+    display: flex;
     position: ${(props) => (props.auth ? 'absolute' : '')};
     right: ${(props) => (props.auth ? '10px' : '')};
 `;
 
-const NavItems = styled.li`
+const NavItem = styled.li`
     list-style: none;
 `;
 
@@ -69,6 +70,11 @@ const StyledNavLink = styled(NavLink).attrs({
     }
 `;
 
+const Disabled = styled.div`
+    opacity: 0.3;
+    pointer-events: none;
+`;
+
 const Navigation = ({ isAuthenticated, username }) => {
     const dispatch = useDispatch();
 
@@ -82,24 +88,30 @@ const Navigation = ({ isAuthenticated, username }) => {
                     </StyledLink>
                 </NavLogo>
                 <NavList>
-                    <NavItems>
-                        {isAuthenticated ? (
-                            <>
+                    {isAuthenticated ? (
+                        <>
+                            <NavItem>
                                 <StyledNavLink exact to='/' activeClassName='active'>
                                     Home
                                 </StyledNavLink>
-                                <StyledNavLink to='/foryou' activeClassName='active'>
-                                    For You
-                                </StyledNavLink>
+                            </NavItem>
+                            <NavItem>
+                                <Disabled>
+                                    <StyledNavLink to='/foryou' activeClassName='active'>
+                                        For You
+                                    </StyledNavLink>
+                                </Disabled>
+                            </NavItem>
+                            <NavItem>
                                 <StyledNavLink to='/discover' activeClassName='active'>
                                     Discover
                                 </StyledNavLink>
-                            </>
-                        ) : null}
-                    </NavItems>
+                            </NavItem>
+                        </>
+                    ) : null}
                 </NavList>
                 <NavList auth>
-                    <NavItems>
+                    <NavItem>
                         {isAuthenticated ? (
                             <StyledLink
                                 to='/login'
@@ -114,7 +126,7 @@ const Navigation = ({ isAuthenticated, username }) => {
                                 <StyledLink to='/register'>Sign Up</StyledLink>
                             </>
                         )}
-                    </NavItems>
+                    </NavItem>
                 </NavList>
             </NavContent>
         </NavContainer>

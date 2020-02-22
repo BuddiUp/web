@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon } from 'antd';
 import FOG from 'vanta/dist/vanta.fog.min';
-import { Container } from '../../global-styles';
+import { Container, Maintenance } from '../../global-styles';
 import DiscoverSlider from './DiscoverSlider';
 
 import 'slick-carousel/slick/slick.css';
@@ -17,6 +17,7 @@ const CategoryHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     height: 250px;
     background-color: #ffc300;
 `;
@@ -84,6 +85,7 @@ const Discover = () => {
         <>
             <CategoryHeader ref={myRef}>
                 <DiscoverHeader pageHeader>Discover</DiscoverHeader>
+                <Maintenance>Under construction.</Maintenance>
             </CategoryHeader>
             <DiscoverContent>
                 <Container>

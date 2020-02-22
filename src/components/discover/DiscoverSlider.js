@@ -87,7 +87,7 @@ const TempGen = () => {
     return items;
 };
 
-const DiscoverSliders = () => {
+const DiscoverSlider = () => {
     return (
         <SliderContainer>
             <Container>
@@ -99,4 +99,4 @@ const DiscoverSliders = () => {
     );
 };
 
-export default DiscoverSliders;
+export default DiscoverSlider;

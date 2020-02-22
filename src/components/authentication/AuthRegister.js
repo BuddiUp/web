@@ -20,11 +20,6 @@ import {
 const td = new Date().getFullYear();
 
 const validationSchema = yup.object().shape({
-    username: yup
-        .string()
-        .min(3, 'Username must be longer than 3 characters')
-        .max(14, "Username can't exceed 12 characters")
-        .required('Username is required!'),
     email: yup
         .string()
         .email('You must use a valid email')
@@ -33,11 +28,12 @@ const validationSchema = yup.object().shape({
         .string()
         .min(6, 'Password must be atleast 6 characters')
         .max(50, 'Password cannot exceed 50 characters')
-        .required('Password is required!')
-    // password2: yup
-    //     .string()
-    //     .oneOf([yup.ref('password'), null], 'Passwords must match')
-    //     .required('You must confirm your password'),
+        .required('Password is required!'),
+    password2: yup
+        .string()
+        .oneOf([yup.ref('password'), null], 'Passwords must match')
+        .required('You must confirm your password'),
+    zipCode: yup.number().required('Zip code is required!')
     // first_name: yup.string().required('Please enter your first name'),
     // last_name: yup.string().required('Please enter your last name'),
     // dobMonth: yup
@@ -68,16 +64,16 @@ const TextField = ({ placeholder, isDateType, ...props }) => {
     );
 };
 
-// ! NEED TO FILTER OUT NON CHARACTER FOR USERNAME
 const AuthRegister = () => {
     const dispatch = useDispatch();
 
     return (
         <Formik
             initialValues={{
-                username: '',
                 email: '',
-                password: ''
+                password: '',
+                password2: '',
+                zipCode: ''
                 // first_name: '',
                 // last_name: '',
                 // dobDay: '',
@@ -95,13 +91,6 @@ const AuthRegister = () => {
                 <Form>
                     <FormContainer>
                         <TextField
-                            name='username'
-                            type='text'
-                            placeholder='Create a username'
-                            as={FormInput}
-                        />
-
-                        <TextField
                             name='email'
                             type='email'
                             placeholder='Enter your email'
@@ -113,14 +102,20 @@ const AuthRegister = () => {
                             placeholder='Enter your password'
                             as={FormInput}
                         />
-                        {/* <TextField
+                        <TextField
                             name='password2'
                             type='password'
                             placeholder='Confirm your password'
                             as={FormInput}
                         />
-
                         <TextField
+                            name='zipCode'
+                            type='number'
+                            placeholder='Enter your zip code'
+                            as={FormInput}
+                        />
+
+                        {/*  <TextField
                             name='first_name'
                             type='text'
                             placeholder='Enter your first name'
@@ -166,7 +161,8 @@ const AuthRegister = () => {
                                 placeholder='Year'
                                 as={FormInput}
                             />
-                        </FormDate> */}
+                        </FormDate>{' '}
+                        */}
                         <FormButton type='submit'>Sign Up</FormButton>
                     </FormContainer>
 
@@ -177,8 +173,8 @@ const AuthRegister = () => {
                         </span>
                         ?
                     </FormMsg>
-                    {/* <pre>{JSON.stringify(values, null, 2)}</pre>
-                    <pre>{JSON.stringify(errors, null, 2)}</pre> */}
+                    <pre>{JSON.stringify(values, null, 2)}</pre>
+                    <pre>{JSON.stringify(errors, null, 2)}</pre>
                 </Form>
             )}
         </Formik>

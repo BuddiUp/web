@@ -11,7 +11,7 @@ const BottomCard = styled.div`
     align-items: center;
     justify-content: center;
     height: 332px;
-    margin-top: 95px;
+    margin-top: 235px;
     border-radius: 15px;
 `;
 
@@ -52,8 +52,7 @@ export default () => {
                 <CardContent>
                     <CardText header>Ready to get started?</CardText>
                     <CardText>
-                        BuddiUp is here to make it easy for you to share the things you
-                        love with the people who share your passions.
+                        Don&apos;t wait for others to come to you, go find a buddi.
                     </CardText>
                     <CardButton>Create an account</CardButton>
                 </CardContent>

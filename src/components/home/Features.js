@@ -72,7 +72,7 @@ const IconPadding = styled.div`
 const FeatureContent = styled.h2`
     padding-right: 50px;
     margin-bottom: 15px;
-    font-size: ${(props) => (props.subText ? '18px' : '29px')};
+    font-size: ${(props) => (props.subText ? '20px' : '29px')};
     color: ${(props) => (props.subText ? props.theme.gray500 : props.theme.gray800)};
     font-weight: ${(props) => (props.subText ? '500' : '600')};
 `;

@@ -41,6 +41,18 @@ export const FormInput = styled.input`
         outline: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
         box-shadow: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
     }
+
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    &[type='number'] {
+        -moz-appearance: textfield;
+    }
 `;
 
 export const FormSelect = styled.select`

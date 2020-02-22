@@ -7,14 +7,9 @@ import Authentication from './components/authentication/Authentication';
 import PrivateRoute from './router.private';
 
 const BaseRouter = ({ isAuthenticated }) => (
-    <div>
+    <>
         <Route exact path='/' component={Home} />
-        <PrivateRoute
-            exact
-            path='/foryou'
-            isAuthenticated={isAuthenticated}
-            component={Home}
-        />
+        {/* <PrivateRoute exact path='/' isAuthenticated={isAuthenticated} component={Home} /> */}
         <PrivateRoute
             exact
             path='/discover'
@@ -33,7 +28,7 @@ const BaseRouter = ({ isAuthenticated }) => (
             path='/register'
             render={() => <Authentication isTypeLogin={false} />}
         />
-    </div>
+    </>
 );
 
 BaseRouter.propTypes = {

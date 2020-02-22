@@ -75,6 +75,13 @@ export const GlobalStyle = createGlobalStyle`
     
 `;
 
+export const Maintenance = styled.h4`
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.6;
+    color: ${(props) => props.theme.gray300};
+`;
+
 export const Container = styled.div`
     width: 1375px;
     padding: 0px 25px;
