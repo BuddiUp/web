@@ -71,7 +71,7 @@ const DiscoverPlaces = () => {
         <SliderContainer>
             <Container>
                 <Disabled>
-                    <Slider {...cardSettings} style={{ marginTop: '50px' }}>
+                    <Slider {...cardSettings}>
                         <SliderLink to='/'>
                             <SliderItem>
                                 <CardImage

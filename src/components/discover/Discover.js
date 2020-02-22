@@ -10,9 +10,9 @@ import DiscoverSlider from './DiscoverSlider';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const DiscoverContent = styled.div`
-    height: 100vh;
-`;
+// const DiscoverContent = styled.div`
+//     height: 100vh;
+// `;
 
 const CategoryHeader = styled.div`
     display: flex;
@@ -100,7 +100,7 @@ const Discover = () => {
                 <CategoryText>Discover</CategoryText>
                 <Maintenance>Under construction.</Maintenance>
             </CategoryHeader>
-            <DiscoverContent>
+            <>
                 <Container>
                     {/* DISCOVER PEOPLE NEAR */}
                     <DiscoverCategory>
@@ -145,7 +145,7 @@ const Discover = () => {
                     <DiscoverSlider />
                     {/* ######################### */}
                 </Container>
-            </DiscoverContent>
+            </>
         </>
     );
 };
