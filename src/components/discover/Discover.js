@@ -127,7 +127,7 @@ const Discover = () => {
                         </DiscoverViewAll>
                     </DiscoverCategory>
                     <CategoryDescription>
-                        Find places to go based off your interests.
+                        Find places to meetup based off your interests.
                     </CategoryDescription>
                     <DiscoverPlaces />
                     {/* ######################### */}

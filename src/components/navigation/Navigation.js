@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Icon } from 'antd';
-import { authLogout } from '../../store/actions/action.auth';
+import AccountDropdown from './AccountDropdown';
 import { device } from '../../theme';
 
 const NavContainer = styled.nav`
@@ -76,7 +75,7 @@ const NavItem = styled.li`
 `;
 
 // LOOK INTO: Is there a way to inherit these styles?
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
     color: ${(props) => props.theme.gray800};
     font-weight: ${(props) => (props.navlogo ? '900' : '600')};
     letter-spacing: ${(props) => (props.navlogo ? '' : '0.5px')};
@@ -114,7 +113,6 @@ const Disabled = styled.div`
 
 const Navigation = ({ isAuthenticated, username }) => {
     const [dropdown, setDropdown] = useState(false);
-    const dispatch = useDispatch();
 
     return (
         <>
@@ -165,13 +163,7 @@ const Navigation = ({ isAuthenticated, username }) => {
                         <NavItem>
                             {isAuthenticated ? (
                                 <>
-                                    <StyledLink
-                                        to='/login'
-                                        onClick={() => dispatch(authLogout())}
-                                    >
-                                        {/* {username} */}
-                                        First Name
-                                    </StyledLink>
+                                    <AccountDropdown username={username} />
                                     <DropdownBtn
                                         type='arrow-down'
                                         dropdown={dropdown}
