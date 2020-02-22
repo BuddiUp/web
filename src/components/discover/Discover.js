@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Icon } from 'antd';
 import FOG from 'vanta/dist/vanta.fog.min';
 import { Container, Maintenance } from '../../global-styles';
+import DiscoverPlaces from './DiscoverPlaces';
 import DiscoverSlider from './DiscoverSlider';
 
 import 'slick-carousel/slick/slick.css';
@@ -22,14 +23,25 @@ const CategoryHeader = styled.div`
     background-color: #ffc300;
 `;
 
-const DiscoverHeader = styled.h1`
+const CategoryText = styled.h1`
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    letter-spacing: ${(props) => (props.pageHeader ? '1px' : '')};
-    color: ${(props) => (props.pageHeader ? props.theme.white : props.theme.gray800)};
-    font-weight: ${(props) => (props.pageHeader ? '900' : '600')};
-    font-size: ${(props) => (props.pageHeader ? '50px' : '27px')};
+    letter-spacing: 1px;
+    color: ${(props) => props.theme.white};
+    font-weight: 900;
+    font-size: 50px;
+`;
+
+// TODO: REFACTOR NAMES BELOW TO MAKE REUSEABLE
+const DiscoverCategory = styled.h1`
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: 35px;
+    color: ${(props) => props.theme.gray800};
+    font-weight: 600;
+    font-size: 27px;
 `;
 
 const DiscoverViewArrow = styled(Icon)`
@@ -81,39 +93,57 @@ const Discover = () => {
             if (vantaEffect) vantaEffect.destroy();
         };
     }, [vantaEffect]);
+
     return (
         <>
             <CategoryHeader ref={myRef}>
-                <DiscoverHeader pageHeader>Discover</DiscoverHeader>
+                <CategoryText>Discover</CategoryText>
                 <Maintenance>Under construction.</Maintenance>
             </CategoryHeader>
             <DiscoverContent>
                 <Container>
                     {/* DISCOVER PEOPLE NEAR */}
-                    <DiscoverHeader style={{ marginTop: '35px' }}>
+                    <DiscoverCategory>
                         People near you
                         <DiscoverViewAll to='/'>
                             View All
                             <DiscoverViewArrow type='caret-right' />
                         </DiscoverViewAll>
-                    </DiscoverHeader>
+                    </DiscoverCategory>
                     <CategoryDescription>
                         Get together with people in your area.
                     </CategoryDescription>
                     <DiscoverSlider />
-
+                    {/* ######################### */}
+                    {/* DISCOVER PLACES */}
+                    {/* Remove later */}
+                    <p style={{ margin: '35px 0px -35px 0px', color: '#6b7cff' }}>
+                        Coming soon
+                    </p>
+                    <DiscoverCategory>
+                        Explore new places
+                        <DiscoverViewAll to='/'>
+                            <DiscoverViewArrow type='caret-right' />
+                        </DiscoverViewAll>
+                    </DiscoverCategory>
+                    <CategoryDescription>
+                        Find places to go based off your interests.
+                    </CategoryDescription>
+                    <DiscoverPlaces />
+                    {/* ######################### */}
                     {/* DISCOVER PEOPLE AT */}
-                    <DiscoverHeader style={{ marginTop: '35px' }}>
+                    <DiscoverCategory>
                         Expand your search
                         <DiscoverViewAll to='/'>
                             View All
                             <DiscoverViewArrow type='caret-right' />
                         </DiscoverViewAll>
-                    </DiscoverHeader>
+                    </DiscoverCategory>
                     <CategoryDescription>
                         Reach out to others from different areas.
                     </CategoryDescription>
                     <DiscoverSlider />
+                    {/* ######################### */}
                 </Container>
             </DiscoverContent>
         </>

@@ -4,13 +4,12 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import { Container } from '../../global-styles';
 import testFace from '../../assets/images/testFace.jpg';
-import homeHeader from '../../assets/images/homeHeader.png';
-import settings from './slider.settings';
+import { userSettings } from './slider.settings';
 
 const SliderContainer = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: -30px;
+    margin-top: 30px;
     transition: 5s ease-in-out;
 `;
 
@@ -90,9 +89,7 @@ const DiscoverSlider = () => {
     return (
         <SliderContainer>
             <Container>
-                <Slider {...settings} style={{ marginTop: '50px' }}>
-                    {TempGen()}
-                </Slider>
+                <Slider {...userSettings}>{TempGen()}</Slider>
             </Container>
         </SliderContainer>
     );

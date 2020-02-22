@@ -84,7 +84,7 @@ export const Maintenance = styled.h4`
 
 export const Container = styled.div`
     width: 1375px;
-    padding: 0px 25px;
+    /* padding: 0px 25px; */
     margin: 0px auto;
 
     @media ${device.laptopM} {
