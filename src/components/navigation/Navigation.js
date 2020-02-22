@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { authLogout } from '../../store/actions/action.auth';
@@ -36,6 +36,7 @@ const NavItems = styled.li`
     list-style: none;
 `;
 
+// LOOK INTO: Is there a way to inherit these styles?
 const StyledLink = styled(Link)`
     color: ${(props) => props.theme.gray800};
     font-weight: ${(props) => (props.navlogo ? '900' : '600')};
@@ -48,8 +49,25 @@ const StyledLink = styled(Link)`
     }
 `;
 
-// TODO: Look into NavLink
-// to="/" activeClassName="test"
+const activeClassName = 'active';
+const StyledNavLink = styled(NavLink).attrs({
+    activeClassName
+})`
+    color: ${(props) => props.theme.gray800};
+    font-weight: ${(props) => (props.navlogo ? '900' : '600')};
+    letter-spacing: ${(props) => (props.navlogo ? '' : '0.5px')};
+    padding: 9px 15px;
+    text-decoration: none;
+    &:hover {
+        color: ${(props) => props.theme.primary};
+        opacity: 0.8;
+    }
+
+    &.${activeClassName} {
+        /* color: ${(props) => props.theme.primary}; */
+        border-bottom: 2px solid ${(props) => props.theme.primary};
+    }
+`;
 
 const Navigation = ({ isAuthenticated, username }) => {
     const dispatch = useDispatch();
@@ -67,9 +85,15 @@ const Navigation = ({ isAuthenticated, username }) => {
                     <NavItems>
                         {isAuthenticated ? (
                             <>
-                                <StyledLink to='/'>Home</StyledLink>
-                                <StyledLink to='/foryou'>For You</StyledLink>
-                                <StyledLink to='/discover'>Discover</StyledLink>
+                                <StyledNavLink exact to='/' activeClassName='active'>
+                                    Home
+                                </StyledNavLink>
+                                <StyledNavLink to='/foryou' activeClassName='active'>
+                                    For You
+                                </StyledNavLink>
+                                <StyledNavLink to='/discover' activeClassName='active'>
+                                    Discover
+                                </StyledNavLink>
                             </>
                         ) : null}
                     </NavItems>
@@ -81,7 +105,8 @@ const Navigation = ({ isAuthenticated, username }) => {
                                 to='/login'
                                 onClick={() => dispatch(authLogout())}
                             >
-                                {username}
+                                {/* {username} */}
+                                First Name
                             </StyledLink>
                         ) : (
                             <>
