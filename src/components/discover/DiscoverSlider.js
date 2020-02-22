@@ -63,6 +63,7 @@ const ProfileSubText = styled.p`
     color: ${(props) => props.theme.gray300};
 `;
 
+// ! FIX POSITION ABSOLUTE OVERLAPPING
 // * Delete later *
 const TempGen = () => {
     const items = [];
