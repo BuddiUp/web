@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Icon } from 'antd';
 import FOG from 'vanta/dist/vanta.fog.min';
 import { Container } from '../../global-styles';
-import DiscoverSliders from './DiscoverSliders';
+import DiscoverSlider from './DiscoverSlider';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -20,10 +22,36 @@ const CategoryHeader = styled.div`
 `;
 
 const DiscoverHeader = styled.h1`
-    letter-spacing: 1px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    letter-spacing: ${(props) => (props.pageHeader ? '1px' : '')};
     color: ${(props) => (props.pageHeader ? props.theme.white : props.theme.gray800)};
     font-weight: ${(props) => (props.pageHeader ? '900' : '600')};
     font-size: ${(props) => (props.pageHeader ? '50px' : '27px')};
+`;
+
+const DiscoverViewArrow = styled(Icon)`
+    font-size: 12px;
+    color: ${(props) => props.theme.primary};
+    opacity: 0;
+`;
+
+const DiscoverViewAll = styled(Link)`
+    text-transform: uppercase;
+    margin-left: 15px;
+    color: ${(props) => props.theme.gray400};
+    font-size: 14px;
+    font-weight: 900;
+    text-decoration: none;
+    letter-spacing: 0.4px;
+
+    &:hover {
+        color: ${(props) => props.theme.primary};
+        ${DiscoverViewArrow} {
+            opacity: 1;
+        }
+    }
 `;
 
 const CategoryDescription = styled.p`
@@ -59,13 +87,31 @@ const Discover = () => {
             </CategoryHeader>
             <DiscoverContent>
                 <Container>
+                    {/* DISCOVER PEOPLE NEAR */}
                     <DiscoverHeader style={{ marginTop: '35px' }}>
                         People near you
+                        <DiscoverViewAll to='/'>
+                            View All
+                            <DiscoverViewArrow type='caret-right' />
+                        </DiscoverViewAll>
                     </DiscoverHeader>
                     <CategoryDescription>
                         Get together with people in your area.
                     </CategoryDescription>
-                    <DiscoverSliders />
+                    <DiscoverSlider />
+
+                    {/* DISCOVER PEOPLE AT */}
+                    <DiscoverHeader style={{ marginTop: '35px' }}>
+                        Expand your search
+                        <DiscoverViewAll to='/'>
+                            View All
+                            <DiscoverViewArrow type='caret-right' />
+                        </DiscoverViewAll>
+                    </DiscoverHeader>
+                    <CategoryDescription>
+                        Reach out to others from different areas.
+                    </CategoryDescription>
+                    <DiscoverSlider />
                 </Container>
             </DiscoverContent>
         </>
