@@ -61,7 +61,7 @@ const ProfileName = styled.h1`
 
 const ProfileSubText = styled.p`
     font-size: 16px;
-    color: ${(props) => props.theme.white};
+    color: ${(props) => props.theme.gray300};
 `;
 
 // * Delete later *
@@ -74,8 +74,7 @@ const TempGen = () => {
                     <ProfileImage>
                         <ProfileFade>
                             <ProfileContent>
-                                <ProfileName>Victoria</ProfileName>
-                                <ProfileSubText>Age: 18</ProfileSubText>
+                                <ProfileName>Victoria, 18</ProfileName>
                                 <ProfileSubText>San Fransisco, CA</ProfileSubText>
                             </ProfileContent>
                         </ProfileFade>
