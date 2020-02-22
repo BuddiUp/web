@@ -1,16 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { device } from '../../theme';
 
 const FooterContainer = styled.footer`
     margin-top: 45px;
     background-color: ${(props) => props.theme.darkBox};
-`;
-
-const FooterBranding = styled.h4`
-    margin-top: 20px;
-    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.39);
-    color: ${(props) => props.theme.primary};
 `;
 
 const FooterContent = styled.div`
@@ -50,6 +45,22 @@ const FooterItem = styled(Link)`
         color: ${(props) => props.theme.gray400};
         text-shadow: 0 2px 0 rgba(0, 0, 0, 0.39);
         opacity: 0.8;
+    }
+
+    @media ${device.mobileL} {
+        font-size: 14px;
+        padding: 8px;
+    }
+`;
+
+const FooterBranding = styled.h4`
+    margin-top: 20px;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.39);
+    color: ${(props) => props.theme.primary};
+
+    @media ${device.mobileL} {
+        font-size: 14px;
+        padding: 8px;
     }
 `;
 
