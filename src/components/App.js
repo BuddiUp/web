@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
@@ -20,9 +20,13 @@ export default () => {
     );
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    const initAuthCheck = useCallback(() => {
         dispatch(authCheck());
-    }, []);
+    }, [dispatch]);
+
+    useEffect(() => {
+        initAuthCheck();
+    }, [initAuthCheck]);
 
     return (
         <Router history={history}>
