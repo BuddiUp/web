@@ -22,7 +22,7 @@ export const fetchNew = (data) => {
     return { type: DISCOVER_NEW, payload: data };
 };
 
-export const discoverNew = (userData) => (dispatch) => {
+export const discoverNear = (userData) => (dispatch) => {
     dispatch(discoverStart());
     const USER_TOKEN = localStorage.getItem('token');
     const CONFIG = {
@@ -31,6 +31,7 @@ export const discoverNew = (userData) => (dispatch) => {
             Authorization: `Token ${USER_TOKEN}`
         }
     };
+
     buddiup
         .post('/api/auth/search', userData, CONFIG)
         .then((res) => {

@@ -34,6 +34,7 @@ const discoverNear = (state, action) => {
     });
 };
 
+// TODO
 const discoverNew = (state, action) => {
     return updateObject(state, {});
 };
