@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Icon } from 'antd';
+import { NoAccess } from '../../global-styles';
 import { authLogout } from '../../store/actions/action.auth';
 
 const UserDropdown = styled.div`
@@ -117,13 +118,17 @@ const AccountDropdown = ({ firstName, lastName }) => {
 
             {profileDropdown ? (
                 <ProfileList>
-                    <ListItemLink to='/'>
-                        <ListItem>Profile</ListItem>
-                    </ListItemLink>
+                    <NoAccess>
+                        <ListItemLink to='/'>
+                            <ListItem>Profile</ListItem>
+                        </ListItemLink>
+                    </NoAccess>
                     <ItemDivider />
-                    <ListItemLink to='/'>
-                        <ListItem>Settings</ListItem>
-                    </ListItemLink>
+                    <NoAccess>
+                        <ListItemLink to='/'>
+                            <ListItem>Settings</ListItem>
+                        </ListItemLink>
+                    </NoAccess>
                     <ItemDivider />
                     <ListItemLink to='/login' onClick={() => dispatch(authLogout())}>
                         <ListItem>Log Out</ListItem>

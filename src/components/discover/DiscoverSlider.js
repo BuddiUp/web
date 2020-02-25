@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Icon } from 'antd';
 import Slider from 'react-slick';
 import { Container } from '../../global-styles';
-import { discoverNew } from '../../store/actions/action.discover';
+import { discoverNear } from '../../store/actions/action.discover';
 import testFace from '../../assets/images/testFace.jpg';
 import { userSettings } from './slider.settings';
 
@@ -65,6 +66,20 @@ const ProfileSubText = styled.p`
     color: ${(props) => props.theme.gray300};
 `;
 
+const NoProfileContainer = styled.div`
+    display: flex;
+`;
+
+const NoProfileEmoji = styled(Icon)`
+    color: ${(props) => props.theme.gray500};
+    margin-right: 10px;
+    font-size: 45px;
+`;
+
+const NoProfiles = styled.h4`
+    color: ${(props) => props.theme.gray500};
+`;
+
 // * Delete later *
 const TempGen = () => {
     const items = [];
@@ -89,16 +104,57 @@ const TempGen = () => {
 
 const DiscoverSlider = () => {
     const userData = useSelector((state) => state.authReducer.user);
+    const discoveredUsers = useSelector((state) => state.discoverReducer);
     const dispatch = useDispatch();
-
     useEffect(() => {
-        dispatch(discoverNew(userData));
+        dispatch(discoverNear(userData));
     }, [dispatch, userData]);
+
+    const GenProfileCard = () => {
+        const users = Object.keys(discoveredUsers.userProfiles).map((key) => {
+            const { id, name, age, city, state } = discoveredUsers.userProfiles[key];
+
+            return (
+                <SliderLink to='/' key={id}>
+                    <SliderItem>
+                        <ProfileImage>
+                            <ProfileFade>
+                                <ProfileContent>
+                                    <ProfileName>
+                                        {/* eslint-disable-next-line */}
+                                        {name}, {age}
+                                    </ProfileName>
+                                    <ProfileSubText>
+                                        {/* eslint-disable-next-line */}
+                                        {city}, {state}
+                                    </ProfileSubText>
+                                </ProfileContent>
+                            </ProfileFade>
+                        </ProfileImage>
+                    </SliderItem>
+                </SliderLink>
+            );
+        });
+        // TODO: Display error message
+        if (discoveredUsers.error) {
+            return (
+                <>
+                    <NoProfileContainer>
+                        <NoProfileEmoji type='frown' />
+                        <NoProfiles>
+                            We couldn&apos;t find any buddies near you.
+                        </NoProfiles>
+                    </NoProfileContainer>
+                </>
+            );
+        }
+        return users;
+    };
 
     return (
         <SliderContainer>
             <Container>
-                <Slider {...userSettings}>{TempGen()}</Slider>
+                <Slider {...userSettings}>{GenProfileCard()}</Slider>
             </Container>
         </SliderContainer>
     );

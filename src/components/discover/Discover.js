@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon } from 'antd';
 import FOG from 'vanta/dist/vanta.fog.min';
-import { Container, Maintenance } from '../../global-styles';
+import { Container, Maintenance, NoAccess } from '../../global-styles';
 import DiscoverPlaces from './DiscoverPlaces';
 import DiscoverSlider from './DiscoverSlider';
 
@@ -101,10 +101,12 @@ const Discover = () => {
                     {/* DISCOVER PEOPLE NEAR */}
                     <DiscoverCategory>
                         People near you
-                        <DiscoverViewAll to='/'>
-                            View All
-                            <DiscoverViewArrow type='caret-right' />
-                        </DiscoverViewAll>
+                        <NoAccess>
+                            <DiscoverViewAll to='/'>
+                                View All
+                                <DiscoverViewArrow type='caret-right' />
+                            </DiscoverViewAll>
+                        </NoAccess>
                     </DiscoverCategory>
                     <CategoryDescription>
                         Get together with people in your area.
@@ -130,10 +132,12 @@ const Discover = () => {
                     {/* DISCOVER PEOPLE AT */}
                     <DiscoverCategory>
                         Expand your search
-                        <DiscoverViewAll to='/'>
-                            View All
-                            <DiscoverViewArrow type='caret-right' />
-                        </DiscoverViewAll>
+                        <NoAccess>
+                            <DiscoverViewAll to='/'>
+                                View All
+                                <DiscoverViewArrow type='caret-right' />
+                            </DiscoverViewAll>
+                        </NoAccess>
                     </DiscoverCategory>
                     <CategoryDescription>
                         Reach out to others from different areas.

@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import { device } from './theme';
 
@@ -54,6 +56,10 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     } 
     
+    .slick-track{
+        float: left;
+    }
+    
 `;
 
 export const Maintenance = styled.h4`
@@ -63,6 +69,31 @@ export const Maintenance = styled.h4`
     color: ${(props) => props.theme.gray300};
 `;
 
+// #########################
+// NO ACCESS  COMPONENT
+// #########################
+const DisabledContainer = styled.div`
+    cursor: not-allowed;
+`;
+const Disabled = styled.div`
+    opacity: 0.4;
+    pointer-events: none;
+`;
+export const NoAccess = ({ children }) => {
+    return (
+        <DisabledContainer>
+            <Disabled>{children}</Disabled>
+        </DisabledContainer>
+    );
+};
+
+NoAccess.propTypes = {
+    children: PropTypes.element.isRequired
+};
+
+// #########################
+// RESPONSIVE PROPERTIES
+// #########################
 export const Container = styled.div`
     width: 1375px;
     /* padding: 0px 25px; */

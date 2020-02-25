@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Icon } from 'antd';
 import AccountDropdown from './AccountDropdown';
 import { device } from '../../theme';
+import { NoAccess } from '../../global-styles';
 
 const NavContainer = styled.nav`
     display: flex;
@@ -106,11 +107,6 @@ const StyledNavLink = styled(NavLink).attrs({
     }
 `;
 
-const Disabled = styled.div`
-    opacity: 0.3;
-    pointer-events: none;
-`;
-
 /**
  * STATE FUNCTIONALITY
  * @dropdown (bool) - Shows the dropdown
@@ -147,14 +143,14 @@ const Navigation = ({ isAuthenticated, firstName, lastName }) => {
                                         </StyledNavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <Disabled>
+                                        <NoAccess>
                                             <StyledNavLink
                                                 to='/foryou'
                                                 activeClassName='active'
                                             >
                                                 For You
                                             </StyledNavLink>
-                                        </Disabled>
+                                        </NoAccess>
                                     </NavItem>
                                     <NavItem>
                                         <StyledNavLink
@@ -209,14 +205,14 @@ const Navigation = ({ isAuthenticated, firstName, lastName }) => {
                                         </StyledNavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <Disabled>
+                                        <NoAccess>
                                             <StyledNavLink
                                                 to='/foryou'
                                                 activeClassName='active'
                                             >
                                                 For You
                                             </StyledNavLink>
-                                        </Disabled>
+                                        </NoAccess>
                                     </NavItem>
                                     <NavItem>
                                         <StyledNavLink

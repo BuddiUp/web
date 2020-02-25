@@ -12,7 +12,7 @@ const BottomCard = styled.div`
     align-items: center;
     justify-content: center;
     height: 332px;
-    margin-top: 235px;
+    margin-top: 124px;
     border-radius: 15px;
 `;
 
