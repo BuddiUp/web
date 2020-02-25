@@ -41,7 +41,7 @@ const authLogout = (state) => updateObject(state, INIT_STATE);
 const authReducer = (state = INIT_STATE, action) => {
     switch (action.type) {
         case AUTH_START:
-            return authStart(state, action);
+            return authStart(state);
         case AUTH_SUCCESS:
             return authSuccess(state, action);
         case FETCH_USER:

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import { Container } from '../../global-styles';
+import { discoverNew } from '../../store/actions/action.discover';
 import testFace from '../../assets/images/testFace.jpg';
 import { userSettings } from './slider.settings';
 
@@ -63,7 +65,6 @@ const ProfileSubText = styled.p`
     color: ${(props) => props.theme.gray300};
 `;
 
-// ! FIX POSITION ABSOLUTE OVERLAPPING
 // * Delete later *
 const TempGen = () => {
     const items = [];
@@ -87,6 +88,13 @@ const TempGen = () => {
 };
 
 const DiscoverSlider = () => {
+    const userData = useSelector((state) => state.authReducer.user);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(discoverNew(userData));
+    }, [dispatch, userData]);
+
     return (
         <SliderContainer>
             <Container>

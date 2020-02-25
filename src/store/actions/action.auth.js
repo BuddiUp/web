@@ -30,17 +30,17 @@ export const authLogout = () => {
 };
 
 export const authCheck = () => (dispatch) => {
-    const userToken = localStorage.getItem('token');
-    if (!userToken) {
+    const USER_TOKEN = localStorage.getItem('token');
+    if (!USER_TOKEN) {
         dispatch(authLogout());
     } else {
-        const config = {
+        const CONFIG = {
             headers: {
-                Authorization: `Token ${userToken}`
+                Authorization: `Token ${USER_TOKEN}`
             }
         };
         buddiup
-            .get('/api/auth/user', config)
+            .get('/api/auth/user', CONFIG)
             .then((res) => {
                 dispatch(fetchUser(res.data));
             })
@@ -52,16 +52,16 @@ export const authCheck = () => (dispatch) => {
 
 export const authSignUp = (userData) => (dispatch) => {
     dispatch(authStart());
-    const config = {
+    const CONFIG = {
         headers: {
             'Content-Type': 'application/json'
         }
     };
     buddiup
-        .post('/api/auth/register', userData, config)
+        .post('/api/auth/register', userData, CONFIG)
         .then((res) => {
-            const userToken = res.data.token;
-            localStorage.setItem('token', userToken);
+            const USER_TOKEN = res.data.token;
+            localStorage.setItem('token', USER_TOKEN);
             dispatch(authSuccess(res.data));
             history.push('/');
         })
@@ -72,11 +72,12 @@ export const authSignUp = (userData) => (dispatch) => {
 
 export const authLogin = (userData) => (dispatch) => {
     dispatch(authStart());
+
     buddiup
         .post('/api/auth/login', userData)
         .then((res) => {
-            const userToken = res.data.token;
-            localStorage.setItem('token', userToken);
+            const USER_TOKEN = res.data.token;
+            localStorage.setItem('token', USER_TOKEN);
             dispatch(authSuccess(res.data));
             history.push('/');
         })

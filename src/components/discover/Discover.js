@@ -10,10 +10,6 @@ import DiscoverSlider from './DiscoverSlider';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// const DiscoverContent = styled.div`
-//     height: 100vh;
-// `;
-
 const CategoryHeader = styled.div`
     display: flex;
     align-items: center;
@@ -74,12 +70,12 @@ const CategoryDescription = styled.p`
 
 const Discover = () => {
     const [vantaEffect, setVantaEffect] = useState(0);
-    const myRef = useRef(null);
+    const MY_REF = useRef(null);
     useEffect(() => {
         if (!vantaEffect) {
             setVantaEffect(
                 FOG({
-                    el: myRef.current,
+                    el: MY_REF.current,
                     mouseControls: true,
                     touchControls: true,
                     minHeight: 200.0,
@@ -96,7 +92,7 @@ const Discover = () => {
 
     return (
         <>
-            <CategoryHeader ref={myRef}>
+            <CategoryHeader ref={MY_REF}>
                 <CategoryText>Discover</CategoryText>
                 <Maintenance>Under construction.</Maintenance>
             </CategoryHeader>
@@ -142,7 +138,7 @@ const Discover = () => {
                     <CategoryDescription>
                         Reach out to others from different areas.
                     </CategoryDescription>
-                    <DiscoverSlider />
+                    {/* <DiscoverSlider /> */}
                     {/* ######################### */}
                 </Container>
             </>

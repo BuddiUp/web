@@ -64,8 +64,8 @@ const NavLogo = styled.h1`
 
 const NavList = styled.ul`
     display: flex;
-    position: ${(props) => (props.auth ? 'absolute' : '')};
-    right: ${(props) => (props.auth ? '10px' : '')};
+    position: ${(props) => (props.moveRight ? 'absolute' : '')};
+    right: ${(props) => (props.moveRight ? '10px' : '')};
 `;
 
 const NavItem = styled.li`
@@ -111,7 +111,16 @@ const Disabled = styled.div`
     pointer-events: none;
 `;
 
-const Navigation = ({ isAuthenticated, username }) => {
+/**
+ * STATE FUNCTIONALITY
+ * @dropdown (bool) - Shows the dropdown
+ * CUSTOM PROP FUNCTIONALITY
+ * @mainNav (bool) - Navigation for larger displays.
+ *                   If it's false, it will display the responsive navbar
+ * @moveRight (bool) - Determines if the NavList should move to the right side
+ */
+
+const Navigation = ({ isAuthenticated, firstName, lastName }) => {
     const [dropdown, setDropdown] = useState(false);
 
     return (
@@ -159,14 +168,17 @@ const Navigation = ({ isAuthenticated, username }) => {
                             ) : null}
                         </NavList>
                     </NavRoutes>
-                    <NavList auth>
+                    <NavList moveRight>
                         <NavItem>
                             {isAuthenticated ? (
                                 <>
-                                    <AccountDropdown username={username} />
+                                    <AccountDropdown
+                                        firstName={firstName}
+                                        lastName={lastName}
+                                    />
                                     <DropdownBtn
                                         type='arrow-down'
-                                        dropdown={dropdown}
+                                        dropdown={dropdown ? 1 : 0}
                                         onClick={() => setDropdown(!dropdown)}
                                     />
                                 </>
@@ -226,11 +238,13 @@ const Navigation = ({ isAuthenticated, username }) => {
 
 Navigation.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    username: PropTypes.string
+    firstName: PropTypes.string,
+    lastName: PropTypes.string
 };
 
 Navigation.defaultProps = {
-    username: ''
+    firstName: '',
+    lastName: ''
 };
 
 export default Navigation;

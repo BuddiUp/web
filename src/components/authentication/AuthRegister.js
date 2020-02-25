@@ -1,15 +1,16 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Formik, Form, useField } from 'formik';
+import { Formik, Form, useField, Field } from 'formik';
 import * as yup from 'yup';
 import { authSignUp } from '../../store/actions/action.auth';
-
 import {
     FormContainer,
     FormHeader,
     FormInput,
     FormSelect,
+    FormLabel,
+    FormRadio,
     FormDate,
     FormButton,
     FormMsg,
@@ -33,32 +34,33 @@ const validationSchema = yup.object().shape({
         .string()
         .oneOf([yup.ref('password'), null], 'Passwords must match')
         .required('You must confirm your password'),
-    zipCode: yup.number().required('Zip code is required!')
-    // first_name: yup.string().required('Please enter your first name'),
-    // last_name: yup.string().required('Please enter your last name'),
-    // dobMonth: yup
-    //     .number()
-    //     .min(1, 'Invalid month')
-    //     .max(12, 'Invalid month')
-    //     .required('Month is required'),
-    // dobDay: yup
-    //     .number()
-    //     .min(1, 'Invalid day')
-    //     .max(31, 'Invalid day')
-    //     .required('Day is required'),
-    // dobYear: yup
-    //     .number()
-    //     .max(td, 'Invalid year')
-    //     .required('Year is required')
+    zipcode: yup.number().required('Zip code is required!'),
+    name: yup.string().required('Please enter your first name'),
+    last_name: yup.string().required('Please enter your last name'),
+    gender: yup.number().required('Please specify your gender'),
+    birth_month: yup
+        .number()
+        .min(1, 'Invalid month')
+        .max(12, 'Invalid month')
+        .required('Month is required'),
+    birth_day: yup
+        .number()
+        .min(1, 'Invalid day')
+        .max(31, 'Invalid day')
+        .required('Day is required'),
+    birth_year: yup
+        .number()
+        .max(td, 'Invalid year')
+        .required('Year is required')
 });
 
 // TODO: NEED A BETTER WAY TO DISPLAY THE ERRORS FOR THE DATE PICKER
-const TextField = ({ placeholder, isDateType, ...props }) => {
+const TextField = ({ placeholder, noErrMsg, ...props }) => {
     const [field, meta] = useField(props);
     const errText = meta.error && meta.touched ? meta.error : '';
     return (
         <>
-            {isDateType ? null : <FormError>{errText}</FormError>}
+            {noErrMsg ? null : <FormError>{errText}</FormError>}
             <FormInput placeholder={placeholder} {...field} {...props} error={errText} />
         </>
     );
@@ -66,27 +68,28 @@ const TextField = ({ placeholder, isDateType, ...props }) => {
 
 const AuthRegister = () => {
     const dispatch = useDispatch();
-
     return (
         <Formik
             initialValues={{
                 email: '',
                 password: '',
                 password2: '',
-                zipCode: ''
-                // first_name: '',
-                // last_name: '',
-                // dobDay: '',
-                // dobMonth: 0,
-                // dobYear: ''
+                zipcode: '',
+                name: '',
+                last_name: '',
+                gender: '',
+                birth_day: '',
+                birth_month: '',
+                birth_year: ''
             }}
             validationSchema={validationSchema}
-            onSubmit={(data) => {
-                // setSubmitting(true);
+            // TODO: Add spinner
+            onSubmit={(data, { setSubmitting }) => {
+                setSubmitting(true);
                 dispatch(authSignUp(data));
+                setSubmitting(false);
             }}
         >
-            {/*  Remove later */}
             {({ values, errors }) => (
                 <Form>
                     <FormContainer>
@@ -109,14 +112,7 @@ const AuthRegister = () => {
                             as={FormInput}
                         />
                         <TextField
-                            name='zipCode'
-                            type='number'
-                            placeholder='Enter your zip code'
-                            as={FormInput}
-                        />
-
-                        {/*  <TextField
-                            name='first_name'
+                            name='name'
                             type='text'
                             placeholder='Enter your first name'
                             as={FormInput}
@@ -127,10 +123,43 @@ const AuthRegister = () => {
                             placeholder='Enter your last name'
                             as={FormInput}
                         />
+                        <FormHeader>Gender</FormHeader>
+                        <div style={{ display: 'flex' }}>
+                            <FormLabel htmlFor='male'>
+                                <Field
+                                    name='gender'
+                                    type='radio'
+                                    id='male'
+                                    value='0'
+                                    as={FormRadio}
+                                />
+                                Male
+                            </FormLabel>
+                            <FormLabel htmlFor='female'>
+                                <Field
+                                    name='gender'
+                                    type='radio'
+                                    id='female'
+                                    value='1'
+                                    as={FormRadio}
+                                />
+                                Female
+                            </FormLabel>
+                            <FormLabel htmlFor='other'>
+                                <Field
+                                    name='gender'
+                                    type='radio'
+                                    id='other'
+                                    value='2'
+                                    as={FormRadio}
+                                />
+                                Other
+                            </FormLabel>
+                        </div>
                         <FormHeader>Birthdate</FormHeader>
                         <FormDate>
-                            <TextField name='dobMonth' isDateType as={FormSelect}>
-                                <option value='0' disabled defaultValue='selected' hidden>
+                            <TextField name='birth_month' noErrMsg as={FormSelect}>
+                                <option value='0' defaultValue='selected' hidden>
                                     Month
                                 </option>
                                 <option value='1'>January</option>
@@ -148,21 +177,26 @@ const AuthRegister = () => {
                             </TextField>
 
                             <TextField
-                                isDateType
-                                name='dobDay'
+                                noErrMsg
+                                name='birth_day'
                                 type='text'
                                 placeholder='Day'
                                 as={FormInput}
                             />
                             <TextField
-                                isDateType
-                                name='dobYear'
+                                noErrMsg
+                                name='birth_year'
                                 type='text'
                                 placeholder='Year'
                                 as={FormInput}
                             />
-                        </FormDate>{' '}
-                        */}
+                        </FormDate>
+                        <TextField
+                            name='zipcode'
+                            type='number'
+                            placeholder='Enter your zip code'
+                            as={FormInput}
+                        />
                         <FormButton type='submit'>Sign Up</FormButton>
                     </FormContainer>
 
@@ -183,12 +217,12 @@ const AuthRegister = () => {
 
 TextField.propTypes = {
     placeholder: PropTypes.string,
-    isDateType: PropTypes.bool
+    noErrMsg: PropTypes.bool
 };
 
 TextField.defaultProps = {
     placeholder: '',
-    isDateType: false
+    noErrMsg: false
 };
 
 export default AuthRegister;

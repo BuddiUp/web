@@ -34,7 +34,7 @@ const UserProfileBtn = styled.button`
 const DropdownIcon = styled(Icon)`
     font-size: 14px;
     margin-left: 8px;
-    transform: rotate(${(props) => (props.dropdown ? 180 : 0)}deg);
+    transform: rotate(${(props) => (props.arrow ? 180 : 0)}deg);
     display: flex !important;
 `;
 
@@ -74,7 +74,6 @@ const ListItemLink = styled(Link)`
 const ListItem = styled.li`
     flex-direction: column;
     align-items: flex-start !important;
-
     padding: 0px 16px;
     border-radius: 15px;
     margin-bottom: 6px;
@@ -83,39 +82,43 @@ const ListItem = styled.li`
 `;
 
 // TODO: Find another way to not use state (prevent rerender)
-const AccountDropdown = ({ username }) => {
+/**
+ * STATE FUNCTIONALITY
+ * @profileDropdown (bool) - Toggles the profile dropdown on the navigation
+ * CUSTOM PROP FUNCTIONALITY
+ * @arrow (bool) - Determines if the arrow should be flipped based off @profileDropdown
+ */
+const AccountDropdown = ({ firstName, lastName }) => {
     // Reference to outer div
     const node = useRef();
-    const [dropdown, setDropdown] = useState(false);
+    const [profileDropdown, setProfileDropdown] = useState(false);
     const dispatch = useDispatch();
 
     const handleClick = (e) => {
-        // returns true if whatever you're clicking is inside the “node” ref.
+        // Returns true if whatever you're clicking is inside the “node” ref.
         if (node.current.contains(e.target)) return;
-        setDropdown(false);
+        setProfileDropdown(false);
     };
 
     useEffect(() => {
         document.addEventListener('mousedown', handleClick);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClick);
-        };
+        return () => document.removeEventListener('mousedown', handleClick);
     }, []);
 
     return (
         <div ref={node}>
             <UserDropdown>
-                <UserProfileBtn onClick={() => setDropdown(!dropdown)}>
-                    First Name
-                    <DropdownIcon type='caret-down' dropdown={dropdown} />
+                <UserProfileBtn onClick={() => setProfileDropdown(!profileDropdown)}>
+                    {/* eslint-disable-next-line */}
+                    {firstName} {lastName}
+                    <DropdownIcon arrow={profileDropdown ? 1 : 0} type='caret-down' />
                 </UserProfileBtn>
             </UserDropdown>
 
-            {dropdown ? (
+            {profileDropdown ? (
                 <ProfileList>
                     <ListItemLink to='/'>
-                        <ListItem>First Name</ListItem>
+                        <ListItem>Profile</ListItem>
                     </ListItemLink>
                     <ItemDivider />
                     <ListItemLink to='/'>
@@ -126,16 +129,20 @@ const AccountDropdown = ({ username }) => {
                         <ListItem>Log Out</ListItem>
                     </ListItemLink>
                 </ProfileList>
-            ) : null}
+            ) : (
+                undefined
+            )}
         </div>
     );
 };
 
 AccountDropdown.propTypes = {
-    username: PropTypes.string
+    firstName: PropTypes.string,
+    lastName: PropTypes.string
 };
 
 AccountDropdown.defaultProps = {
-    username: ''
+    firstName: '',
+    lastName: ''
 };
 export default AccountDropdown;

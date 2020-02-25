@@ -58,7 +58,7 @@ const CardText = styled.h1`
 `;
 
 const Disabled = styled.div`
-    opacity: 0.5;
+    opacity: 0.2;
     pointer-events: none;
 `;
 

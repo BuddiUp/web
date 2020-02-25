@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import FOG from 'vanta/dist/vanta.fog.min';
 import homeHeader from '../../assets/images/homeHeader.png';
@@ -70,7 +71,9 @@ export default () => {
                 <HeaderContent>
                     <HeaderText h1='true'>Ready to meet a Buddi?</HeaderText>
                     <HeaderText>Meet new people and explore new places.</HeaderText>
-                    <HeaderButton>Find a Buddi</HeaderButton>
+                    <Link to='/register'>
+                        <HeaderButton>Find a Buddi</HeaderButton>
+                    </Link>
                 </HeaderContent>
             </HeaderImage>
         </>

@@ -52,26 +52,7 @@ export const GlobalStyle = createGlobalStyle`
     .slick-slide {
         padding: 0 8px;
         box-sizing: border-box;
-    }
-    
-    /* ---------------------- */
-    /* SCROLLBAR PROPERTIES */
-    /* ---------------------- */
-    ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        border-radius: 8px;
-        background: #a4a4a4;
-    }
-    
-    
+    } 
     
 `;
 

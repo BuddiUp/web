@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container } from '../../global-styles';
 import bottomCard from '../../assets/images/bottomCard.png';
@@ -54,7 +55,9 @@ export default () => {
                     <CardText>
                         Don&apos;t wait for others to come to you, go find a buddi.
                     </CardText>
-                    <CardButton>Create an account</CardButton>
+                    <Link to='/register'>
+                        <CardButton>Create an account</CardButton>
+                    </Link>
                 </CardContent>
             </BottomCard>
         </Container>

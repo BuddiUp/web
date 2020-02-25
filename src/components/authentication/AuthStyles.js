@@ -55,6 +55,17 @@ export const FormInput = styled.input`
     }
 `;
 
+export const FormRadio = styled.input`
+    margin-right: 5px;
+`;
+
+export const FormLabel = styled.label`
+    display: flex;
+    align-items: center;
+    color: ${(props) => props.theme.gray500};
+    margin-right: 14px;
+`;
+
 export const FormSelect = styled.select`
     color: ${(props) => props.theme.gray500};
     appearance: none;
