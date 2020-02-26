@@ -82,7 +82,7 @@ const ListItem = styled.li`
     align-items: center;
 `;
 
-// TODO: Find another way to not use state (prevent rerender)
+// TODO: If possible Find another way to not use state (prevent rerender)
 /**
  * STATE FUNCTIONALITY
  * @profileDropdown (bool) - Toggles the profile dropdown on the navigation
