@@ -6,9 +6,12 @@ import FOG from 'vanta/dist/vanta.fog.min';
 import { Container, Maintenance, NoAccess } from '../../global-styles';
 import DiscoverPlaces from './DiscoverPlaces';
 import DiscoverSlider from './DiscoverSlider';
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+const DiscoverContainer = styled.div`
+    min-height: 100vh;
+`;
 
 const CategoryHeader = styled.div`
     display: flex;
@@ -91,62 +94,62 @@ const Discover = () => {
     }, [vantaEffect]);
 
     return (
-        <>
+        <DiscoverContainer>
             <CategoryHeader ref={MY_REF}>
                 <CategoryText>Discover</CategoryText>
                 <Maintenance>Under construction.</Maintenance>
             </CategoryHeader>
-            <>
-                <Container>
-                    {/* DISCOVER PEOPLE NEAR */}
-                    <DiscoverCategory>
-                        People near you
-                        <NoAccess>
-                            <DiscoverViewAll to='/'>
-                                View All
-                                <DiscoverViewArrow type='caret-right' />
-                            </DiscoverViewAll>
-                        </NoAccess>
-                    </DiscoverCategory>
-                    <CategoryDescription>
-                        Get together with people in your area.
-                    </CategoryDescription>
-                    <DiscoverSlider />
-                    {/* ######################### */}
-                    {/* DISCOVER PLACES */}
-                    {/* Remove later */}
-                    <p style={{ margin: '35px 0px -35px 0px', color: '#6b7cff' }}>
-                        Coming soon
-                    </p>
-                    <DiscoverCategory>
-                        Explore new places
+
+            <Container>
+                {/* ######################### */}
+                {/* DISCOVER PEOPLE NEAR */}
+                <DiscoverCategory>
+                    People near you
+                    <NoAccess>
                         <DiscoverViewAll to='/'>
+                            View All
                             <DiscoverViewArrow type='caret-right' />
                         </DiscoverViewAll>
-                    </DiscoverCategory>
-                    <CategoryDescription>
-                        Find places to meetup based off your interests.
-                    </CategoryDescription>
-                    <DiscoverPlaces />
-                    {/* ######################### */}
-                    {/* DISCOVER PEOPLE AT */}
-                    <DiscoverCategory>
-                        Expand your search
-                        <NoAccess>
-                            <DiscoverViewAll to='/'>
-                                View All
-                                <DiscoverViewArrow type='caret-right' />
-                            </DiscoverViewAll>
-                        </NoAccess>
-                    </DiscoverCategory>
-                    <CategoryDescription>
-                        Reach out to others from different areas.
-                    </CategoryDescription>
-                    {/* <DiscoverSlider /> */}
-                    {/* ######################### */}
-                </Container>
-            </>
-        </>
+                    </NoAccess>
+                </DiscoverCategory>
+                <CategoryDescription>
+                    Get together with people in your area.
+                </CategoryDescription>
+                <DiscoverSlider />
+                {/* ######################### */}
+                {/* DISCOVER PLACES */}
+                {/* Remove later */}
+                <p style={{ margin: '35px 0px -35px 0px', color: '#6b7cff' }}>
+                    Coming soon
+                </p>
+                <DiscoverCategory>
+                    Explore new places
+                    <DiscoverViewAll to='/'>
+                        <DiscoverViewArrow type='caret-right' />
+                    </DiscoverViewAll>
+                </DiscoverCategory>
+                <CategoryDescription>
+                    Find places to meetup based off your interests.
+                </CategoryDescription>
+                <DiscoverPlaces />
+                {/* ######################### */}
+                {/* DISCOVER PEOPLE AT */}
+                <DiscoverCategory>
+                    Expand your search
+                    <NoAccess>
+                        <DiscoverViewAll to='/'>
+                            View All
+                            <DiscoverViewArrow type='caret-right' />
+                        </DiscoverViewAll>
+                    </NoAccess>
+                </DiscoverCategory>
+                <CategoryDescription>
+                    Reach out to others from different areas.
+                </CategoryDescription>
+                <DiscoverSlider />
+                {/* ######################### */}
+            </Container>
+        </DiscoverContainer>
     );
 };
 

@@ -9,14 +9,14 @@ import { discoverNear } from '../../store/actions/action.discover';
 import testFace from '../../assets/images/testFace.jpg';
 import { userSettings } from './slider.settings';
 
-const SliderContainer = styled.div`
+export const SliderContainer = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin: 30px 0px;
     transition: 5s ease-in-out;
 `;
 
-const SliderLink = styled(Link)`
+export const SliderLink = styled(Link)`
     text-decoration: none;
     &:hover {
         opacity: 0.8;
@@ -154,7 +154,7 @@ const DiscoverSlider = () => {
     return (
         <SliderContainer>
             <Container>
-                <Slider {...userSettings}>{GenProfileCard()}</Slider>
+                <Slider {...userSettings}>{TempGen()}</Slider>
             </Container>
         </SliderContainer>
     );

@@ -32,7 +32,7 @@ export const discoverNear = (userData) => (dispatch) => {
             Authorization: `Token ${USER_TOKEN}`
         }
     };
-
+    // TODO: MAKE ASYNC
     buddiup
         .post('/api/auth/search/REMOVEME', userData, CONFIG)
         .then((res) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -54,6 +54,10 @@ const DropdownBtn = styled(Icon)`
     @media ${device.tabletM} {
         display: flex !important;
         display: initial;
+    }
+
+    @media ${device.mobileXS} {
+        margin: 0px 15px 0px 0px;
     }
 `;
 
@@ -116,11 +120,11 @@ const StyledNavLink = styled(NavLink).attrs({
  * @moveRight (bool) - Determines if the NavList should move to the right side
  */
 
-const Navigation = ({ isAuthenticated, firstName, lastName }) => {
+const Navigation = ({ isAuthenticated, firstName }) => {
     const [dropdown, setDropdown] = useState(false);
 
     return (
-        <>
+        <div>
             <NavContainer dropdown mainNav>
                 <NavContent>
                     <NavLogo>
@@ -168,10 +172,8 @@ const Navigation = ({ isAuthenticated, firstName, lastName }) => {
                         <NavItem>
                             {isAuthenticated ? (
                                 <>
-                                    <AccountDropdown
-                                        firstName={firstName}
-                                        lastName={lastName}
-                                    />
+                                    {/* TODO: Will a callbackwork? */}
+                                    <AccountDropdown firstName={firstName} />
                                     <DropdownBtn
                                         type='arrow-down'
                                         dropdown={dropdown ? 1 : 0}
@@ -188,59 +190,58 @@ const Navigation = ({ isAuthenticated, firstName, lastName }) => {
                     </NavList>
                 </NavContent>
             </NavContainer>
-
-            <NavContainer dropdown={dropdown}>
-                <NavContent>
-                    <NavRoutes>
-                        <NavList>
-                            {isAuthenticated ? (
-                                <>
-                                    <NavItem>
-                                        <StyledNavLink
-                                            exact
-                                            to='/'
-                                            activeClassName='active'
-                                        >
-                                            Home
-                                        </StyledNavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NoAccess>
+            {dropdown ? (
+                <NavContainer dropdown={dropdown}>
+                    <NavContent>
+                        <NavRoutes>
+                            <NavList>
+                                {isAuthenticated ? (
+                                    <>
+                                        <NavItem>
                                             <StyledNavLink
-                                                to='/foryou'
+                                                exact
+                                                to='/'
                                                 activeClassName='active'
                                             >
-                                                For You
+                                                Home
                                             </StyledNavLink>
-                                        </NoAccess>
-                                    </NavItem>
-                                    <NavItem>
-                                        <StyledNavLink
-                                            to='/discover'
-                                            activeClassName='active'
-                                        >
-                                            Discover
-                                        </StyledNavLink>
-                                    </NavItem>
-                                </>
-                            ) : null}
-                        </NavList>
-                    </NavRoutes>
-                </NavContent>
-            </NavContainer>
-        </>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NoAccess>
+                                                <StyledNavLink
+                                                    to='/foryou'
+                                                    activeClassName='active'
+                                                >
+                                                    For You
+                                                </StyledNavLink>
+                                            </NoAccess>
+                                        </NavItem>
+                                        <NavItem>
+                                            <StyledNavLink
+                                                to='/discover'
+                                                activeClassName='active'
+                                            >
+                                                Discover
+                                            </StyledNavLink>
+                                        </NavItem>
+                                    </>
+                                ) : null}
+                            </NavList>
+                        </NavRoutes>
+                    </NavContent>
+                </NavContainer>
+            ) : null}
+        </div>
     );
 };
 
 Navigation.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    firstName: PropTypes.string,
-    lastName: PropTypes.string
+    firstName: PropTypes.string
 };
 
 Navigation.defaultProps = {
-    firstName: '',
-    lastName: ''
+    firstName: ''
 };
 
 export default Navigation;

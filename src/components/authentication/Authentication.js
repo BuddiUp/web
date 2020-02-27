@@ -45,6 +45,7 @@ const AuthCard = styled.div`
 
 const AuthType = styled.h1`
     margin-bottom: 9px;
+    text-align: center;
     font-size: ${(props) => (props.heading ? '40px' : '16px')};
     font-weight: ${(props) => (props.heading ? '600' : '500')};
     text-transform: ${(props) => (props.heading ? 'none' : 'uppercase')};

@@ -21,8 +21,9 @@ export const theme = {
 };
 
 const size = {
+    mobileXS: '392px',
     mobileS: '488px',
-    mobileL: '570px',
+    mobileL: '580px',
     tabletM: '786px',
     tabletL: '960px',
     laptopS: '1172px',
@@ -30,6 +31,7 @@ const size = {
 };
 
 export const device = {
+    mobileXS: `(max-width: ${size.mobileXS})`,
     mobileS: `(max-width: ${size.mobileS})`,
     mobileL: `(max-width: ${size.mobileL})`,
     tabletM: `(max-width: ${size.tabletM})`,

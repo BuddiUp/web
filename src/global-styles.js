@@ -61,11 +61,10 @@ export const GlobalStyle = createGlobalStyle`
     }
     
 `;
-
 export const Maintenance = styled.h4`
     text-transform: uppercase;
     letter-spacing: 2px;
-    opacity: 0.6;
+    opacity: 0.7;
     color: ${(props) => props.theme.gray300};
 `;
 

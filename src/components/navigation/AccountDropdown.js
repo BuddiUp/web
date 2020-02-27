@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Icon } from 'antd';
+import { device } from '../../theme';
 import { NoAccess } from '../../global-styles';
 import { authLogout } from '../../store/actions/action.auth';
 
@@ -14,10 +15,17 @@ const UserDropdown = styled.div`
     margin-right: 25px;
 `;
 
+const UserProfileImg = styled.img`
+    height: 45px;
+    width: 45px;
+    border-radius: 8px;
+    margin-right: 8px;
+    background-color: ${(props) => props.theme.gray500};
+`;
+
 const UserProfileBtn = styled.button`
     display: flex;
     align-items: center;
-    font-size: 16px;
     background-color: transparent;
     outline: none;
 
@@ -32,11 +40,21 @@ const UserProfileBtn = styled.button`
     }
 `;
 
+const UserProfileText = styled.p`
+    font-size: 16px;
+    @media ${device.mobileXS} {
+        display: none;
+    }
+`;
+
 const DropdownIcon = styled(Icon)`
     font-size: 14px;
     margin-left: 8px;
-    transform: rotate(${(props) => (props.arrow ? 180 : 0)}deg);
+    /*transform: rotate(${(props) => (props.arrow ? 180 : 0)}deg);*/
     display: flex !important;
+    @media ${device.mobileXS} {
+        margin-left: 5px;
+    }
 `;
 
 const ProfileList = styled.ul`
@@ -89,7 +107,7 @@ const ListItem = styled.li`
  * CUSTOM PROP FUNCTIONALITY
  * @arrow (bool) - Determines if the arrow should be flipped based off @profileDropdown
  */
-const AccountDropdown = ({ firstName, lastName }) => {
+const AccountDropdown = ({ firstName }) => {
     // Reference to outer div
     const node = useRef();
     const [profileDropdown, setProfileDropdown] = useState(false);
@@ -110,8 +128,9 @@ const AccountDropdown = ({ firstName, lastName }) => {
         <div ref={node}>
             <UserDropdown>
                 <UserProfileBtn onClick={() => setProfileDropdown(!profileDropdown)}>
+                    <UserProfileImg src='https://i.imgur.com/RALCPEy.png' />
                     {/* eslint-disable-next-line */}
-                    {firstName} {lastName}
+                    <UserProfileText> {firstName} </UserProfileText>
                     <DropdownIcon arrow={profileDropdown ? 1 : 0} type='caret-down' />
                 </UserProfileBtn>
             </UserDropdown>
@@ -142,12 +161,10 @@ const AccountDropdown = ({ firstName, lastName }) => {
 };
 
 AccountDropdown.propTypes = {
-    firstName: PropTypes.string,
-    lastName: PropTypes.string
+    firstName: PropTypes.string
 };
 
 AccountDropdown.defaultProps = {
-    firstName: '',
-    lastName: ''
+    firstName: ''
 };
 export default AccountDropdown;

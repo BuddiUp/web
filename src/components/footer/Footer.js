@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { device } from '../../theme';
 
 const FooterContainer = styled.footer`
-    margin-top: 45px;
+    /* margin-top: 45px; */
     background-color: ${(props) => props.theme.darkBox};
 `;
 

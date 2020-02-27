@@ -1,23 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import { Container } from '../../global-styles';
 import { cardSettings } from './slider.settings';
-
-const SliderContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    transition: 5s ease-in-out;
-`;
-
-const SliderLink = styled(Link)`
-    text-decoration: none;
-    &:hover {
-        opacity: 0.8;
-    }
-`;
+import { SliderContainer, SliderLink } from './DiscoverSlider';
 
 const SliderItem = styled.div`
     display: flex;

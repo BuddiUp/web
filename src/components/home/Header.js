@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import FOG from 'vanta/dist/vanta.fog.min';
+import { device } from '../../theme';
 import homeHeader from '../../assets/images/homeHeader.png';
 
 const HeaderImage = styled.div`
@@ -22,7 +23,17 @@ const HeaderContent = styled.div`
 const HeaderText = styled.h1`
     color: ${(props) => props.theme.white};
     font-size: ${(props) => (props.h1 ? '3.3em' : '1.5em')};
+    text-align: center;
     font-weight: ${(props) => (props.h1 ? '600' : '500')};
+    opacity: ${(props) => (props.h1 ? '' : '0.8')};
+
+    @media ${device.mobileL} {
+        font-size: ${(props) => (props.h1 ? '2.5em' : '1.1em')};
+    }
+
+    @media ${device.mobileS} {
+        font-size: ${(props) => (props.h1 ? '2.15em' : '1em')};
+    }
 `;
 
 const HeaderButton = styled.button`

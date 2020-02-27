@@ -32,11 +32,7 @@ export default () => {
         <Router history={history}>
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
-                <Navigation
-                    isAuthenticated={isAuthenticated}
-                    firstName={user.name}
-                    lastName={user.last_name}
-                />
+                <Navigation isAuthenticated={isAuthenticated} firstName={user.name} />
                 <BaseRouter isAuthenticated={isAuthenticated} />
                 <Footer />
             </ThemeProvider>
