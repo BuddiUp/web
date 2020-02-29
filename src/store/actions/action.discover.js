@@ -26,6 +26,10 @@ export const discoverNear = (userData) => (dispatch) => {
     dispatch(discoverStart());
 
     const USER_TOKEN = localStorage.getItem('token');
+    const DISCOVER_SETTINGS = {
+        ...userData,
+        random_users: false
+    };
     const CONFIG = {
         headers: {
             'Content-Type': 'application/json',
@@ -34,7 +38,7 @@ export const discoverNear = (userData) => (dispatch) => {
     };
     // TODO: MAKE ASYNC
     buddiup
-        .post('/api/auth/search/REMOVEME', userData, CONFIG)
+        .post('/api/auth/search/REMOVEME', DISCOVER_SETTINGS, CONFIG)
         .then((res) => {
             dispatch(fetchNear(res.data.userProfiles));
         })

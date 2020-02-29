@@ -159,5 +159,4 @@ const DiscoverSlider = () => {
         </SliderContainer>
     );
 };
-
 export default DiscoverSlider;

@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import { Container } from '../../global-styles';
 import { cardSettings } from './slider.settings';
 import { SliderContainer, SliderLink } from './DiscoverSlider';
+import { NoAccess } from '../../global-styles';
 
 const SliderItem = styled.div`
     display: flex;
@@ -43,10 +44,10 @@ const CardText = styled.h1`
     color: ${(props) => props.theme.white};
 `;
 
-const Disabled = styled.div`
-    opacity: 0.2;
-    pointer-events: none;
-`;
+// const Disabled = styled.div`
+//     opacity: 0.2;
+//     pointer-events: none;
+// `;
 
 /**
  * TODO: Add Meetup API
@@ -56,7 +57,7 @@ const DiscoverPlaces = () => {
     return (
         <SliderContainer>
             <Container>
-                <Disabled>
+                <NoAccess>
                     <Slider {...cardSettings}>
                         <SliderLink to='/'>
                             <SliderItem>
@@ -122,7 +123,7 @@ const DiscoverPlaces = () => {
                             </SliderItem>
                         </SliderLink>
                     </Slider>
-                </Disabled>
+                </NoAccess>
             </Container>
         </SliderContainer>
     );

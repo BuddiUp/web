@@ -50,11 +50,16 @@ const UserProfileText = styled.p`
 const DropdownIcon = styled(Icon)`
     font-size: 14px;
     margin-left: 8px;
-    /*transform: rotate(${(props) => (props.arrow ? 180 : 0)}deg);*/
+    transform: rotate(${(props) => (props.arrow ? 180 : 0)}deg);
     display: flex !important;
     @media ${device.mobileXS} {
         margin-left: 5px;
     }
+`;
+
+const AccountIcons = styled(Icon)`
+    display: flex;
+    margin-right: 8px;
 `;
 
 const ProfileList = styled.ul`
@@ -91,8 +96,6 @@ const ListItemLink = styled(Link)`
 `;
 
 const ListItem = styled.li`
-    flex-direction: column;
-    align-items: flex-start !important;
     padding: 0px 16px;
     border-radius: 15px;
     margin-bottom: 6px;
@@ -137,20 +140,27 @@ const AccountDropdown = ({ firstName }) => {
 
             {profileDropdown ? (
                 <ProfileList>
-                    <NoAccess>
-                        <ListItemLink to='/'>
-                            <ListItem>Profile</ListItem>
-                        </ListItemLink>
-                    </NoAccess>
+                    <ListItemLink to='/profile'>
+                        <ListItem>
+                            <AccountIcons type='user' />
+                            Profile
+                        </ListItem>
+                    </ListItemLink>
                     <ItemDivider />
                     <NoAccess>
                         <ListItemLink to='/'>
-                            <ListItem>Settings</ListItem>
+                            <ListItem>
+                                <AccountIcons type='setting' />
+                                Settings
+                            </ListItem>
                         </ListItemLink>
                     </NoAccess>
                     <ItemDivider />
                     <ListItemLink to='/login' onClick={() => dispatch(authLogout())}>
-                        <ListItem>Log Out</ListItem>
+                        <ListItem>
+                            <AccountIcons type='logout' />
+                            Log Out
+                        </ListItem>
                     </ListItemLink>
                 </ProfileList>
             ) : (

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Home from './components/home/Home';
 import Discover from './components/discover/Discover';
 import Authentication from './components/authentication/Authentication';
+import UserProfile from './components/profile/UserProfile';
 import PrivateRoute from './router.private';
 
 const BaseRouter = ({ isAuthenticated }) => (
@@ -22,6 +23,14 @@ const BaseRouter = ({ isAuthenticated }) => (
             isAuthenticated={isAuthenticated}
             component={Home}
         />
+
+        <PrivateRoute
+            exact
+            path='/profile'
+            isAuthenticated={isAuthenticated}
+            component={UserProfile}
+        />
+
         <Route exact path='/login' render={() => <Authentication isTypeLogin />} />
         <Route
             exact

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactTooltip from 'react-tooltip';
 import styled, { createGlobalStyle } from 'styled-components';
 import { device } from './theme';
 
@@ -80,9 +81,14 @@ const Disabled = styled.div`
 `;
 export const NoAccess = ({ children }) => {
     return (
-        <DisabledContainer>
-            <Disabled>{children}</Disabled>
-        </DisabledContainer>
+        <>
+            <DisabledContainer>
+                <ReactTooltip />
+                <span data-tip='Coming soon' data-place='left'>
+                    <Disabled>{children}</Disabled>
+                </span>
+            </DisabledContainer>
+        </>
     );
 };
 
