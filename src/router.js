@@ -4,41 +4,43 @@ import PropTypes from 'prop-types';
 import Home from './components/home/Home';
 import Discover from './components/discover/Discover';
 import Authentication from './components/authentication/Authentication';
-import UserProfile from './components/profile/UserProfile';
+import Profile from './components/profile/Profile';
 import PrivateRoute from './router.private';
 
-const BaseRouter = ({ isAuthenticated }) => (
-    <>
-        <Route exact path='/' component={Home} />
-        {/* <PrivateRoute exact path='/' isAuthenticated={isAuthenticated} component={Home} /> */}
-        <PrivateRoute
-            exact
-            path='/discover'
-            isAuthenticated={isAuthenticated}
-            component={Discover}
-        />
-        <PrivateRoute
-            exact
-            path='/settings'
-            isAuthenticated={isAuthenticated}
-            component={Home}
-        />
+const BaseRouter = ({ isAuthenticated }) => {
+    return (
+        <>
+            <Route exact path='/' component={Home} />
+            <PrivateRoute
+                exact
+                path='/discover'
+                isAuthenticated={isAuthenticated}
+                component={Discover}
+            />
 
-        <PrivateRoute
-            exact
-            path='/profile'
-            isAuthenticated={isAuthenticated}
-            component={UserProfile}
-        />
+            <PrivateRoute
+                exact
+                path='/settings'
+                isAuthenticated={isAuthenticated}
+                component={Home}
+            />
 
-        <Route exact path='/login' render={() => <Authentication isTypeLogin />} />
-        <Route
-            exact
-            path='/register'
-            render={() => <Authentication isTypeLogin={false} />}
-        />
-    </>
-);
+            <PrivateRoute
+                exact
+                path='/profile'
+                isAuthenticated={isAuthenticated}
+                component={Profile}
+            />
+
+            <Route exact path='/login' render={() => <Authentication isTypeLogin />} />
+            <Route
+                exact
+                path='/register'
+                render={() => <Authentication isTypeLogin={false} />}
+            />
+        </>
+    );
+};
 
 BaseRouter.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired
