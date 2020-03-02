@@ -49,9 +49,9 @@ export const SmallProfileImg = styled.img`
     margin-right: 15px;
 `;
 
-export const SmallProfileName = styled.h3`
+export const SmallProfileName = styled.h4`
     color: ${(props) => props.theme.gray800};
-    font-size: 20px;
+    font-size: 18px;
 `;
 
 export const SmallProfileLoc = styled.p`

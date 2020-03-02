@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import testFace from '../../assets/images/testFace.jpg';
 import {
     CardContainer,
@@ -8,7 +7,8 @@ import {
     SmallProfileContent,
     SmallProfileName,
     SmallProfileImg,
-    SmallProfileLoc
+    SmallProfileLoc,
+    ComingSoon
 } from './CardStyles';
 
 const GenRec = () => {
@@ -31,7 +31,7 @@ const Recommended = () => {
     return (
         <CardContainer>
             <CardHeader>You may like</CardHeader>
-            {GenRec()}
+            <ComingSoon>Coming soon</ComingSoon>
         </CardContainer>
     );
 };

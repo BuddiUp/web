@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import testFace from '../../assets/images/testFace.jpg';
+import { NoAccess } from '../../global-styles';
+import { device } from '../../theme';
 
 const ProfileContainer = styled.div`
     display: flex;
@@ -22,11 +24,17 @@ const ProfileAvatar = styled.img`
     object-fit: cover;
     border-radius: 8px;
     margin-right: 19px;
+
+    @media ${device.mobileXS} {
+        width: 100px;
+    }
 `;
+
 const CardBtn = styled.button`
     padding: 11px;
     border-radius: 8px;
     margin-right: 7px;
+    margin-bottom: 7px;
     font-size: 13px;
     min-width: 93px;
     cursor: pointer;
@@ -39,6 +47,9 @@ const CardBtn = styled.button`
 `;
 
 const CardContent = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     margin-top: 12px;
 `;
 
@@ -61,23 +72,42 @@ const ProfileDesc = styled.p`
     margin: 15px 0px;
 `;
 
-const ProfileCard = () => {
+const ProfileCard = ({ userProfile }) => {
     return (
         <ProfileContainer>
             <ProfileContent>
-                <ProfileAvatar src={testFace} />
+                <ProfileAvatar src={userProfile.profile_Image} />
                 <CardContent>
-                    <ProfileName>Alex, 18</ProfileName>
-                    <UserLoc>San Francisco, CA</UserLoc>
-                    <ProfileDesc>
-                        Hello there this is a test descriptiopn cause idakdk what to put
-                        here but okay idk hello
-                    </ProfileDesc>
-                    <CardBtn>Message</CardBtn>
-                    <CardBtn buddiBtn>BuddiUp</CardBtn>
+                    <ProfileName>
+                        {/* eslint-disable-next-line */}
+                        {userProfile.name}, {userProfile.age}
+                    </ProfileName>
+                    <UserLoc>
+                        {/* eslint-disable-next-line */}
+                        {userProfile.city}, {userProfile.state}
+                    </UserLoc>
+                    <ProfileDesc>{userProfile.bio}</ProfileDesc>
+                    <NoAccess>
+                        <div style={{ display: 'flex' }}>
+                            <CardBtn>Message</CardBtn>
+                            <CardBtn buddiBtn>BuddiUp</CardBtn>
+                        </div>
+                    </NoAccess>
                 </CardContent>
             </ProfileContent>
         </ProfileContainer>
     );
 };
+
+ProfileCard.propTypes = {
+    userProfile: PropTypes.shape({
+        profile_Image: PropTypes.string,
+        name: PropTypes.string,
+        age: PropTypes.string,
+        city: PropTypes.string,
+        state: PropTypes.string,
+        bio: PropTypes.string
+    }).isRequired
+};
+
 export default ProfileCard;

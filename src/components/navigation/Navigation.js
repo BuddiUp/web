@@ -120,7 +120,7 @@ const StyledNavLink = styled(NavLink).attrs({
  * @moveRight (bool) - Determines if the NavList should move to the right side
  */
 
-const Navigation = ({ isAuthenticated, firstName }) => {
+const Navigation = ({ isAuthenticated }) => {
     const [dropdown, setDropdown] = useState(false);
 
     return (
@@ -172,8 +172,7 @@ const Navigation = ({ isAuthenticated, firstName }) => {
                         <NavItem>
                             {isAuthenticated ? (
                                 <>
-                                    {/* TODO: Will a callbackwork? */}
-                                    <AccountDropdown firstName={firstName} />
+                                    <AccountDropdown />
                                     <DropdownBtn
                                         type='arrow-down'
                                         dropdown={dropdown ? 1 : 0}
@@ -237,12 +236,7 @@ const Navigation = ({ isAuthenticated, firstName }) => {
 };
 
 Navigation.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-    firstName: PropTypes.string
-};
-
-Navigation.defaultProps = {
-    firstName: ''
+    isAuthenticated: PropTypes.bool.isRequired
 };
 
 export default Navigation;

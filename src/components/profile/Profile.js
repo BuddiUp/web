@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import FOG from 'vanta/dist/vanta.fog.min';
 import ProfileCard from './ProfileCard';
@@ -44,6 +45,7 @@ const ProfileGrid = styled.div`
 `;
 
 const Profile = () => {
+    const user = useSelector((state) => state.authReducer.user);
     const [vantaEffect, setVantaEffect] = useState(0);
     const MY_REF = useRef(null);
     useEffect(() => {
@@ -75,9 +77,9 @@ const Profile = () => {
             <Container>
                 <ProfileContainer>
                     <ProfileWrapper>
-                        <ProfileCard />
+                        <ProfileCard userProfile={user} />
                         <ProfileGrid>
-                            <ProfileAbout />
+                            <ProfileAbout userProfileName={user.name} />
                             <Recommended />
                         </ProfileGrid>
                     </ProfileWrapper>

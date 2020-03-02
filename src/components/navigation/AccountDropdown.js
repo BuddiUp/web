@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Icon } from 'antd';
 import { device } from '../../theme';
@@ -110,11 +109,13 @@ const ListItem = styled.li`
  * CUSTOM PROP FUNCTIONALITY
  * @arrow (bool) - Determines if the arrow should be flipped based off @profileDropdown
  */
-const AccountDropdown = ({ firstName }) => {
+const AccountDropdown = () => {
     // Reference to outer div
     const node = useRef();
     const [profileDropdown, setProfileDropdown] = useState(false);
     const dispatch = useDispatch();
+
+    const user = useSelector((state) => state.authReducer.user);
 
     const handleClick = (e) => {
         // Returns true if whatever you're clicking is inside the “node” ref.
@@ -131,9 +132,9 @@ const AccountDropdown = ({ firstName }) => {
         <div ref={node}>
             <UserDropdown>
                 <UserProfileBtn onClick={() => setProfileDropdown(!profileDropdown)}>
-                    <UserProfileImg src='https://i.imgur.com/RALCPEy.png' />
+                    <UserProfileImg src={user.profile_Image} />
                     {/* eslint-disable-next-line */}
-                    <UserProfileText> {firstName} </UserProfileText>
+                    <UserProfileText> {user.name} </UserProfileText>
                     <DropdownIcon arrow={profileDropdown ? 1 : 0} type='caret-down' />
                 </UserProfileBtn>
             </UserDropdown>
@@ -170,11 +171,4 @@ const AccountDropdown = ({ firstName }) => {
     );
 };
 
-AccountDropdown.propTypes = {
-    firstName: PropTypes.string
-};
-
-AccountDropdown.defaultProps = {
-    firstName: ''
-};
 export default AccountDropdown;

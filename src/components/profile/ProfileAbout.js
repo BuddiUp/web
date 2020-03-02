@@ -1,10 +1,10 @@
 import React from 'react';
 import { CardContainer, CardHeader, ComingSoon } from './CardStyles';
 
-const ProfileAbout = () => {
+const ProfileAbout = ({ userProfileName }) => {
     return (
         <CardContainer>
-            <CardHeader>About Alex</CardHeader>
+            <CardHeader>About {userProfileName}</CardHeader>
             <ComingSoon>Coming soon</ComingSoon>
         </CardContainer>
     );

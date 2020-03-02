@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import history from '../history';
@@ -11,13 +11,7 @@ import Footer from './footer/Footer';
 import { authCheck } from '../store/actions/action.auth';
 
 export default () => {
-    const { isAuthenticated, user } = useSelector(
-        (state) => ({
-            isAuthenticated: state.authReducer.token !== null,
-            user: state.authReducer.user
-        }),
-        shallowEqual
-    );
+    const isAuthenticated = useSelector((state) => state.authReducer.token !== null);
     const dispatch = useDispatch();
 
     const initAuthCheck = useCallback(() => {
@@ -32,7 +26,7 @@ export default () => {
         <Router history={history}>
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
-                <Navigation isAuthenticated={isAuthenticated} firstName={user.name} />
+                <Navigation isAuthenticated={isAuthenticated} />
                 <BaseRouter isAuthenticated={isAuthenticated} />
                 <Footer />
             </ThemeProvider>
