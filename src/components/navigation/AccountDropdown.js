@@ -139,7 +139,7 @@ const AccountDropdown = ({ firstName }) => {
             </UserDropdown>
 
             {profileDropdown ? (
-                <ProfileList>
+                <ProfileList onClick={() => setProfileDropdown(!profileDropdown)}>
                     <ListItemLink to='/profile'>
                         <ListItem>
                             <AccountIcons type='user' />

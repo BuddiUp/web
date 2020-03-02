@@ -2,8 +2,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import FOG from 'vanta/dist/vanta.fog.min';
 import ProfileCard from './ProfileCard';
+import Recommended from './Recommended';
 import ProfileAbout from './ProfileAbout';
 import { Container } from '../../global-styles';
+import { device } from '../../theme';
 
 const CategoryHeader = styled.div`
     display: flex;
@@ -14,12 +16,31 @@ const CategoryHeader = styled.div`
     background-color: #ffc300;
 `;
 
+const ProfileContainer = styled.div`
+    padding: 0px 145px;
+
+    @media ${device.laptopS} {
+        padding: 0px;
+    }
+`;
+
 const PageContainer = styled.div`
     min-height: 100vh;
 `;
 
 const ProfileWrapper = styled.div`
-    display: flex;
+    margin-top: -150px;
+`;
+
+const ProfileGrid = styled.div`
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: 1.4fr 1fr;
+
+    @media ${device.tabletL} {
+        display: flex;
+        flex-direction: column-reverse;
+    }
 `;
 
 const Profile = () => {
@@ -36,9 +57,10 @@ const Profile = () => {
                     minWidth: 200.0,
                     speed: 1.6,
                     zoom: 0.3,
-                    highlightColor: 0x5d65e6,
-                    midtoneColor: 0xb328ff,
-                    lowlightColor: 0xff9500
+                    highlightColor: 0x6fd9c6,
+                    midtoneColor: 0x76d7f5,
+                    lowlightColor: 0x20fa2d,
+                    baseColor: 0xffffff
                 })
             );
         }
@@ -51,10 +73,15 @@ const Profile = () => {
         <PageContainer>
             <CategoryHeader ref={MY_REF} />
             <Container>
-                <ProfileWrapper>
-                    <ProfileCard />
-                    <ProfileAbout />
-                </ProfileWrapper>
+                <ProfileContainer>
+                    <ProfileWrapper>
+                        <ProfileCard />
+                        <ProfileGrid>
+                            <ProfileAbout />
+                            <Recommended />
+                        </ProfileGrid>
+                    </ProfileWrapper>
+                </ProfileContainer>
             </Container>
         </PageContainer>
     );

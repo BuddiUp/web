@@ -4,57 +4,31 @@ import testFace from '../../assets/images/testFace.jpg';
 
 const ProfileContainer = styled.div`
     display: flex;
-    margin-top: -130px;
-`;
-
-const ImageOutline = styled.div`
-    background-color: ${(props) => props.theme.white};
-    border-radius: 8px;
-    padding: 9px;
-    z-index: 5;
-    box-shadow: 0px 8.5px 23px 0px rgba(0, 0, 0, 0.1);
-`;
-
-const ProfileImage = styled.div`
-    display: flex;
-    justify-content: center;
-    height: 565px;
-    width: 365px;
-    border-radius: 8px;
-    background: url(${(props) => props.profileSource}) center;
-    background-size: cover;
-    position: relative;
 `;
 
 const ProfileContent = styled.div`
-    height: 206px;
-    width: 286px;
-    background-color: ${(props) => props.theme.white};
-    border-radius: 8px;
-    margin-bottom: 19px;
-    padding: 20px;
-    position: absolute;
-    bottom: 0;
-`;
-
-const CardHeader = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.1);
+    background-color: ${(props) => props.theme.white};
+    z-index: 5;
 `;
 
 const ProfileAvatar = styled.img`
-    height: 70px;
-    width: 70px;
+    height: 170px;
+    width: 130px;
     object-fit: cover;
-    border-radius: 100%;
+    border-radius: 8px;
+    margin-right: 19px;
 `;
-
 const CardBtn = styled.button`
     padding: 11px;
     border-radius: 8px;
-    margin-left: 7px;
+    margin-right: 7px;
     font-size: 13px;
+    min-width: 93px;
     cursor: pointer;
     color: ${(props) => (props.buddiBtn ? props.theme.white : props.theme.gray500)};
     background-color: ${(props) =>
@@ -69,6 +43,7 @@ const CardContent = styled.div`
 `;
 
 const ProfileName = styled.h1`
+    color: ${(props) => props.theme.gray800};
     font-weight: 600;
     font-size: 26px;
 `;
@@ -82,32 +57,26 @@ const UserLoc = styled.p`
 const ProfileDesc = styled.p`
     color: ${(props) => props.theme.gray500};
     font-size: 15px;
+    max-width: 390px;
+    margin: 15px 0px;
 `;
 
 const ProfileCard = () => {
     return (
         <ProfileContainer>
-            <ImageOutline>
-                <ProfileImage profileSource={testFace}>
-                    <ProfileContent>
-                        <CardHeader>
-                            <ProfileAvatar src={testFace} />
-                            <div>
-                                <CardBtn>Message</CardBtn>
-                                <CardBtn buddiBtn>BuddiUp</CardBtn>
-                            </div>
-                        </CardHeader>
-                        <CardContent>
-                            <ProfileName>Alex, 18</ProfileName>
-                            <UserLoc>San Francisco, CA</UserLoc>
-                            <ProfileDesc>
-                                Hello there this is a test descriptiopn cause idakdk what
-                                to put here but okay idk hello
-                            </ProfileDesc>
-                        </CardContent>
-                    </ProfileContent>
-                </ProfileImage>
-            </ImageOutline>
+            <ProfileContent>
+                <ProfileAvatar src={testFace} />
+                <CardContent>
+                    <ProfileName>Alex, 18</ProfileName>
+                    <UserLoc>San Francisco, CA</UserLoc>
+                    <ProfileDesc>
+                        Hello there this is a test descriptiopn cause idakdk what to put
+                        here but okay idk hello
+                    </ProfileDesc>
+                    <CardBtn>Message</CardBtn>
+                    <CardBtn buddiBtn>BuddiUp</CardBtn>
+                </CardContent>
+            </ProfileContent>
         </ProfileContainer>
     );
 };

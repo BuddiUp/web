@@ -62,6 +62,10 @@ export const GlobalStyle = createGlobalStyle`
     }
     
 `;
+
+// #########################
+// MAINTENANCE MSG
+// #########################
 export const Maintenance = styled.h4`
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -70,7 +74,7 @@ export const Maintenance = styled.h4`
 `;
 
 // #########################
-// NO ACCESS  COMPONENT
+// NO ACCESS COMPONENT
 // #########################
 const DisabledContainer = styled.div`
     cursor: not-allowed;
@@ -101,7 +105,6 @@ NoAccess.propTypes = {
 // #########################
 export const Container = styled.div`
     width: 1375px;
-    /* padding: 0px 25px; */
     margin: 0px auto;
 
     @media ${device.laptopM} {
