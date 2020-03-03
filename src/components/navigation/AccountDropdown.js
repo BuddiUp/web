@@ -102,7 +102,6 @@ const ListItem = styled.li`
     align-items: center;
 `;
 
-// TODO: If possible Find another way to not use state (prevent rerender)
 /**
  * STATE FUNCTIONALITY
  * @profileDropdown (bool) - Toggles the profile dropdown on the navigation
@@ -141,7 +140,7 @@ const AccountDropdown = () => {
 
             {profileDropdown ? (
                 <ProfileList onClick={() => setProfileDropdown(!profileDropdown)}>
-                    <ListItemLink to='/profile'>
+                    <ListItemLink to={`/user/${user.uuid}`}>
                         <ListItem>
                             <AccountIcons type='user' />
                             Profile

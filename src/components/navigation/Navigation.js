@@ -214,7 +214,6 @@ const Navigation = ({ isAuthenticated }) => {
                                                     For You
                                                 </StyledNavLink>
                                             </NoAccess>
-                                            Hello world
                                         </NavItem>
                                         <NavItem>
                                             <StyledNavLink

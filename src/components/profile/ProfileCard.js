@@ -33,8 +33,7 @@ const ProfileAvatar = styled.img`
 const CardBtn = styled.button`
     padding: 11px;
     border-radius: 8px;
-    margin-right: 7px;
-    margin-bottom: 7px;
+    margin: 7px 7px 7px 0px;
     font-size: 13px;
     min-width: 93px;
     cursor: pointer;
@@ -86,7 +85,9 @@ const ProfileCard = ({ userProfile }) => {
                         {/* eslint-disable-next-line */}
                         {userProfile.city}, {userProfile.state}
                     </UserLoc>
-                    <ProfileDesc>{userProfile.bio}</ProfileDesc>
+                    {userProfile.bio ? (
+                        <ProfileDesc>{userProfile.bio}</ProfileDesc>
+                    ) : null}
                     <NoAccess>
                         <div style={{ display: 'flex' }}>
                             <CardBtn>Message</CardBtn>

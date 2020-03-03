@@ -112,10 +112,17 @@ const DiscoverSlider = () => {
 
     const GenProfileCard = () => {
         const users = Object.keys(discoveredUsers.userProfiles).map((key) => {
-            const { id, name, age, city, state } = discoveredUsers.userProfiles[key];
+            const {
+                id,
+                name,
+                age,
+                city,
+                state,
+                profile_urlfield
+            } = discoveredUsers.userProfiles[key];
 
             return (
-                <SliderLink to='/' key={id}>
+                <SliderLink to={`/user/${profile_urlfield}`} key={id}>
                     <SliderItem>
                         <ProfileImage>
                             <ProfileFade>
@@ -135,7 +142,7 @@ const DiscoverSlider = () => {
                 </SliderLink>
             );
         });
-        // TODO: Display error message
+
         if (discoveredUsers.error) {
             return (
                 <>

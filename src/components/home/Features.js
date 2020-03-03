@@ -114,14 +114,12 @@ export default () => {
                     </FeatureCards>
                     <FeatureCards cardColor={colors.red}>
                         <IconPadding>
-                            <FeatureIcon type='euro' />
+                            <FeatureIcon type='message' />
                         </IconPadding>
-                        <FeatureContent>
-                            Hello I have no idea what to put here
-                        </FeatureContent>
+                        <FeatureContent>Chat with others</FeatureContent>
                         <FeatureContent subText='true'>
-                            Tempor est ad esse magna Lorem incididunt labore nisi pariatur
-                            et nulla nisi id.
+                            There&apos;s no need to exchange numbers. You can chat with a
+                            buddy through our site with no risk.
                         </FeatureContent>
                     </FeatureCards>
                 </FeatureContainer>

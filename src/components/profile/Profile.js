@@ -1,7 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import FOG from 'vanta/dist/vanta.fog.min';
+import { fetchProfile } from '../../store/actions/action.profile';
 import ProfileCard from './ProfileCard';
 import Recommended from './Recommended';
 import ProfileAbout from './ProfileAbout';
@@ -45,7 +47,9 @@ const ProfileGrid = styled.div`
 `;
 
 const Profile = () => {
-    const user = useSelector((state) => state.authReducer.user);
+    const dispatch = useDispatch();
+    const USER_UUID = useParams().id;
+    const USER = useSelector((state) => state.profileReducer.user);
     const [vantaEffect, setVantaEffect] = useState(0);
     const MY_REF = useRef(null);
     useEffect(() => {
@@ -71,15 +75,19 @@ const Profile = () => {
         };
     }, [vantaEffect]);
 
+    useEffect(() => {
+        dispatch(fetchProfile(USER_UUID));
+    }, []);
+
     return (
         <PageContainer>
             <CategoryHeader ref={MY_REF} />
             <Container>
                 <ProfileContainer>
                     <ProfileWrapper>
-                        <ProfileCard userProfile={user} />
+                        <ProfileCard userProfile={USER} />
                         <ProfileGrid>
-                            <ProfileAbout userProfileName={user.name} />
+                            <ProfileAbout userProfileName={USER.name} />
                             <Recommended />
                         </ProfileGrid>
                     </ProfileWrapper>
