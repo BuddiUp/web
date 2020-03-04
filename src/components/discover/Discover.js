@@ -6,6 +6,7 @@ import FOG from 'vanta/dist/vanta.fog.min';
 import { Container, Maintenance, NoAccess } from '../../global-styles';
 import DiscoverPlaces from './DiscoverPlaces';
 import DiscoverSlider from './DiscoverSlider';
+import ExpandSlider from './ExpandSlider';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -32,7 +33,7 @@ const CategoryText = styled.h1`
     font-size: 50px;
 `;
 
-// TODO: REFACTOR NAMES BELOW TO MAKE REUSEABLE
+// TODO: REFACTOR NAMES BELOW TO MAKE REUSEABLE FOR 'FOR YOU' PAGE
 const DiscoverCategory = styled.h1`
     display: flex;
     align-items: baseline;
@@ -133,7 +134,11 @@ const Discover = () => {
                 </CategoryDescription>
                 <DiscoverPlaces />
                 {/* ######################### */}
-                {/* DISCOVER PEOPLE AT */}
+                {/* EXPAND YOUR SEARCH */}
+                {/* Remove later */}
+                <p style={{ margin: '35px 0px -35px 0px', color: '#6b7cff' }}>
+                    Coming soon
+                </p>
                 <DiscoverCategory>
                     Expand your search
                     <NoAccess>
@@ -146,7 +151,7 @@ const Discover = () => {
                 <CategoryDescription>
                     Reach out to others from different areas.
                 </CategoryDescription>
-                <DiscoverSlider />
+                <ExpandSlider />
                 {/* ######################### */}
             </Container>
         </DiscoverContainer>

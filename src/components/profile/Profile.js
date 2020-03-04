@@ -49,7 +49,11 @@ const ProfileGrid = styled.div`
 const Profile = () => {
     const dispatch = useDispatch();
     const USER_UUID = useParams().id;
-    const USER = useSelector((state) => state.profileReducer.user);
+    const { USER, isLoading, ERROR } = useSelector((state) => ({
+        USER: state.profileReducer.user,
+        isLoading: state.profileReducer.loading,
+        ERROR: state.profileReducer.error
+    }));
     const [vantaEffect, setVantaEffect] = useState(0);
     const MY_REF = useRef(null);
     useEffect(() => {
@@ -77,22 +81,35 @@ const Profile = () => {
 
     useEffect(() => {
         dispatch(fetchProfile(USER_UUID));
-    }, []);
+    }, [dispatch, USER_UUID]);
+    console.log(isLoading);
+
+    // TODO: Pass the error in the component and display an error message
+    const DisplayProfile = (profileError) => {
+        if (profileError) {
+            return (
+                <h3 style={{ textAlign: 'center', marginTop: '45px' }}>
+                    There was an error. This is still a work in progress.
+                </h3>
+            );
+        }
+        return (
+            <ProfileContainer>
+                <ProfileWrapper>
+                    <ProfileCard userProfile={USER} />
+                    <ProfileGrid>
+                        <ProfileAbout userProfileName={USER.name} />
+                        <Recommended />
+                    </ProfileGrid>
+                </ProfileWrapper>
+            </ProfileContainer>
+        );
+    };
 
     return (
         <PageContainer>
             <CategoryHeader ref={MY_REF} />
-            <Container>
-                <ProfileContainer>
-                    <ProfileWrapper>
-                        <ProfileCard userProfile={USER} />
-                        <ProfileGrid>
-                            <ProfileAbout userProfileName={USER.name} />
-                            <Recommended />
-                        </ProfileGrid>
-                    </ProfileWrapper>
-                </ProfileContainer>
-            </Container>
+            <Container>{isLoading ? <h1>Loading</h1> : DisplayProfile(ERROR)}</Container>
         </PageContainer>
     );
 };

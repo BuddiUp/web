@@ -1,3 +1,5 @@
+// There is no reason for having (x)_start. The init state should always have loading: true
+
 // AUTHENTICATION TYPES
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
@@ -12,6 +14,5 @@ export const DISCOVER_NEAR = 'DISCOVER_NEAR';
 export const DISCOVER_NEW = 'DISCOVER_NEW';
 
 // PROFILE TYPES
-export const PROFILE_START = 'PROFILE_START';
 export const PROFILE_FAIL = 'PROFILE_FAIL';
 export const PROFILE_FETCH = 'PROFILE_FETCH';

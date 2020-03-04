@@ -38,7 +38,7 @@ export const discoverNear = (userData) => (dispatch) => {
     };
     // TODO: MAKE ASYNC
     buddiup
-        .post('/api/auth/search/REMOVEME', DISCOVER_SETTINGS, CONFIG)
+        .post('/api/auth/search', DISCOVER_SETTINGS, CONFIG)
         .then((res) => {
             dispatch(fetchNear(res.data.userProfiles));
         })

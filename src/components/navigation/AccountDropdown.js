@@ -19,6 +19,7 @@ const UserProfileImg = styled.img`
     width: 45px;
     border-radius: 8px;
     margin-right: 8px;
+    object-fit: cover;
     background-color: ${(props) => props.theme.gray500};
 `;
 
@@ -113,7 +114,6 @@ const AccountDropdown = () => {
     const node = useRef();
     const [profileDropdown, setProfileDropdown] = useState(false);
     const dispatch = useDispatch();
-
     const user = useSelector((state) => state.authReducer.user);
 
     const handleClick = (e) => {
@@ -140,7 +140,7 @@ const AccountDropdown = () => {
 
             {profileDropdown ? (
                 <ProfileList onClick={() => setProfileDropdown(!profileDropdown)}>
-                    <ListItemLink to={`/user/${user.uuid}`}>
+                    <ListItemLink to={`/user/${user.user_uuid}`}>
                         <ListItem>
                             <AccountIcons type='user' />
                             Profile

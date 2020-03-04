@@ -79,7 +79,6 @@ const NavItem = styled.li`
     align-items: center;
 `;
 
-// LOOK INTO: Is there a way to inherit these styles?
 export const StyledLink = styled(Link)`
     color: ${(props) => props.theme.gray800};
     font-weight: ${(props) => (props.navlogo ? '900' : '600')};

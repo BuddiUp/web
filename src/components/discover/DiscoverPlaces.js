@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import { Container } from '../../global-styles';
 import { cardSettings } from './slider.settings';
-import { SliderContainer, SliderLink } from './DiscoverSlider';
+import { SliderContainer, SliderLink } from './SliderStyles';
 import { NoAccess } from '../../global-styles';
 
 const SliderItem = styled.div`
