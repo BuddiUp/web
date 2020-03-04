@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik, Form, useField, Field } from 'formik';
@@ -66,8 +66,22 @@ const TextField = ({ placeholder, noErrMsg, ...props }) => {
     );
 };
 
+const handleEnter = (e) => {
+    e.stopPropagation();
+};
+
 const AuthRegister = () => {
     const dispatch = useDispatch();
+
+    // Weird fix to prevent LastPass error
+    useEffect(() => {
+        document.addEventListener('keydown', handleEnter, true);
+
+        return () => {
+            document.removeEventListener('keydown', handleEnter, true);
+        };
+    }, []);
+
     return (
         <Formik
             initialValues={{
@@ -197,7 +211,9 @@ const AuthRegister = () => {
                             placeholder='Enter your zip code'
                             as={FormInput}
                         />
-                        <FormButton type='submit'>Sign Up</FormButton>
+                        <FormButton type='submit' onClick={(e) => handleEnter(e)}>
+                            Sign Up
+                        </FormButton>
                     </FormContainer>
 
                     <FormMsg>
