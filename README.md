@@ -46,6 +46,7 @@ npm --version
 ```
 
 ### Installation
+#####  ❗️Note that this application is only the front-end. There will be broken features if you do not have the back-end application which you can find [here](https://github.com/BuddiUp/backend). You must run both in order to get the full experience.❗️
 
 1. Clone the repository
 
@@ -56,7 +57,7 @@ git clone https://github.com/BuddiUp/web.git
 2. Navigate into the correct directory
 
 ```
-cd (CLONED LOCATION)
+cd (CLONE DIRECTORY)
 ```
 
 3. You now need to install all of the necessary packages for the project, type the following in your terminal:
@@ -71,8 +72,8 @@ npm install
 npm start
 ```
 
-## Working with an API
-This project isn't for public use, however, if you would like to implement a custom API on your local machine follow these instructions to get started.
+## Working with your own API
+If you would like to implement your own custom API on your local machine follow these instructions to get started.
 
 1. Navigate into the ```apis/``` directory and locate ```buddiup.js```
 	1. Replace the ```baseURL```with the url to your API. Refer to the [axios](https://github.com/axios/axios) documentation to explore other configs if needed.
@@ -90,10 +91,9 @@ This project isn't for public use, however, if you would like to implement a cus
 	The following example and code snippet can be found in ```store/actions/action.auth.js```:
 	```javascript
 	buddiup
-        .post('YOUR_ROUTE', userData, CONFIG)
+        .post('YOUR_ROUTE')
         .then((res) => {
-            const USER_TOKEN = res.data.token;
-            localStorage.setItem('token', USER_TOKEN);
+        	  ...your stuff
             dispatch(authSuccess(res.data));
             history.push('/');
         })
