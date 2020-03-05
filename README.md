@@ -5,7 +5,7 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Working with an API](#working-with-an-api)
+* [Working with your own API](#working-with-your-own-api)
 
 
 # BuddiUp - Web Application
