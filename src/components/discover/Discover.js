@@ -84,7 +84,7 @@ const Discover = () => {
                     touchControls: true,
                     minHeight: 200.0,
                     minWidth: 200.0,
-                    speed: 1.6,
+                    speed: 1.2,
                     zoom: 0.3
                 })
             );

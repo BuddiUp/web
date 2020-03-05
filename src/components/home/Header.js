@@ -66,7 +66,7 @@ export default () => {
                     highlightColor: 0x3cbbf2,
                     midtoneColor: 0xe35ef5,
                     lowlightColor: 0x7aabe3,
-                    speed: 1.6,
+                    speed: 1.2,
                     zoom: 0.3
                 })
             );

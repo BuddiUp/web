@@ -83,7 +83,7 @@ If you would like to implement your own custom API on your local machine follow 
 	});
 	```
 	
-2. Navigate into the ```store/actions/```directory and locate the actions.
+2. Navigate into the ```store/actions/``` directory and locate the actions.
 
 	3. If you renamed the file in ```step 1``` you will have to adjust the import name in the following files: ```action.auth.js``` ```action.discover.js``` ```action.profile.js```
 
