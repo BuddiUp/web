@@ -46,6 +46,7 @@ npm --version
 ```
 
 ### Installation
+#####  ❗️Note that this application is only the front-end. There will be broken features if you do not have the back-end application which you can find [here](https://github.com/BuddiUp/backend). You must run both in order to get the full experience.❗️
 
 1. Clone the repository
 
