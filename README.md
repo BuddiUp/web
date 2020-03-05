@@ -47,7 +47,7 @@ npm --version
 
 ### Installation
 
-1. Clone the respository
+1. Clone the repository
 
 ```
 git clone https://github.com/BuddiUp/web.git
@@ -72,7 +72,7 @@ npm start
 ```
 
 ## Working with an API
-This project isn't for public use, however if you would like to implement a custom API on your local machine follow these instructions to get started.
+This project isn't for public use, however, if you would like to implement a custom API on your local machine follow these instructions to get started.
 
 1. Navigate into the ```apis/``` directory and locate ```buddiup.js```
 	1. Replace the ```baseURL```with the url to your API. Refer to the [axios](https://github.com/axios/axios) documentation to explore other configs if needed.
