@@ -16,6 +16,10 @@ const ProfileContent = styled.div`
     box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.1);
     background-color: ${(props) => props.theme.white};
     z-index: 5;
+
+    @media ${device.mobileS} {
+        flex-direction: column;
+    }
 `;
 
 const ProfileAvatar = styled.img`
@@ -25,8 +29,8 @@ const ProfileAvatar = styled.img`
     border-radius: 8px;
     margin-right: 19px;
 
-    @media ${device.mobileXS} {
-        width: 100px;
+    @media ${device.mobileS} {
+        width: 156px;
     }
 `;
 
