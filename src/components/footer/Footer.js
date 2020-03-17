@@ -33,6 +33,11 @@ const FooterList = styled.li`
         border-right: 2px solid;
         transform: translate3d(0, -50%, 0);
     }
+    @media (max-width: 320px) {
+        &:not(:last-child)::after {
+            content: none;
+        }
+    }
 `;
 
 const FooterItem = styled(Link)`
@@ -49,6 +54,11 @@ const FooterItem = styled(Link)`
     @media ${device.mobileL} {
         font-size: 14px;
         padding: 8px;
+    }
+
+    @media ${device.mobileXS} {
+        font-size: 13px;
+        padding: 0px;
     }
 `;
 

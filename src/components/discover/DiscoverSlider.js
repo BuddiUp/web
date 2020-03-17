@@ -8,26 +8,28 @@ import { userSettings } from './slider.settings';
 import * as Style from './SliderStyles';
 
 // * Delete later *
-// const TempGen = () => {
-//     const items = [];
-//     for (let i = 0; i < 30; i += 1) {
-//         items.push(
-//             <SliderLink to='/' key={i}>
-//                 <SliderItem>
-//                     <ProfileImage>
-//                         <ProfileFade>
-//                             <ProfileContent>
-//                                 <ProfileName>Victoria, 18</ProfileName>
-//                                 <ProfileSubText>San Fransisco, CA</ProfileSubText>
-//                             </ProfileContent>
-//                         </ProfileFade>
-//                     </ProfileImage>
-//                 </SliderItem>
-//             </SliderLink>
-//         );
-//     }
-//     return items;
-// };
+const TempGen = () => {
+    const items = [];
+    for (let i = 0; i < 30; i += 1) {
+        items.push(
+            <Style.SliderLink to='/' key={i}>
+                <Style.SliderItem>
+                    <Style.ProfileImage profileImage={testFace}>
+                        <Style.ProfileFade>
+                            <Style.ProfileContent>
+                                <Style.ProfileName>Victoria, 18</Style.ProfileName>
+                                <Style.ProfileSubText>
+                                    San Fransisco, CA
+                                </Style.ProfileSubText>
+                            </Style.ProfileContent>
+                        </Style.ProfileFade>
+                    </Style.ProfileImage>
+                </Style.SliderItem>
+            </Style.SliderLink>
+        );
+    }
+    return items;
+};
 
 const DiscoverSlider = () => {
     const userData = useSelector((state) => state.authReducer.user);
@@ -42,7 +44,6 @@ const DiscoverSlider = () => {
         const users = Object.keys(discoveredUsers.userProfiles).map((key) => {
             const {
                 id,
-                profile_Image,
                 name,
                 age,
                 city,
@@ -53,7 +54,7 @@ const DiscoverSlider = () => {
             return (
                 <Style.SliderLink to={`/user/${user_uuid}`} key={id}>
                     <Style.SliderItem>
-                        <Style.ProfileImage profileImage={profile_Image}>
+                        <Style.ProfileImage profileImage={testFace}>
                             <Style.ProfileFade>
                                 <Style.ProfileContent>
                                     <Style.ProfileName>
@@ -88,7 +89,8 @@ const DiscoverSlider = () => {
     return (
         <Style.SliderContainer>
             <Container>
-                <Slider {...userSettings}>{GenProfileCard()}</Slider>
+                {/* <Slider {...userSettings}>{GenProfileCard()}</Slider> */}
+                <Slider {...userSettings}>{TempGen()}</Slider>
             </Container>
         </Style.SliderContainer>
     );

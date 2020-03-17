@@ -29,6 +29,7 @@ const ProfileContainer = styled.div`
 
 const PageContainer = styled.div`
     min-height: 100vh;
+    margin-bottom: 50px;
 `;
 
 const ProfileWrapper = styled.div`
