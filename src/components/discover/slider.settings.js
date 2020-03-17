@@ -1,3 +1,4 @@
+// TODO: Refactor names
 export const userSettings = {
     dots: false,
     infinite: false,

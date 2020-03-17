@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { device } from '../../theme';
 
 const FooterContainer = styled.footer`
-    /* margin-top: 45px; */
     background-color: ${(props) => props.theme.darkBox};
 `;
 
@@ -13,7 +12,7 @@ const FooterContent = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 45px 0px;
+    padding: 35px 0px;
 `;
 
 const FooterListUL = styled.ul`

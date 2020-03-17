@@ -9,6 +9,7 @@ import updateObject from './updateObject';
 
 const INIT_STATE = {
     token: null,
+    default_image: null,
     user: {},
     error: null,
     loading: false
@@ -20,17 +21,20 @@ const authStart = (state) => updateObject(state, { error: null, loading: true })
 const authSuccess = (state, action) =>
     updateObject(state, {
         token: action.payload.token,
+        default_image: action.payload.default_image,
         user: action.payload.user,
         error: null,
         loading: false
     });
 
-const fetchUser = (state, action) =>
+const fetchUser = (state, action) => {
     updateObject(state, {
         token: localStorage.getItem('token'),
-        user: action.payload,
-        error: null
+        user: action.payload.user,
+        error: null,
+        loading: fals
     });
+};
 
 const authFail = (state, action) =>
     updateObject(state, { error: action.payload, loading: false });

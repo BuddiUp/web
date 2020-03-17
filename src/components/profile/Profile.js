@@ -49,8 +49,9 @@ const ProfileGrid = styled.div`
 const Profile = () => {
     const dispatch = useDispatch();
     const USER_UUID = useParams().id;
-    const { USER, isLoading, ERROR } = useSelector((state) => ({
+    const { USER, userImage, isLoading, ERROR } = useSelector((state) => ({
         USER: state.profileReducer.user,
+        userImage: state.authReducer.default_image,
         isLoading: state.profileReducer.loading,
         ERROR: state.profileReducer.error
     }));
@@ -82,7 +83,6 @@ const Profile = () => {
     useEffect(() => {
         dispatch(fetchProfile(USER_UUID));
     }, [dispatch, USER_UUID]);
-    console.log(isLoading);
 
     // TODO: Pass the error in the component and display an error message
     const DisplayProfile = (profileError) => {
@@ -96,7 +96,7 @@ const Profile = () => {
         return (
             <ProfileContainer>
                 <ProfileWrapper>
-                    <ProfileCard userProfile={USER} />
+                    <ProfileCard userProfile={USER} userImage={userImage} />
                     <ProfileGrid>
                         <ProfileAbout userProfileName={USER.name} />
                         <Recommended />

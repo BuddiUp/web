@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
-import { Container } from '../../global-styles';
 import { cardSettings } from './slider.settings';
 import { SliderContainer, SliderLink } from './SliderStyles';
-import { NoAccess } from '../../global-styles';
+import { NoAccess, Container } from '../../global-styles';
 
 const SliderItem = styled.div`
     display: flex;
@@ -44,15 +43,7 @@ const CardText = styled.h1`
     color: ${(props) => props.theme.white};
 `;
 
-// const Disabled = styled.div`
-//     opacity: 0.2;
-//     pointer-events: none;
-// `;
-
-/**
- * TODO: Add Meetup API
- * Need the website up before we're allowed to get Consumer Token
- */
+// TODO: Find a similar service to meetup
 const DiscoverPlaces = () => {
     return (
         <SliderContainer>

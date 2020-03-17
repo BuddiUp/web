@@ -58,7 +58,7 @@ const CardContent = styled.div`
 
 const ProfileName = styled.h1`
     color: ${(props) => props.theme.gray800};
-    font-weight: 600;
+    font-weight: 900;
     font-size: 26px;
 `;
 
@@ -75,11 +75,11 @@ const ProfileDesc = styled.p`
     margin: 15px 0px;
 `;
 
-const ProfileCard = ({ userProfile }) => {
+const ProfileCard = ({ userProfile, userImage }) => {
     return (
         <ProfileContainer>
             <ProfileContent>
-                <ProfileAvatar src={userProfile.profile_Image} />
+                <ProfileAvatar src={userImage} />
                 <CardContent>
                     <ProfileName>
                         {/* eslint-disable-next-line */}
@@ -112,7 +112,8 @@ ProfileCard.propTypes = {
         city: PropTypes.string,
         state: PropTypes.string,
         bio: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    userImage: PropTypes.string.isRequired
 };
 
 export default ProfileCard;

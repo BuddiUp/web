@@ -45,10 +45,9 @@ export default () => {
                     <AboutIcon type='usergroup-add' />
                     <AboutHeader>What is BuddiUp?</AboutHeader>
                     <AboutText>
-                        BuddiUp is here to make it easy for you to share the things you
-                        love with the people who share your passions. Whether it’s hiking
-                        outdoors or taking a cooking class, there’s no need to wait for
-                        companionship.
+                        BuddiUp is here to make it easy for you to find others who share
+                        the same interests. Whether it’s hiking outdoors or photography,
+                        there’s no need to wait for companionship.
                     </AboutText>
                 </AboutContent>
             </AboutContainer>

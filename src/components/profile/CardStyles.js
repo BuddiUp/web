@@ -12,6 +12,7 @@ export const CardContainer = styled.div`
 
 export const CardHeader = styled.h1`
     font-size: 23px;
+    font-weight: 600;
     color: ${(props) => props.theme.gray800};
     margin-bottom: 15px;
 `;

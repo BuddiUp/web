@@ -15,8 +15,8 @@ const UserDropdown = styled.div`
 `;
 
 const UserProfileImg = styled.img`
-    height: 45px;
-    width: 45px;
+    height: 35px;
+    width: 35px;
     border-radius: 8px;
     margin-right: 8px;
     object-fit: cover;
@@ -66,7 +66,7 @@ const ProfileList = styled.ul`
     z-index: 10;
     top: 45px;
     right: 0px;
-    width: 250px;
+    width: 175px;
     margin-top: 10px;
     border-radius: 15px;
     position: absolute;
@@ -114,7 +114,10 @@ const AccountDropdown = () => {
     const node = useRef();
     const [profileDropdown, setProfileDropdown] = useState(false);
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.authReducer.user);
+    const { user, userImage } = useSelector((state) => ({
+        user: state.authReducer.user,
+        userImage: state.authReducer.default_image
+    }));
 
     const handleClick = (e) => {
         // Returns true if whatever you're clicking is inside the “node” ref.
@@ -131,7 +134,7 @@ const AccountDropdown = () => {
         <div ref={node}>
             <UserDropdown>
                 <UserProfileBtn onClick={() => setProfileDropdown(!profileDropdown)}>
-                    <UserProfileImg src={user.profile_Image} />
+                    <UserProfileImg src={userImage} />
                     {/* eslint-disable-next-line */}
                     <UserProfileText> {user.name} </UserProfileText>
                     <DropdownIcon arrow={profileDropdown ? 1 : 0} type='caret-down' />
