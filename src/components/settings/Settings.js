@@ -4,7 +4,7 @@ import FOG from 'vanta/dist/vanta.fog.min';
 import { Container } from '../../global-styles';
 // eslint-disable-next-line
 import SettingsUpdateForm from './SettingsUpdateForm';
-import { CategoryHeader, CategoryText } from '../util/Util';
+import { CategoryHeader, CategoryText } from '../globalUI/GlobalUI';
 
 const SettingsContainer = styled.div`
     background-color: ${(props) => props.theme.gray200};

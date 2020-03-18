@@ -7,7 +7,7 @@ import { Container, Maintenance, NoAccess } from '../../global-styles';
 import DiscoverPlaces from './DiscoverPlaces';
 import DiscoverSlider from './DiscoverSlider';
 import ExpandSlider from './ExpandSlider';
-import { CategoryHeader, CategoryText } from '../util/Util';
+import { CategoryHeader, CategoryText } from '../globalUI/GlobalUI';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
