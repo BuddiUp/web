@@ -13,7 +13,7 @@
 
 ## About
 ###### Please note that this project is still **early** in development. 
-BuddiUp is a platform that allows users to easily find others with similar interests and connect them together. This platform provides a solution for the difficulty of forging interpersonal relationships in modern adult life. People are busier than ever and the need for productivity often outways the willingness to participate in the traditional activities necessary for making new friendships.
+BuddiUp is a platform that allows users to easily find others with similar interests and connect together. This platform provides a solution for the difficulty of forging interpersonal relationships in modern adult life. People are busier than ever and the need for productivity often outways the willingness to participate in the traditional activities necessary for making new friendships.
 
 View the site live [here](https://www.buddiup.co/).
 
