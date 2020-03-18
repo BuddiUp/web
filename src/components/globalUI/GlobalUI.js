@@ -2,13 +2,37 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { device } from '../../theme';
 
+export const CategoryHeader = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 250px;
+    background-color: #ffc300;
+`;
+
+export const CategoryText = styled.h1`
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    letter-spacing: 1px;
+    color: ${(props) => props.theme.white};
+    font-weight: 900;
+    font-size: 50px;
+`;
+
 export const FormContainer = styled.div`
     display: flex;
-    flex-direction: column;
     margin-top: 25px;
-    width: 375px;
+    flex-direction: ${(props) => (props.formSettings ? 'row' : 'column')};
+    justify-content: ${(props) => (props.formSettings ? 'space-between' : null)};
+    width: ${(props) => (props.formSettings ? 'unset' : '375px')};
+
+    @media ${device.mobileL} {
+        flex-direction: ${(props) => (props.formSettings ? 'column' : null)};
+    }
     @media ${device.mobileS} {
-        width: 279px;
+        width: ${(props) => (props.formSettings ? '100%' : '279px')};
     }
 `;
 
@@ -23,7 +47,7 @@ export const FormHeader = styled.h4`
 export const FormInput = styled.input`
     border: none;
     outline: none;
-    width: 100%;
+    width: ${(props) => (props.formSettings ? 'unset' : '100%')};
     font-size: 15px;
     padding: 15px;
     border-radius: 8px;

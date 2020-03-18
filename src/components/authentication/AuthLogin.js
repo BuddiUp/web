@@ -11,7 +11,7 @@ import {
     FormMsg,
     FormLink,
     FormError
-} from './AuthStyles';
+} from '../globalUI/GlobalUI';
 
 const validationSchema = yup.object().shape({
     email: yup

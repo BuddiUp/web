@@ -16,7 +16,7 @@ import {
     FormMsg,
     FormLink,
     FormError
-} from './AuthStyles';
+} from '../globalUI/GlobalUI';
 
 const td = new Date().getFullYear();
 
@@ -54,7 +54,6 @@ const validationSchema = yup.object().shape({
         .required('Year is required')
 });
 
-// TODO: NEED A BETTER WAY TO DISPLAY THE ERRORS FOR THE DATE PICKER
 const TextField = ({ placeholder, noErrMsg, ...props }) => {
     const [field, meta] = useField(props);
     const errText = meta.error && meta.touched ? meta.error : '';

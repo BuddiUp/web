@@ -1,95 +1,43 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { Formik, Form, useField } from 'formik';
 import * as yup from 'yup';
 // eslint-disable-next-line
 import { SettingsDivider } from './Settings';
-import { FormError } from '../authentication/AuthStyles';
+// import { FormError } from '../authentication/AuthStyles';
+// import * as Style from './SettingStyles';
+import * as Style from '../globalUI/GlobalUI';
 import { device } from '../../theme';
 
-const FormContainer = styled.div`
-    display: flex;
-    width: 100%;
-    margin: 17px 0px;
-    justify-content: ${(props) => (props.formSubmit ? 'flex-end' : 'space-between')};
-
-    @media ${device.mobileL} {
-        flex-direction: ${(props) => (props.formSubmit ? 'row' : 'column')};
-    }
-`;
-
-const FormProperties = styled.div`
+export const FormProperties = styled.div`
     margin: 0px 54px;
     @media ${device.mobileS} {
         margin: unset;
     }
 `;
 
-const FormLabel = styled.label`
+export const TextFieldWrapper = styled.div`
     display: flex;
-    align-items: center;
-    color: ${(props) => props.theme.gray800};
-`;
+    flex-direction: column;
+    align-items: flex-end;
 
-const FormInput = styled.input`
-    border: none;
-    outline: none;
-    font-size: 15px;
-    padding: 9px;
-    width: 230px;
-    border-radius: 8px;
-    box-sizing: border-box;
-    box-shadow: 0 0 0 1pt ${(props) => (props.error ? props.theme.error : '#d8d8d8')}
-        inset;
-    background-color: ${(props) => props.theme.gray300};
-    &::placeholder {
-        color: ${(props) => props.theme.gray500};
-    }
-    &:hover {
-        box-shadow: 0 0 0 1pt #d8d8d8 inset;
-    }
-    &:focus {
-        outline: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
-        box-shadow: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
-    }
-
-    /* Chrome, Safari, Edge, Opera */
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    /* Firefox */
-    &[type='number'] {
-        -moz-appearance: textfield;
-    }
-
-    @media ${device.mobileS} {
-        width: unset;
+    @media ${device.mobileL} {
+        margin-top: 9px;
+        align-items: baseline;
     }
 `;
 
-const FormBtn = styled.button`
-    padding: 9px;
-    cursor: pointer;
-    border-radius: 8px;
-    box-sizing: border-box;
+const SettingsBtn = styled(Style.FormButton)`
+    width: unset;
     margin-left: 9px;
-    font-size: 15px;
-    color: ${(props) => props.theme.gray500};
-    box-shadow: 0 0 0 1pt ${(props) => (props.error ? props.theme.error : '#d8d8d8')}
-        inset;
-    background-color: ${(props) => props.theme.gray300};
-    &:hover {
-        box-shadow: 0 0 0 1pt #d8d8d8 inset;
-    }
-    &:focus {
-        outline: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
-        box-shadow: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
+    justify-content: flex-end;
+
+    @media ${device.mobileL} {
+        margin-top: -9px;
+        width: 100%;
     }
 `;
 
@@ -117,24 +65,19 @@ const validationSchema = yup.object().shape({
     birth_year: yup.number().max(td, 'Invalid year')
 });
 
-const TextFieldWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-
-    @media ${device.mobileL} {
-        margin-top: 9px;
-        align-items: baseline;
-    }
-`;
-
 const TextField = ({ placeholder, noErrMsg, ...props }) => {
     const [field, meta] = useField(props);
     const errText = meta.error && meta.touched ? meta.error : '';
     return (
         <TextFieldWrapper>
-            {meta.error ? <FormError>{errText}</FormError> : null}
-            <FormInput placeholder={placeholder} {...field} {...props} error={errText} />
+            {meta.error ? <Style.FormError>{errText}</Style.FormError> : null}
+            <Style.FormInput
+                placeholder={placeholder}
+                {...field}
+                {...props}
+                error={errText}
+                formSettings
+            />
         </TextFieldWrapper>
     );
 };
@@ -159,65 +102,76 @@ const SettingsUpdateForm = () => {
             {() => (
                 <Form>
                     <FormProperties>
-                        <FormContainer>
-                            <FormLabel htmlFor='name'>First name</FormLabel>
+                        <Style.FormContainer formSettings>
+                            <Style.FormLabel htmlFor='name'>First name</Style.FormLabel>
                             <TextField
                                 name='name'
                                 id='name'
                                 type='text'
                                 placeholder='Enter a new email'
-                                as={FormInput}
+                                as={Style.FormInput}
                             />
-                        </FormContainer>
+                        </Style.FormContainer>
                         <SettingsDivider />
-                        <FormContainer>
-                            <FormLabel htmlFor='last_name'>Last name</FormLabel>
+                        <Style.FormContainer formSettings>
+                            <Style.FormLabel htmlFor='last_name'>
+                                Last name
+                            </Style.FormLabel>
                             <TextField
                                 name='last_name'
                                 id='last_name'
                                 type='text'
                                 placeholder='Enter a new email'
-                                as={FormInput}
+                                as={Style.FormInput}
                             />
-                        </FormContainer>
+                        </Style.FormContainer>
                         <SettingsDivider />
-                        <FormContainer>
-                            <FormLabel htmlFor='email'>Email address</FormLabel>
+                        <Style.FormContainer formSettings>
+                            <Style.FormLabel htmlFor='email'>
+                                Email address
+                            </Style.FormLabel>
                             <TextField
                                 name='email'
                                 id='email'
                                 type='email'
                                 placeholder='Enter a new email'
-                                as={FormInput}
+                                as={Style.FormInput}
                             />
-                        </FormContainer>
+                        </Style.FormContainer>
                         <SettingsDivider />
-                        <FormContainer>
-                            <FormLabel htmlFor='password'>Change password</FormLabel>
+                        <Style.FormContainer formSettings>
+                            <Style.FormLabel htmlFor='password'>
+                                Change password
+                            </Style.FormLabel>
                             <TextField
                                 name='password'
                                 id='password'
                                 type='password'
                                 placeholder='••••••••••••••'
-                                as={FormInput}
+                                as={Style.FormInput}
                             />
-                        </FormContainer>
-                        <FormContainer>
-                            <FormLabel htmlFor='password'>Confirm new password</FormLabel>
+                        </Style.FormContainer>
+                        <Style.FormContainer formSettings>
+                            <Style.FormLabel htmlFor='password2'>
+                                Confirm new password
+                            </Style.FormLabel>
                             <TextField
                                 name='password2'
                                 id='password2'
                                 type='password'
-                                as={FormInput}
+                                as={Style.FormInput}
                             />
-                        </FormContainer>
+                        </Style.FormContainer>
                         <SettingsDivider />
-                        <FormContainer formSubmit>
+                        <Style.FormContainer
+                            formSettings
+                            style={{ justifyContent: 'flex-end' }}
+                        >
                             <Link to='/'>
-                                <FormBtn>Cancel</FormBtn>
+                                <SettingsBtn>Cancel</SettingsBtn>
                             </Link>
-                            <FormBtn type='submit'>Save</FormBtn>
-                        </FormContainer>
+                            <SettingsBtn type='submit'>Save</SettingsBtn>
+                        </Style.FormContainer>
                     </FormProperties>
                 </Form>
             )}
