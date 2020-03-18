@@ -5,6 +5,7 @@ import Home from './components/home/Home';
 import Discover from './components/discover/Discover';
 import Authentication from './components/authentication/Authentication';
 import Profile from './components/profile/Profile';
+import Settings from './components/settings/Settings';
 import PrivateRoute from './router.private';
 
 const BaseRouter = ({ isAuthenticated }) => {
@@ -22,7 +23,7 @@ const BaseRouter = ({ isAuthenticated }) => {
                 exact
                 path='/settings'
                 isAuthenticated={isAuthenticated}
-                component={Home}
+                component={Settings}
             />
 
             <PrivateRoute

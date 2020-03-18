@@ -7,30 +7,12 @@ import { Container, Maintenance, NoAccess } from '../../global-styles';
 import DiscoverPlaces from './DiscoverPlaces';
 import DiscoverSlider from './DiscoverSlider';
 import ExpandSlider from './ExpandSlider';
+import { CategoryHeader, CategoryText } from '../util/Util';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const DiscoverContainer = styled.div`
     min-height: 100vh;
-`;
-
-const CategoryHeader = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 250px;
-    background-color: #ffc300;
-`;
-
-const CategoryText = styled.h1`
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    letter-spacing: 1px;
-    color: ${(props) => props.theme.white};
-    font-weight: 900;
-    font-size: 50px;
 `;
 
 // TODO: REFACTOR NAMES BELOW TO MAKE REUSEABLE FOR 'FOR YOU' PAGE

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon } from 'antd';
 import { device } from '../../theme';
-import { NoAccess } from '../../global-styles';
 import { authLogout } from '../../store/actions/action.auth';
 
 const UserDropdown = styled.div`
@@ -150,14 +149,12 @@ const AccountDropdown = () => {
                         </ListItem>
                     </ListItemLink>
                     <ItemDivider />
-                    <NoAccess>
-                        <ListItemLink to='/'>
-                            <ListItem>
-                                <AccountIcons type='setting' />
-                                Settings
-                            </ListItem>
-                        </ListItemLink>
-                    </NoAccess>
+                    <ListItemLink to='/settings'>
+                        <ListItem>
+                            <AccountIcons type='setting' />
+                            Settings
+                        </ListItem>
+                    </ListItemLink>
                     <ItemDivider />
                     <ListItemLink to='/login' onClick={() => dispatch(authLogout())}>
                         <ListItem>
