@@ -112,7 +112,7 @@ export const FormDate = styled.div`
 export const FormButton = styled.button`
     margin: 25px 0px;
     border-radius: 8px;
-    tadding: 15px;
+    padding: 15px;
     font-size: 15px;
     outline: none;
     width: 100%;

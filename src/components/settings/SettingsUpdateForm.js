@@ -2,45 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Formik, Form, useField } from 'formik';
 import * as yup from 'yup';
-// eslint-disable-next-line
-import { SettingsDivider } from './Settings';
-// import { FormError } from '../authentication/AuthStyles';
-// import * as Style from './SettingStyles';
-import * as Style from '../globalUI/GlobalUI';
-import { device } from '../../theme';
-
-export const FormProperties = styled.div`
-    margin: 0px 54px;
-    @media ${device.mobileS} {
-        margin: unset;
-    }
-`;
-
-export const TextFieldWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-
-    @media ${device.mobileL} {
-        margin-top: 9px;
-        align-items: baseline;
-    }
-`;
-
-export const SettingsBtn = styled(Style.FormButton)`
-    width: unset;
-    padding: 9px;
-    margin-left: 9px;
-    justify-content: flex-end;
-
-    @media ${device.mobileL} {
-        margin-top: -9px;
-        width: 100%;
-    }
-`;
+import * as Global from '../globalUI/GlobalUI';
+import * as SS from './SettingStyles';
 
 const td = new Date().getFullYear();
 
@@ -70,16 +35,16 @@ const TextField = ({ placeholder, noErrMsg, ...props }) => {
     const [field, meta] = useField(props);
     const errText = meta.error && meta.touched ? meta.error : '';
     return (
-        <TextFieldWrapper>
-            {meta.error ? <Style.FormError>{errText}</Style.FormError> : null}
-            <Style.FormInput
+        <SS.TextFieldWrapper>
+            {meta.error ? <Global.FormError>{errText}</Global.FormError> : null}
+            <Global.FormInput
                 placeholder={placeholder}
                 {...field}
                 {...props}
                 error={errText}
                 formSettings
             />
-        </TextFieldWrapper>
+        </SS.TextFieldWrapper>
     );
 };
 
@@ -102,78 +67,78 @@ const SettingsUpdateForm = () => {
         >
             {() => (
                 <Form>
-                    <FormProperties>
-                        <Style.FormContainer formSettings>
-                            <Style.FormLabel htmlFor='name'>First name</Style.FormLabel>
+                    <SS.FormProperties>
+                        <Global.FormContainer formSettings>
+                            <Global.FormLabel htmlFor='name'>First name</Global.FormLabel>
                             <TextField
                                 name='name'
                                 id='name'
                                 type='text'
                                 placeholder='Enter a new email'
-                                as={Style.FormInput}
+                                as={Global.FormInput}
                             />
-                        </Style.FormContainer>
-                        <SettingsDivider />
-                        <Style.FormContainer formSettings>
-                            <Style.FormLabel htmlFor='last_name'>
+                        </Global.FormContainer>
+                        <SS.SettingsDivider />
+                        <Global.FormContainer formSettings>
+                            <Global.FormLabel htmlFor='last_name'>
                                 Last name
-                            </Style.FormLabel>
+                            </Global.FormLabel>
                             <TextField
                                 name='last_name'
                                 id='last_name'
                                 type='text'
                                 placeholder='Enter a new email'
-                                as={Style.FormInput}
+                                as={Global.FormInput}
                             />
-                        </Style.FormContainer>
-                        <SettingsDivider />
-                        <Style.FormContainer formSettings>
-                            <Style.FormLabel htmlFor='email'>
+                        </Global.FormContainer>
+                        <SS.SettingsDivider />
+                        <Global.FormContainer formSettings>
+                            <Global.FormLabel htmlFor='email'>
                                 Email address
-                            </Style.FormLabel>
+                            </Global.FormLabel>
                             <TextField
                                 name='email'
                                 id='email'
                                 type='email'
                                 placeholder='Enter a new email'
-                                as={Style.FormInput}
+                                as={Global.FormInput}
                             />
-                        </Style.FormContainer>
-                        <SettingsDivider />
-                        <Style.FormContainer formSettings>
-                            <Style.FormLabel htmlFor='password'>
+                        </Global.FormContainer>
+                        <SS.SettingsDivider />
+                        <Global.FormContainer formSettings>
+                            <Global.FormLabel htmlFor='password'>
                                 Change password
-                            </Style.FormLabel>
+                            </Global.FormLabel>
                             <TextField
                                 name='password'
                                 id='password'
                                 type='password'
                                 placeholder='••••••••••••••'
-                                as={Style.FormInput}
+                                as={Global.FormInput}
                             />
-                        </Style.FormContainer>
-                        <Style.FormContainer formSettings>
-                            <Style.FormLabel htmlFor='password2'>
+                        </Global.FormContainer>
+                        <Global.FormContainer formSettings>
+                            <Global.FormLabel htmlFor='password2'>
                                 Confirm new password
-                            </Style.FormLabel>
+                            </Global.FormLabel>
                             <TextField
                                 name='password2'
                                 id='password2'
                                 type='password'
-                                as={Style.FormInput}
+                                as={Global.FormInput}
                             />
-                        </Style.FormContainer>
-                        <SettingsDivider />
-                        <Style.FormContainer
+                        </Global.FormContainer>
+                        <SS.SettingsDivider />
+                        <Global.FormContainer
                             formSettings
                             style={{ justifyContent: 'flex-end' }}
                         >
                             <Link to='/'>
-                                <SettingsBtn>Cancel</SettingsBtn>
+                                <SS.SettingsBtn>Cancel</SS.SettingsBtn>
                             </Link>
-                            <SettingsBtn type='submit'>Save</SettingsBtn>
-                        </Style.FormContainer>
-                    </FormProperties>
+                            <SS.SettingsBtn type='submit'>Save</SS.SettingsBtn>
+                        </Global.FormContainer>
+                    </SS.FormProperties>
                 </Form>
             )}
         </Formik>

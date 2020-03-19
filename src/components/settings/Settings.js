@@ -1,37 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import styled from 'styled-components';
 import FOG from 'vanta/dist/vanta.fog.min';
 import { Container } from '../../global-styles';
 import { CategoryHeader, CategoryText } from '../globalUI/GlobalUI';
-/* eslint-disable */
+import * as SS from './SettingStyles';
 import SettingsUpdateForm from './SettingsUpdateForm';
 import BuddiProfile from './BuddiProfile';
-/* eslint-enable */
-
-const SettingsContainer = styled.div`
-    background-color: ${(props) => props.theme.gray200};
-    padding: 32px 0px 32px 0px;
-`;
-
-const SettingsCard = styled.div`
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 0px 0px ${(props) => props.theme.gray350};
-    background-color: ${(props) => props.theme.white};
-`;
-
-const SettingsCategory = styled.h1`
-    font-size: 22px;
-    color: ${(props) => props.theme.gray800};
-`;
-
-export const SettingsDivider = styled.hr`
-    width: 100%;
-    height: 2px;
-    border: none;
-    margin-top: 10px;
-    background-color: ${(props) => props.theme.gray300};
-`;
 
 const Settings = () => {
     const [vantaEffect, setVantaEffect] = useState(0);
@@ -63,20 +36,20 @@ const Settings = () => {
             <CategoryHeader ref={MY_REF}>
                 <CategoryText>Settings</CategoryText>
             </CategoryHeader>
-            <SettingsContainer>
+            <SS.SettingsContainer>
                 <Container>
-                    <SettingsCard style={{ marginBottom: '24px' }}>
-                        <SettingsCategory>Buddi Profile</SettingsCategory>
-                        <SettingsDivider />
+                    <SS.SettingsCard style={{ marginBottom: '24px' }}>
+                        <SS.SettingsCategory>Buddi Profile</SS.SettingsCategory>
+                        <SS.SettingsDivider />
                         <BuddiProfile />
-                    </SettingsCard>
-                    <SettingsCard>
-                        <SettingsCategory>Profile Information</SettingsCategory>
-                        <SettingsDivider />
+                    </SS.SettingsCard>
+                    <SS.SettingsCard>
+                        <SS.SettingsCategory>Profile Information</SS.SettingsCategory>
+                        <SS.SettingsDivider />
                         <SettingsUpdateForm />
-                    </SettingsCard>
+                    </SS.SettingsCard>
                 </Container>
-            </SettingsContainer>
+            </SS.SettingsContainer>
         </>
     );
 };

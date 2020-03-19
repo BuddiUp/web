@@ -2,54 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Formik, Form, useField } from 'formik';
+import { Formik, Form, useField, Field } from 'formik';
+import { Switch } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import * as yup from 'yup';
-import * as Style from '../globalUI/GlobalUI';
-import { device } from '../../theme';
-/* eslint-disable */
-import { SettingsDivider } from './Settings';
-import { SettingsBtn } from './SettingsUpdateForm';
-/* eslint-enable */
-
-export const FormProperties = styled.div`
-    margin: 0px 54px;
-    @media ${device.mobileS} {
-        margin: unset;
-    }
-`;
-
-export const TextFieldWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-
-    @media ${device.mobileL} {
-        margin-top: 9px;
-        align-items: baseline;
-    }
-`;
-
-const SettingsBio = styled.textarea`
-    border-radius: 8px;
-    padding: 13px;
-    font-size: 15px;
-    resize: none;
-    border: none;
-    width: 250px;
-    min-height: 100px;
-    box-shadow: 0 0 0 1pt #d8d8d8;
-    color: ${(props) => props.theme.gray800};
-    background-color: ${(props) => props.theme.gray300};
-`;
-
-const BioCount = styled.h1`
-    font-size: 17px;
-    margin-top: 8px;
-    color: ${(props) => props.theme.gray500};
-    color: ${(props) =>
-        props.closeToMax >= 130 ? props.theme.error : props.theme.gray500};
-`;
+import * as Global from '../globalUI/GlobalUI';
+import * as SS from './SettingStyles';
 
 const validationSchema = yup.object().shape({
     profile_image: yup.string(),
@@ -62,11 +20,11 @@ const TextField = ({ placeholder, noErrMsg, ...props }) => {
     const errText = meta.error && meta.touched ? meta.error : '';
     const { bioText, maxBioLen } = props;
     return (
-        <TextFieldWrapper>
-            {meta.error ? <Style.FormError>{errText}</Style.FormError> : null}
+        <SS.TextFieldWrapper>
+            {meta.error ? <Global.FormError>{errText}</Global.FormError> : null}
             {bioText ? (
                 <>
-                    <SettingsBio
+                    <SS.SettingsBio
                         className='text-area'
                         {...field}
                         {...props}
@@ -74,14 +32,13 @@ const TextField = ({ placeholder, noErrMsg, ...props }) => {
                     />
 
                     {/* eslint-disable*/}
-                    <BioCount closeToMax={props.value.length}>
+                    <SS.BioCount closeToMax={props.value.length}>
                         {props.value.length}/{maxBioLen}
-                    </BioCount>
-                    {/* eslint-enable
-                     */}
+                    </SS.BioCount>
+                    {/* eslint-enable */}
                 </>
             ) : (
-                <Style.FormInput
+                <Global.FormInput
                     placeholder={placeholder}
                     {...field}
                     {...props}
@@ -89,9 +46,23 @@ const TextField = ({ placeholder, noErrMsg, ...props }) => {
                     formSettings
                 />
             )}
-        </TextFieldWrapper>
+        </SS.TextFieldWrapper>
     );
 };
+
+const DiscoverSwitch = withStyles({
+    switchBase: {
+        color: '#6c6c6c',
+        '&$checked': {
+            color: '#37e444'
+        },
+        '&$checked + $track': {
+            backgroundColor: '#37e444'
+        }
+    },
+    checked: {},
+    track: {}
+})(Switch);
 
 const BuddiProfile = () => {
     const [bioLength, updateBioLen] = useState('');
@@ -113,36 +84,36 @@ const BuddiProfile = () => {
                 setSubmitting(false);
             }}
         >
-            {({ values, errors }) => (
+            {() => (
                 <Form>
-                    <FormProperties>
-                        <Style.FormContainer formSettings>
-                            <Style.FormLabel htmlFor='profile_image'>
+                    <SS.FormProperties>
+                        <Global.FormContainer formSettings>
+                            <Global.FormLabel htmlFor='profile_image'>
                                 Photo
-                            </Style.FormLabel>
+                            </Global.FormLabel>
                             <TextField
                                 name='profile_image'
                                 id='profile_image'
                                 type='text'
                                 placeholder='Enter a new email'
-                                as={Style.FormInput}
+                                as={Global.FormInput}
                             />
-                        </Style.FormContainer>
-                        <SettingsDivider />
-                        <Style.FormContainer formSettings>
-                            <Style.FormLabel htmlFor='seeker'>
+                        </Global.FormContainer>
+                        <SS.SettingsDivider />
+                        <Global.FormContainer formSettings>
+                            <Global.FormLabel htmlFor='seeker'>
                                 Get discovered
-                            </Style.FormLabel>
-                            <TextField
+                            </Global.FormLabel>
+                            <Field
                                 name='seeker'
                                 id='seeker'
                                 type='checkbox'
-                                as={Style.FormInput}
+                                as={DiscoverSwitch}
                             />
-                        </Style.FormContainer>
-                        <SettingsDivider />
-                        <Style.FormContainer formSettings>
-                            <Style.FormLabel htmlFor='bio'>Bio</Style.FormLabel>
+                        </Global.FormContainer>
+                        <SS.SettingsDivider />
+                        <Global.FormContainer formSettings>
+                            <Global.FormLabel htmlFor='bio'>Bio</Global.FormLabel>
                             <TextField
                                 name='bio'
                                 id='bio'
@@ -152,20 +123,18 @@ const BuddiProfile = () => {
                                 onInput={handleBioLen}
                                 value={bioLength}
                             />
-                        </Style.FormContainer>
-                        <SettingsDivider />
-                        <Style.FormContainer
+                        </Global.FormContainer>
+                        <SS.SettingsDivider />
+                        <Global.FormContainer
                             formSettings
                             style={{ justifyContent: 'flex-end' }}
                         >
                             <Link to='/'>
-                                <SettingsBtn>Cancel</SettingsBtn>
+                                <SS.SettingsBtn>Cancel</SS.SettingsBtn>
                             </Link>
-                            <SettingsBtn type='submit'>Save</SettingsBtn>
-                        </Style.FormContainer>
-                    </FormProperties>
-                    <pre>{JSON.stringify(values, null, 2)}</pre>
-                    <pre>{JSON.stringify(errors, null, 2)}</pre>
+                            <SS.SettingsBtn type='submit'>Save</SS.SettingsBtn>
+                        </Global.FormContainer>
+                    </SS.FormProperties>
                 </Form>
             )}
         </Formik>
