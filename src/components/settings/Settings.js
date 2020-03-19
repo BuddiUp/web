@@ -2,9 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import FOG from 'vanta/dist/vanta.fog.min';
 import { Container } from '../../global-styles';
-// eslint-disable-next-line
-import SettingsUpdateForm from './SettingsUpdateForm';
 import { CategoryHeader, CategoryText } from '../globalUI/GlobalUI';
+/* eslint-disable */
+import SettingsUpdateForm from './SettingsUpdateForm';
+import BuddiProfile from './BuddiProfile';
+/* eslint-enable */
 
 const SettingsContainer = styled.div`
     background-color: ${(props) => props.theme.gray200};
@@ -63,6 +65,11 @@ const Settings = () => {
             </CategoryHeader>
             <SettingsContainer>
                 <Container>
+                    <SettingsCard style={{ marginBottom: '24px' }}>
+                        <SettingsCategory>Buddi Profile</SettingsCategory>
+                        <SettingsDivider />
+                        <BuddiProfile />
+                    </SettingsCard>
                     <SettingsCard>
                         <SettingsCategory>Profile Information</SettingsCategory>
                         <SettingsDivider />

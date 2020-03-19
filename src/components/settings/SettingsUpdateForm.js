@@ -30,8 +30,9 @@ export const TextFieldWrapper = styled.div`
     }
 `;
 
-const SettingsBtn = styled(Style.FormButton)`
+export const SettingsBtn = styled(Style.FormButton)`
     width: unset;
+    padding: 9px;
     margin-left: 9px;
     justify-content: flex-end;
 
