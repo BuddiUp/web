@@ -38,16 +38,18 @@ const Settings = () => {
             </CategoryHeader>
             <SS.SettingsContainer>
                 <Container>
-                    <SS.SettingsCard style={{ marginBottom: '24px' }}>
-                        <SS.SettingsCategory>Buddi Profile</SS.SettingsCategory>
-                        <SS.SettingsDivider />
-                        <BuddiProfile />
-                    </SS.SettingsCard>
-                    <SS.SettingsCard>
-                        <SS.SettingsCategory>Profile Information</SS.SettingsCategory>
-                        <SS.SettingsDivider />
-                        <SettingsUpdateForm />
-                    </SS.SettingsCard>
+                    <SS.SettingsGrid>
+                        <SS.SettingsCard style={{ marginBottom: '24px' }}>
+                            <SS.SettingsCategory>Buddi Profile</SS.SettingsCategory>
+                            <SS.SettingsDivider />
+                            <BuddiProfile />
+                        </SS.SettingsCard>
+                        <SS.SettingsCard>
+                            <SS.SettingsCategory>Profile Information</SS.SettingsCategory>
+                            <SS.SettingsDivider />
+                            <SettingsUpdateForm />
+                        </SS.SettingsCard>
+                    </SS.SettingsGrid>
                 </Container>
             </SS.SettingsContainer>
         </>

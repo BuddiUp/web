@@ -2,6 +2,15 @@ import styled from 'styled-components';
 import { device } from '../../theme';
 import * as Style from '../globalUI/GlobalUI';
 
+export const SettingsGrid = styled.div`
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+    @media ${device.tabletL} {
+        grid-template-columns: 1fr;
+    }
+`;
+
 export const SettingsContainer = styled.div`
     background-color: ${(props) => props.theme.gray200};
     padding: 32px 0px 32px 0px;
@@ -29,7 +38,7 @@ export const SettingsDivider = styled.hr`
 
 export const FormProperties = styled.div`
     margin: 0px 54px;
-    @media ${device.mobileS} {
+    @media ${device.laptopS} {
         margin: unset;
     }
 `;

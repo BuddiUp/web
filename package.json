@@ -10,6 +10,7 @@
         "@testing-library/user-event": "^7.2.1",
         "antd": "^3.26.9",
         "axios": "^0.19.2",
+        "filestack-react": "^3.1.0",
         "formik": "^2.1.4",
         "history": "^4.10.1",
         "prop-types": "^15.7.2",
@@ -50,6 +51,7 @@
         ]
     },
     "devDependencies": {
+        "dotenv": "^8.2.0",
         "eslint": "^6.8.0",
         "eslint-config-airbnb": "^18.0.1",
         "eslint-plugin-import": "^2.20.1",

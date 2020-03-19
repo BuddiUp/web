@@ -6,6 +6,7 @@ import { Formik, Form, useField, Field } from 'formik';
 import { Switch } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import * as yup from 'yup';
+import Filestack from './Filestack';
 import * as Global from '../globalUI/GlobalUI';
 import * as SS from './SettingStyles';
 
@@ -52,7 +53,7 @@ const TextField = ({ placeholder, noErrMsg, ...props }) => {
 
 const DiscoverSwitch = withStyles({
     switchBase: {
-        color: '#6c6c6c',
+        color: '#d1d1d1',
         '&$checked': {
             color: '#37e444'
         },
@@ -61,15 +62,13 @@ const DiscoverSwitch = withStyles({
         }
     },
     checked: {},
-    track: {}
+    track: {
+        backgroundColor: '#bababa'
+    }
 })(Switch);
 
 const BuddiProfile = () => {
     const [bioLength, updateBioLen] = useState('');
-
-    const handleBioLen = (e) => {
-        updateBioLen(e.target.value);
-    };
 
     return (
         <Formik
@@ -91,25 +90,7 @@ const BuddiProfile = () => {
                             <Global.FormLabel htmlFor='profile_image'>
                                 Photo
                             </Global.FormLabel>
-                            <TextField
-                                name='profile_image'
-                                id='profile_image'
-                                type='text'
-                                placeholder='Enter a new email'
-                                as={Global.FormInput}
-                            />
-                        </Global.FormContainer>
-                        <SS.SettingsDivider />
-                        <Global.FormContainer formSettings>
-                            <Global.FormLabel htmlFor='seeker'>
-                                Get discovered
-                            </Global.FormLabel>
-                            <Field
-                                name='seeker'
-                                id='seeker'
-                                type='checkbox'
-                                as={DiscoverSwitch}
-                            />
+                            <Filestack />
                         </Global.FormContainer>
                         <SS.SettingsDivider />
                         <Global.FormContainer formSettings>
@@ -120,7 +101,7 @@ const BuddiProfile = () => {
                                 type='text'
                                 bioText
                                 maxBioLen={165}
-                                onInput={handleBioLen}
+                                onInput={(e) => updateBioLen(e.target.value)}
                                 value={bioLength}
                             />
                         </Global.FormContainer>
