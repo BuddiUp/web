@@ -17,6 +17,7 @@ export const SettingsContainer = styled.div`
 `;
 
 export const SettingsCard = styled.div`
+    height: fit-content;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0px 2px 0px 0px ${(props) => props.theme.gray350};
@@ -64,7 +65,13 @@ export const SettingsBio = styled.textarea`
     min-height: 100px;
     box-shadow: 0 0 0 1pt #d8d8d8;
     color: ${(props) => props.theme.gray800};
+    outline: none;
     background-color: ${(props) => props.theme.gray300};
+
+    &:focus {
+        outline: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
+        box-shadow: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
+    }
 `;
 
 export const BioCount = styled.h1`

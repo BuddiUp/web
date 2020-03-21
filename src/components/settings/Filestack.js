@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactFilestack from 'filestack-react';
 import testFace from '../../assets/images/testFace.jpg';
@@ -30,6 +31,7 @@ const UploadBtn = styled.button`
     border-radius: 8px;
     margin-left: 4px;
     color: ${(props) => props.theme.gray800};
+    outline: none;
     box-shadow: 0 0 0 1pt ${(props) => (props.error ? props.theme.error : '#d8d8d8')}
         inset;
     background-color: ${(props) => props.theme.gray300};
@@ -39,30 +41,37 @@ const UploadBtn = styled.button`
         outline: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
         box-shadow: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
     }
+
+    &:focus {
+        outline: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
+        box-shadow: 0 0 0 1pt ${(props) => props.theme.gray400} inset;
+    }
 `;
 
 const FILESTACK_API = process.env.REACT_APP_FILESTACK_API;
 
-const Filestack = () => {
+const Filestack = ({ profile_img }) => {
     return (
-        <>
-            <ReactFilestack
-                apikey={FILESTACK_API}
-                customRender={({ onPick }) => (
-                    <UploadContainer>
-                        <UserImage src={testFace} />
-                        <UploadBtn onClick={onPick} type='submit'>
-                            Change
-                        </UploadBtn>
-                    </UploadContainer>
-                )}
-                onSuccess={(res) => console.log(res.filesUploaded[0].url)}
-                onError={(res) =>
-                    console.log('Something went wrong during photo upload!', res)
-                }
-            />
-        </>
+        <ReactFilestack
+            apikey={FILESTACK_API}
+            customRender={({ onPick }) => (
+                <UploadContainer>
+                    <UserImage src={profile_img} />
+                    <UploadBtn onClick={onPick} type='submit'>
+                        Change
+                    </UploadBtn>
+                </UploadContainer>
+            )}
+            onSuccess={(res) => console.log(res.filesUploaded[0].url)}
+            onError={(res) =>
+                console.log('Something went wrong during photo upload!', res)
+            }
+        />
     );
+};
+
+Filestack.propTypes = {
+    profile_img: PropTypes.string.isRequired
 };
 
 export default Filestack;

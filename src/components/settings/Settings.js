@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import FOG from 'vanta/dist/vanta.fog.min';
+import buddiup from '../../apis/buddiup';
 import { Container } from '../../global-styles';
 import { CategoryHeader, CategoryText } from '../globalUI/GlobalUI';
 import * as SS from './SettingStyles';
@@ -7,6 +9,14 @@ import SettingsUpdateForm from './SettingsUpdateForm';
 import BuddiProfile from './BuddiProfile';
 
 const Settings = () => {
+    const { user_profile, profile_img } = useSelector((state) => ({
+        user_profile: state.authReducer.user,
+        profile_img:
+            state.authReducer.user.profile_Image === null
+                ? state.authReducer.default_image
+                : state.authReducer.user.profile_Image
+    }));
+
     const [vantaEffect, setVantaEffect] = useState(0);
     const MY_REF = useRef(null);
     useEffect(() => {
@@ -30,7 +40,7 @@ const Settings = () => {
         return () => {
             if (vantaEffect) vantaEffect.destroy();
         };
-    }, [vantaEffect]);
+    }, [vantaEffect, user_profile, profile_img]);
     return (
         <>
             <CategoryHeader ref={MY_REF}>
@@ -42,12 +52,15 @@ const Settings = () => {
                         <SS.SettingsCard style={{ marginBottom: '24px' }}>
                             <SS.SettingsCategory>Buddi Profile</SS.SettingsCategory>
                             <SS.SettingsDivider />
-                            <BuddiProfile />
+                            <BuddiProfile
+                                user_profile={user_profile}
+                                profile_img={profile_img}
+                            />
                         </SS.SettingsCard>
                         <SS.SettingsCard>
                             <SS.SettingsCategory>Profile Information</SS.SettingsCategory>
                             <SS.SettingsDivider />
-                            <SettingsUpdateForm />
+                            <SettingsUpdateForm user_profile={user_profile} />
                         </SS.SettingsCard>
                     </SS.SettingsGrid>
                 </Container>

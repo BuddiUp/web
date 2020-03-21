@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik, Form, useField, Field } from 'formik';
 import { Switch } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import * as yup from 'yup';
+import HandleUpdate from './HandleUpdate';
 import Filestack from './Filestack';
 import * as Global from '../globalUI/GlobalUI';
 import * as SS from './SettingStyles';
@@ -67,19 +67,20 @@ const DiscoverSwitch = withStyles({
     }
 })(Switch);
 
-const BuddiProfile = () => {
-    const [bioLength, updateBioLen] = useState('');
+const BuddiProfile = ({ user_profile, profile_img }) => {
+    const [bioLength, updateBioLen] = useState(user_profile.bio);
 
     return (
         <Formik
             initialValues={{
-                profile_image: '',
-                bio: '',
-                seeker: false
+                profile_image: profile_img,
+                bio: user_profile.bio,
+                seeker: user_profile.seeker
             }}
             validationSchema={validationSchema}
             onSubmit={(data, { setSubmitting }) => {
                 setSubmitting(true);
+                HandleUpdate(data);
                 setSubmitting(false);
             }}
         >
@@ -90,9 +91,25 @@ const BuddiProfile = () => {
                             <Global.FormLabel htmlFor='profile_image'>
                                 Photo
                             </Global.FormLabel>
-                            <Filestack />
+                            <Filestack profile_img={profile_img} />
                         </Global.FormContainer>
+
                         <SS.SettingsDivider />
+
+                        <Global.FormContainer formSettings>
+                            <Global.FormLabel htmlFor='seeker'>
+                                Get discovered
+                            </Global.FormLabel>
+                            <Field
+                                name='seeker'
+                                id='seeker'
+                                type='checkbox'
+                                as={DiscoverSwitch}
+                            />
+                        </Global.FormContainer>
+
+                        <SS.SettingsDivider />
+
                         <Global.FormContainer formSettings>
                             <Global.FormLabel htmlFor='bio'>Bio</Global.FormLabel>
                             <TextField
@@ -102,10 +119,13 @@ const BuddiProfile = () => {
                                 bioText
                                 maxBioLen={165}
                                 onInput={(e) => updateBioLen(e.target.value)}
+                                bioCharLeft={bioLength}
                                 value={bioLength}
                             />
                         </Global.FormContainer>
+
                         <SS.SettingsDivider />
+
                         <Global.FormContainer
                             formSettings
                             style={{ justifyContent: 'flex-end' }}
@@ -116,6 +136,7 @@ const BuddiProfile = () => {
                             <SS.SettingsBtn type='submit'>Save</SS.SettingsBtn>
                         </Global.FormContainer>
                     </SS.FormProperties>
+                    {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
                 </Form>
             )}
         </Formik>
@@ -134,6 +155,19 @@ TextField.defaultProps = {
     noErrMsg: false,
     bioText: false,
     maxBioLen: 165
+};
+
+BuddiProfile.propTypes = {
+    user_profile: PropTypes.shape({
+        profile_Image: PropTypes.string,
+        name: PropTypes.string,
+        age: PropTypes.string,
+        city: PropTypes.string,
+        state: PropTypes.string,
+        bio: PropTypes.string,
+        seeker: PropTypes.bool
+    }).isRequired,
+    profile_img: PropTypes.string.isRequired
 };
 
 export default BuddiProfile;

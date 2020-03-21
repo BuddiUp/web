@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik, Form, useField } from 'formik';
 import * as yup from 'yup';
+import HandleUpdate from './HandleUpdate';
 import * as Global from '../globalUI/GlobalUI';
 import * as SS from './SettingStyles';
 
@@ -48,20 +48,21 @@ const TextField = ({ placeholder, noErrMsg, ...props }) => {
     );
 };
 
-const SettingsUpdateForm = () => {
+const SettingsUpdateForm = ({ user_profile }) => {
     return (
         <Formik
             initialValues={{
-                email: '',
+                email: user_profile.email,
                 password: '',
                 password2: '',
-                zipcode: '',
-                name: '',
-                last_name: ''
+                zipcode: user_profile.zipcode,
+                name: user_profile.name,
+                last_name: user_profile.last_name
             }}
             validationSchema={validationSchema}
             onSubmit={(data, { setSubmitting }) => {
                 setSubmitting(true);
+                HandleUpdate(data);
                 setSubmitting(false);
             }}
         >
@@ -74,11 +75,13 @@ const SettingsUpdateForm = () => {
                                 name='name'
                                 id='name'
                                 type='text'
-                                placeholder='Enter a new email'
+                                placeholder={user_profile.name}
                                 as={Global.FormInput}
                             />
                         </Global.FormContainer>
+
                         <SS.SettingsDivider />
+
                         <Global.FormContainer formSettings>
                             <Global.FormLabel htmlFor='last_name'>
                                 Last name
@@ -87,11 +90,13 @@ const SettingsUpdateForm = () => {
                                 name='last_name'
                                 id='last_name'
                                 type='text'
-                                placeholder='Enter a new email'
+                                placeholder={user_profile.last_name}
                                 as={Global.FormInput}
                             />
                         </Global.FormContainer>
+
                         <SS.SettingsDivider />
+
                         <Global.FormContainer formSettings>
                             <Global.FormLabel htmlFor='email'>
                                 Email address
@@ -100,11 +105,26 @@ const SettingsUpdateForm = () => {
                                 name='email'
                                 id='email'
                                 type='email'
-                                placeholder='Enter a new email'
+                                placeholder={user_profile.email}
                                 as={Global.FormInput}
                             />
                         </Global.FormContainer>
+
                         <SS.SettingsDivider />
+
+                        <Global.FormContainer formSettings>
+                            <Global.FormLabel htmlFor='zipcode'>Zipcode</Global.FormLabel>
+                            <TextField
+                                name='zipcode'
+                                id='zipcode'
+                                type='number'
+                                placeholder={user_profile.zipcode.toString()}
+                                as={Global.FormInput}
+                            />
+                        </Global.FormContainer>
+
+                        <SS.SettingsDivider />
+
                         <Global.FormContainer formSettings>
                             <Global.FormLabel htmlFor='password'>
                                 Change password
@@ -128,7 +148,9 @@ const SettingsUpdateForm = () => {
                                 as={Global.FormInput}
                             />
                         </Global.FormContainer>
+
                         <SS.SettingsDivider />
+
                         <Global.FormContainer
                             formSettings
                             style={{ justifyContent: 'flex-end' }}
@@ -155,6 +177,21 @@ TextField.defaultProps = {
     placeholder: '',
     noErrMsg: false,
     type: ''
+};
+
+SettingsUpdateForm.propTypes = {
+    user_profile: PropTypes.shape({
+        profile_Image: PropTypes.string,
+        name: PropTypes.string,
+        last_name: PropTypes.string,
+        email: PropTypes.string,
+        age: PropTypes.string,
+        city: PropTypes.string,
+        state: PropTypes.string,
+        zipcode: PropTypes.number,
+        bio: PropTypes.string,
+        seeker: PropTypes.bool
+    }).isRequired
 };
 
 export default SettingsUpdateForm;
