@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import _ from 'lodash';
 import FOG from 'vanta/dist/vanta.fog.min';
 import buddiup from '../../apis/buddiup';
 import { Container } from '../../global-styles';
@@ -9,13 +9,20 @@ import SettingsUpdateForm from './SettingsUpdateForm';
 import BuddiProfile from './BuddiProfile';
 
 const Settings = () => {
-    const { user_profile, profile_img } = useSelector((state) => ({
-        user_profile: state.authReducer.user,
-        profile_img:
-            state.authReducer.user.profile_Image === null
-                ? state.authReducer.default_image
-                : state.authReducer.user.profile_Image
-    }));
+    const [userInfo, setUserInfo] = useState({});
+    const USER_TOKEN = localStorage.getItem('token');
+    useEffect(() => {
+        const CONFIG = {
+            headers: {
+                Authorization: `Token ${USER_TOKEN}`
+            }
+        };
+
+        buddiup
+            .get('/api/auth/user', CONFIG)
+            .then((res) => setUserInfo(res.data))
+            .catch((err) => console.log(err));
+    }, [USER_TOKEN]);
 
     const [vantaEffect, setVantaEffect] = useState(0);
     const MY_REF = useRef(null);
@@ -40,7 +47,7 @@ const Settings = () => {
         return () => {
             if (vantaEffect) vantaEffect.destroy();
         };
-    }, [vantaEffect, user_profile, profile_img]);
+    }, [vantaEffect]);
     return (
         <>
             <CategoryHeader ref={MY_REF}>
@@ -49,19 +56,30 @@ const Settings = () => {
             <SS.SettingsContainer>
                 <Container>
                     <SS.SettingsGrid>
-                        <SS.SettingsCard style={{ marginBottom: '24px' }}>
-                            <SS.SettingsCategory>Buddi Profile</SS.SettingsCategory>
-                            <SS.SettingsDivider />
-                            <BuddiProfile
-                                user_profile={user_profile}
-                                profile_img={profile_img}
-                            />
-                        </SS.SettingsCard>
-                        <SS.SettingsCard>
-                            <SS.SettingsCategory>Profile Information</SS.SettingsCategory>
-                            <SS.SettingsDivider />
-                            <SettingsUpdateForm user_profile={user_profile} />
-                        </SS.SettingsCard>
+                        {_.isEmpty(userInfo) ? (
+                            <h1>Loading...</h1>
+                        ) : (
+                            <>
+                                <SS.SettingsCard style={{ marginBottom: '24px' }}>
+                                    <SS.SettingsCategory>
+                                        Buddi Profile
+                                    </SS.SettingsCategory>
+                                    <SS.SettingsDivider />
+                                    <BuddiProfile
+                                        user_profile={userInfo.user}
+                                        profile_img={userInfo.default_image}
+                                    />
+                                </SS.SettingsCard>
+
+                                <SS.SettingsCard>
+                                    <SS.SettingsCategory>
+                                        Profile Information
+                                    </SS.SettingsCategory>
+                                    <SS.SettingsDivider />
+                                    <SettingsUpdateForm user_profile={userInfo.user} />
+                                </SS.SettingsCard>
+                            </>
+                        )}
                     </SS.SettingsGrid>
                 </Container>
             </SS.SettingsContainer>
