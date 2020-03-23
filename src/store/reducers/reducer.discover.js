@@ -2,7 +2,7 @@ import {
     DISCOVER_START,
     DISCOVER_FAIL,
     DISCOVER_NEAR,
-    DISCOVER_NEW
+    DISCOVER_ALL
 } from '../actions/action.types';
 import updateObject from './updateObject';
 
@@ -12,32 +12,24 @@ const INIT_STATE = {
     loading: false
 };
 
-const discoverStart = (state) => {
-    return updateObject(state, {
+const discoverStart = (state) =>
+    updateObject(state, {
         error: null,
         loading: true
     });
-};
 
-const discoverFail = (state, action) => {
-    return updateObject(state, {
+const discoverFail = (state, action) =>
+    updateObject(state, {
         error: action.payload,
         loading: false
     });
-};
 
-const discoverNear = (state, action) => {
-    return updateObject(state, {
+const discoverNear = (state, action) =>
+    updateObject(state, {
         userProfiles: action.payload,
         error: null,
         loading: false
     });
-};
-
-// TODO
-const discoverNew = (state, action) => {
-    return updateObject(state, {});
-};
 
 const discoverReducer = (state = INIT_STATE, action) => {
     switch (action.type) {
@@ -47,8 +39,6 @@ const discoverReducer = (state = INIT_STATE, action) => {
             return discoverFail(state, action);
         case DISCOVER_NEAR:
             return discoverNear(state, action);
-        case DISCOVER_NEW:
-            return discoverNew(state, action);
         default:
             return state;
     }

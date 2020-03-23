@@ -1,10 +1,5 @@
 import buddiup from '../../apis/buddiup';
-import {
-    DISCOVER_START,
-    DISCOVER_FAIL,
-    DISCOVER_NEAR,
-    DISCOVER_NEW
-} from './action.types';
+import { DISCOVER_START, DISCOVER_FAIL, DISCOVER_NEAR } from './action.types';
 
 export const discoverStart = () => {
     return { type: DISCOVER_START };
@@ -18,17 +13,13 @@ export const fetchNear = (data) => {
     return { type: DISCOVER_NEAR, payload: data };
 };
 
-export const fetchNew = (data) => {
-    return { type: DISCOVER_NEW, payload: data };
-};
-
 export const discoverNear = (userData) => (dispatch) => {
     dispatch(discoverStart());
 
     const USER_TOKEN = localStorage.getItem('token');
     const DISCOVER_SETTINGS = {
         ...userData,
-        random_users: false
+        random_users: true
     };
     const CONFIG = {
         headers: {
@@ -46,3 +37,4 @@ export const discoverNear = (userData) => (dispatch) => {
             dispatch(discoverFail(err));
         });
 };
+
