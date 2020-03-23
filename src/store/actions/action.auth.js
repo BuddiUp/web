@@ -39,6 +39,7 @@ export const authCheck = () => (dispatch) => {
                 Authorization: `Token ${USER_TOKEN}`
             }
         };
+
         buddiup
             .get('/api/auth/user', CONFIG)
             .then((res) => {
