@@ -11,7 +11,6 @@ import * as Global from '../globalUI/GlobalUI';
 import * as SS from './SettingStyles';
 
 const validationSchema = yup.object().shape({
-    profile_image: yup.string(),
     bio: yup.string(),
     seeker: yup.bool()
 });
@@ -73,7 +72,6 @@ const BuddiProfile = ({ user_profile, profile_img }) => {
     return (
         <Formik
             initialValues={{
-                profile_image: profile_img,
                 bio: user_profile.bio,
                 seeker: user_profile.seeker
             }}
@@ -88,7 +86,7 @@ const BuddiProfile = ({ user_profile, profile_img }) => {
                 <Form>
                     <SS.FormProperties>
                         <Global.FormContainer formSettings>
-                            <Global.FormLabel htmlFor='profile_image'>
+                            <Global.FormLabel htmlFor='profile_Image'>
                                 Photo
                             </Global.FormLabel>
                             <Filestack profile_img={profile_img} />
@@ -136,7 +134,6 @@ const BuddiProfile = ({ user_profile, profile_img }) => {
                             <SS.SettingsBtn type='submit'>Save</SS.SettingsBtn>
                         </Global.FormContainer>
                     </SS.FormProperties>
-                    {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
                 </Form>
             )}
         </Formik>

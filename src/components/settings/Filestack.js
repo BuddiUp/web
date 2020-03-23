@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactFilestack from 'filestack-react';
-import testFace from '../../assets/images/testFace.jpg';
+import HandleUpdate from './HandleUpdate';
 import { device } from '../../theme';
 
 const UploadContainer = styled.div`
@@ -62,7 +62,13 @@ const Filestack = ({ profile_img }) => {
                     </UploadBtn>
                 </UploadContainer>
             )}
-            onSuccess={(res) => console.log(res.filesUploaded[0].url)}
+            onSuccess={(res) => {
+                console.log(res.filesUploaded[0].url);
+                const userIMG = {
+                    profile_Image: res.filesUploaded[0].url
+                };
+                HandleUpdate(userIMG);
+            }}
             onError={(res) =>
                 console.log('Something went wrong during photo upload!', res)
             }

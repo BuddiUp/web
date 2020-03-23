@@ -4,7 +4,6 @@ import storage from 'redux-persist/lib/storage';
 import authReducer from './reducer.auth';
 import discoverReducer from './reducer.discover';
 import profileReducer from './reducer.profile';
-import viewAllReducer from './reducer.viewall';
 
 // Persists the redux store depending on what's whitelisted
 const persistConfig = {
@@ -16,7 +15,6 @@ const persistConfig = {
 const rootReducer = combineReducers({
     authReducer,
     discoverReducer,
-    viewAllReducer,
     profileReducer
 });
 

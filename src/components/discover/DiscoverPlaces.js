@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
+import yelp from '../../apis/yelp';
 import { cardSettings } from './slider.settings';
 import { SliderContainer, SliderLink } from './SliderStyles';
 import { NoAccess, Container } from '../../global-styles';
@@ -14,8 +15,8 @@ const SliderItem = styled.div`
 `;
 
 const CardImage = styled.div`
-    border-radius: 8px;
     background: url(${(props) => props.cardBg});
+    border-radius: 8px;
     background-size: cover;
     background-position: center;
     height: 100%;

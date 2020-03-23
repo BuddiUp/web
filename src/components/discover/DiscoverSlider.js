@@ -37,19 +37,14 @@ const DiscoverSlider = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(discoverNear(userData));
+        // dispatch(discoverNear(userData));
     }, [dispatch, userData]);
 
     const GenProfileCard = () => {
-        const users = Object.keys(discoveredUsers.userProfiles).map((key) => {
-            const {
-                id,
-                name,
-                age,
-                city,
-                state,
-                user_uuid
-            } = discoveredUsers.userProfiles[key];
+        const users = Object.keys(discoveredUsers.usersNear).map((key) => {
+            const { id, name, age, city, state, user_uuid } = discoveredUsers.usersNear[
+                key
+            ];
 
             return (
                 <Style.SliderLink to={`/user/${user_uuid}`} key={id}>

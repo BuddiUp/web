@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Formik, Form, useField } from 'formik';
 import * as yup from 'yup';
 import HandleUpdate from './HandleUpdate';
+import { NoAccess } from '../../global-styles';
 import * as Global from '../globalUI/GlobalUI';
 import * as SS from './SettingStyles';
 
@@ -48,7 +49,18 @@ const TextField = ({ placeholder, noErrMsg, ...props }) => {
     );
 };
 
+const handleEnter = (e) => {
+    e.stopPropagation();
+};
+
 const SettingsUpdateForm = ({ user_profile }) => {
+    useEffect(() => {
+        document.addEventListener('keydown', handleEnter, true);
+
+        return () => {
+            document.removeEventListener('keydown', handleEnter, true);
+        };
+    }, []);
     return (
         <Formik
             initialValues={{
@@ -97,18 +109,21 @@ const SettingsUpdateForm = ({ user_profile }) => {
 
                         <SS.SettingsDivider />
 
-                        <Global.FormContainer formSettings>
-                            <Global.FormLabel htmlFor='email'>
-                                Email address
-                            </Global.FormLabel>
-                            <TextField
-                                name='email'
-                                id='email'
-                                type='email'
-                                placeholder={user_profile.email}
-                                as={Global.FormInput}
-                            />
-                        </Global.FormContainer>
+                        {/* TODO: DISABLE */}
+                        <NoAccess>
+                            <Global.FormContainer formSettings>
+                                <Global.FormLabel htmlFor='email'>
+                                    Email address
+                                </Global.FormLabel>
+                                <TextField
+                                    name='email'
+                                    id='email'
+                                    type='email'
+                                    placeholder={user_profile.email}
+                                    as={Global.FormInput}
+                                />
+                            </Global.FormContainer>
+                        </NoAccess>
 
                         <SS.SettingsDivider />
 
@@ -125,29 +140,31 @@ const SettingsUpdateForm = ({ user_profile }) => {
 
                         <SS.SettingsDivider />
 
-                        <Global.FormContainer formSettings>
-                            <Global.FormLabel htmlFor='password'>
-                                Change password
-                            </Global.FormLabel>
-                            <TextField
-                                name='password'
-                                id='password'
-                                type='password'
-                                placeholder='••••••••••••••'
-                                as={Global.FormInput}
-                            />
-                        </Global.FormContainer>
-                        <Global.FormContainer formSettings>
-                            <Global.FormLabel htmlFor='password2'>
-                                Confirm new password
-                            </Global.FormLabel>
-                            <TextField
-                                name='password2'
-                                id='password2'
-                                type='password'
-                                as={Global.FormInput}
-                            />
-                        </Global.FormContainer>
+                        <NoAccess>
+                            <Global.FormContainer formSettings>
+                                <Global.FormLabel htmlFor='password'>
+                                    Change password
+                                </Global.FormLabel>
+                                <TextField
+                                    name='password'
+                                    id='password'
+                                    type='password'
+                                    placeholder='••••••••••••••'
+                                    as={Global.FormInput}
+                                />
+                            </Global.FormContainer>
+                            <Global.FormContainer formSettings>
+                                <Global.FormLabel htmlFor='password2'>
+                                    Confirm new password
+                                </Global.FormLabel>
+                                <TextField
+                                    name='password2'
+                                    id='password2'
+                                    type='password'
+                                    as={Global.FormInput}
+                                />
+                            </Global.FormContainer>
+                        </NoAccess>
 
                         <SS.SettingsDivider />
 

@@ -11,6 +11,7 @@ export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const DISCOVER_START = 'DISCOVER_START';
 export const DISCOVER_FAIL = 'DISCOVER_FAIL';
 export const DISCOVER_NEAR = 'DISCOVER_NEAR';
+export const DISCOVER_ALL = 'DISCOVER_ALL';
 
 // PROFILE TYPES
 export const PROFILE_FAIL = 'PROFILE_FAIL';

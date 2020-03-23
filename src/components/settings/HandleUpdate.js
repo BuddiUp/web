@@ -13,7 +13,7 @@ const HandleUpdate = (userData) => {
         .post('/api/auth/update', userData, CONFIG)
         .then((res) => {
             console.log(res);
-            window.location.reload(true);
+            // window.location.reload(true);
         })
         .catch((err) => console.log(err));
 };

@@ -6,6 +6,7 @@ import Discover from './components/discover/Discover';
 import Authentication from './components/authentication/Authentication';
 import Profile from './components/profile/Profile';
 import Settings from './components/settings/Settings';
+import ViewAll from './components/viewAll/ViewAll';
 import PrivateRoute from './router.private';
 
 const BaseRouter = ({ isAuthenticated }) => {
@@ -45,6 +46,13 @@ const BaseRouter = ({ isAuthenticated }) => {
                 path='/user/:id'
                 isAuthenticated={isAuthenticated}
                 component={Profile}
+            />
+
+            <PrivateRoute
+                exact
+                path='/viewall'
+                isAuthenticated={isAuthenticated}
+                component={ViewAll}
             />
 
             <Route exact path='/login' render={() => <Authentication isTypeLogin />} />

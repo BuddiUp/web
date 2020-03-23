@@ -7,7 +7,8 @@ import {
 import updateObject from './updateObject';
 
 const INIT_STATE = {
-    userProfiles: {},
+    usersNear: {},
+    allUsers: {},
     error: null,
     loading: false
 };
@@ -26,7 +27,14 @@ const discoverFail = (state, action) =>
 
 const discoverNear = (state, action) =>
     updateObject(state, {
-        userProfiles: action.payload,
+        usersNear: action.payload,
+        error: null,
+        loading: false
+    });
+
+const discoverAll = (state, action) =>
+    updateObject(state, {
+        allUsers: action.payload,
         error: null,
         loading: false
     });
@@ -39,6 +47,8 @@ const discoverReducer = (state = INIT_STATE, action) => {
             return discoverFail(state, action);
         case DISCOVER_NEAR:
             return discoverNear(state, action);
+        case DISCOVER_ALL:
+            return discoverAll(state, action);
         default:
             return state;
     }

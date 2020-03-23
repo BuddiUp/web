@@ -16,7 +16,7 @@ const DiscoverContainer = styled.div`
 `;
 
 // TODO: REFACTOR NAMES BELOW TO MAKE REUSEABLE FOR 'FOR YOU' PAGE
-const DiscoverCategory = styled.h1`
+export const DiscoverCategory = styled.h1`
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -49,7 +49,7 @@ const DiscoverViewAll = styled(Link)`
     }
 `;
 
-const CategoryDescription = styled.p`
+export const CategoryDescription = styled.p`
     color: ${(props) => props.theme.gray500};
     margin-top: 4px;
 `;
@@ -88,12 +88,10 @@ const Discover = () => {
                 {/* DISCOVER PEOPLE NEAR */}
                 <DiscoverCategory>
                     People near you
-                    <NoAccess>
-                        <DiscoverViewAll to='/'>
-                            View All
-                            <DiscoverViewArrow type='caret-right' />
-                        </DiscoverViewAll>
-                    </NoAccess>
+                    <DiscoverViewAll to='/viewall'>
+                        View All
+                        <DiscoverViewArrow type='caret-right' />
+                    </DiscoverViewAll>
                 </DiscoverCategory>
                 <CategoryDescription>
                     Get together with people in your area.
@@ -121,15 +119,7 @@ const Discover = () => {
                 <p style={{ margin: '35px 0px -35px 0px', color: '#6b7cff' }}>
                     Coming soon
                 </p>
-                <DiscoverCategory>
-                    Expand your search
-                    <NoAccess>
-                        <DiscoverViewAll to='/'>
-                            View All
-                            <DiscoverViewArrow type='caret-right' />
-                        </DiscoverViewAll>
-                    </NoAccess>
-                </DiscoverCategory>
+                <DiscoverCategory>Expand your search</DiscoverCategory>
                 <CategoryDescription>
                     Reach out to others from different areas.
                 </CategoryDescription>
