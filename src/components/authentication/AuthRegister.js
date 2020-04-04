@@ -103,7 +103,7 @@ const AuthRegister = () => {
                 setSubmitting(false);
             }}
         >
-            {() => (
+            {({ errors }) => (
                 <Form>
                     <FormContainer>
                         <TextField
@@ -137,6 +137,11 @@ const AuthRegister = () => {
                             as={FormInput}
                         />
                         <FormHeader>Gender</FormHeader>
+                        {errors.gender ? (
+                            <FormError style={{ marginTop: '-8px' }}>
+                                {errors.gender}
+                            </FormError>
+                        ) : null}
                         <div style={{ display: 'flex' }}>
                             <FormLabel htmlFor='male'>
                                 <Field
