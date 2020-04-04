@@ -12,6 +12,7 @@ export const SettingsGrid = styled.div`
 `;
 
 export const SettingsContainer = styled.div`
+    height: 100vh;
     background-color: ${(props) => props.theme.gray200};
     padding: 32px 0px 32px 0px;
 `;

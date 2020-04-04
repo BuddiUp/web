@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Icon } from 'antd';
 import AccountDropdown from './AccountDropdown';
+import Notifications from './Notifications';
 import { device } from '../../theme';
 import { NoAccess } from '../../global-styles';
 
@@ -65,6 +66,10 @@ const NavLogo = styled.h1`
     position: absolute;
     color: ${(props) => props.theme.gray800};
     left: 10px;
+
+    @media (max-width: 320px) {
+        font-size: 21px;
+    }
 `;
 
 const NavList = styled.ul`
@@ -157,6 +162,7 @@ const Navigation = ({ isAuthenticated }) => {
                         <NavItem>
                             {isAuthenticated ? (
                                 <>
+                                    <Notifications />
                                     <AccountDropdown />
                                     <DropdownBtn
                                         type='arrow-down'
