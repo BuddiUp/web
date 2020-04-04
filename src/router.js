@@ -29,19 +29,9 @@ const BaseRouter = ({ isAuthenticated }) => {
                 component={Profile}
             />
 
-            <PrivateRoute
-                exact
-                path='/user'
-                isAuthenticated={isAuthenticated}
-                component={Profile}
-            />
+            <Route exact path='/user' component={Profile} />
 
-            <PrivateRoute
-                exact
-                path='/user/:id'
-                isAuthenticated={isAuthenticated}
-                component={Profile}
-            />
+            <Route exact path='/user/:id' component={Profile} />
 
             <Route
                 exact

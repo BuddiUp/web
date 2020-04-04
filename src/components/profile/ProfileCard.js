@@ -1,8 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { NoAccess } from '../../global-styles';
 import { device } from '../../theme';
+import history from '../../history';
 
 const ProfileContainer = styled.div`
     display: flex;
@@ -10,9 +11,9 @@ const ProfileContainer = styled.div`
 
 const ProfileContent = styled.div`
     display: flex;
-    width: 100%;
     padding: 20px;
     border-radius: 8px;
+    width: 100%;
     box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.1);
     background-color: ${(props) => props.theme.white};
     z-index: 5;
@@ -75,7 +76,14 @@ const ProfileDesc = styled.p`
     margin: 15px 0px;
 `;
 
+const handleBtnClick = (authed) => {
+    if (!authed) return history.push('/login');
+    console.log('I need to be setup (ProfileCard.js)');
+};
+
 const ProfileCard = ({ userProfile, userImage }) => {
+    const isAuthenticated = useSelector((state) => state.authReducer.token !== null);
+
     return (
         <ProfileContainer>
             <ProfileContent>
@@ -92,12 +100,14 @@ const ProfileCard = ({ userProfile, userImage }) => {
                     {userProfile.bio ? (
                         <ProfileDesc>{userProfile.bio}</ProfileDesc>
                     ) : null}
-                    <NoAccess>
-                        <div style={{ display: 'flex' }}>
-                            <CardBtn>Message</CardBtn>
-                            <CardBtn buddiBtn>BuddiUp</CardBtn>
-                        </div>
-                    </NoAccess>
+                    <div style={{ display: 'flex' }}>
+                        <CardBtn onClick={() => handleBtnClick(isAuthenticated)}>
+                            Message
+                        </CardBtn>
+                        <CardBtn buddiBtn onClick={() => handleBtnClick(isAuthenticated)}>
+                            BuddiUp
+                        </CardBtn>
+                    </div>
                 </CardContent>
             </ProfileContent>
         </ProfileContainer>
