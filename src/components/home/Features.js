@@ -66,6 +66,7 @@ const IconPadding = styled.div`
     margin-bottom: 35px;
     padding: 15px;
     border-radius: 50px;
+    background-color: ${(props) => props.theme.white};
     box-shadow: 0px 8.5px 23px 0px rgba(0, 0, 0, 0.1);
 `;
 

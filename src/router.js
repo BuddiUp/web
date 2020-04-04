@@ -13,12 +13,7 @@ const BaseRouter = ({ isAuthenticated }) => {
     return (
         <>
             <Route exact path='/' component={Home} />
-            <PrivateRoute
-                exact
-                path='/discover'
-                isAuthenticated={isAuthenticated}
-                component={Discover}
-            />
+            <Route exact path='/discover' component={Discover} />
 
             <PrivateRoute
                 exact
@@ -48,7 +43,7 @@ const BaseRouter = ({ isAuthenticated }) => {
                 component={Profile}
             />
 
-            <PrivateRoute
+            <Route
                 exact
                 path='/viewall'
                 isAuthenticated={isAuthenticated}

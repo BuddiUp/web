@@ -153,6 +153,8 @@ const SettingsUpdateForm = ({ user_profile }) => {
                                     as={Global.FormInput}
                                 />
                             </Global.FormContainer>
+                        </NoAccess>
+                        <NoAccess>
                             <Global.FormContainer formSettings>
                                 <Global.FormLabel htmlFor='password2'>
                                     Confirm new password
@@ -165,7 +167,6 @@ const SettingsUpdateForm = ({ user_profile }) => {
                                 />
                             </Global.FormContainer>
                         </NoAccess>
-
                         <SS.SettingsDivider />
 
                         <Global.FormContainer

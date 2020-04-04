@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon } from 'antd';
 import FOG from 'vanta/dist/vanta.fog.min';
-import { Container, Maintenance, NoAccess } from '../../global-styles';
+import { Container, Maintenance } from '../../global-styles';
 import DiscoverPlaces from './DiscoverPlaces';
 import DiscoverSlider from './DiscoverSlider';
 import ExpandSlider from './ExpandSlider';
@@ -55,6 +56,7 @@ export const CategoryDescription = styled.p`
 `;
 
 const Discover = () => {
+    const isAuthenticated = useSelector((state) => state.authReducer.token !== null);
     const [vantaEffect, setVantaEffect] = useState(0);
     const MY_REF = useRef(null);
     useEffect(() => {
@@ -86,17 +88,21 @@ const Discover = () => {
             <Container>
                 {/* ######################### */}
                 {/* DISCOVER PEOPLE NEAR */}
-                <DiscoverCategory>
-                    People near you
-                    <DiscoverViewAll to='/viewall'>
-                        View All
-                        <DiscoverViewArrow type='caret-right' />
-                    </DiscoverViewAll>
-                </DiscoverCategory>
-                <CategoryDescription>
-                    Get together with people in your area.
-                </CategoryDescription>
-                <DiscoverSlider />
+                {isAuthenticated ? (
+                    <>
+                        <DiscoverCategory>
+                            People near you
+                            <DiscoverViewAll to='/viewall'>
+                                View All
+                                <DiscoverViewArrow type='caret-right' />
+                            </DiscoverViewAll>
+                        </DiscoverCategory>
+                        <CategoryDescription>
+                            Get together with people in your area.
+                        </CategoryDescription>
+                        <DiscoverSlider />
+                    </>
+                ) : null}
                 {/* ######################### */}
                 {/* DISCOVER PLACES */}
                 {/* Remove later */}

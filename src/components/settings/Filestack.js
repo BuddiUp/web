@@ -63,7 +63,6 @@ const Filestack = ({ profile_img }) => {
                 </UploadContainer>
             )}
             onSuccess={(res) => {
-                console.log(res.filesUploaded[0].url);
                 const userIMG = {
                     profile_Image: res.filesUploaded[0].url
                 };

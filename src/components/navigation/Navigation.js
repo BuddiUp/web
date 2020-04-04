@@ -134,37 +134,23 @@ const Navigation = ({ isAuthenticated }) => {
                     </NavLogo>
                     <NavRoutes mainNav>
                         <NavList>
-                            {isAuthenticated ? (
-                                <>
-                                    <NavItem>
-                                        <StyledNavLink
-                                            exact
-                                            to='/'
-                                            activeClassName='active'
-                                        >
-                                            Home
-                                        </StyledNavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NoAccess>
-                                            <StyledNavLink
-                                                to='/foryou'
-                                                activeClassName='active'
-                                            >
-                                                For You
-                                            </StyledNavLink>
-                                        </NoAccess>
-                                    </NavItem>
-                                    <NavItem>
-                                        <StyledNavLink
-                                            to='/discover'
-                                            activeClassName='active'
-                                        >
-                                            Discover
-                                        </StyledNavLink>
-                                    </NavItem>
-                                </>
-                            ) : null}
+                            <NavItem>
+                                <StyledNavLink exact to='/' activeClassName='active'>
+                                    Home
+                                </StyledNavLink>
+                            </NavItem>
+                            {/* <NavItem> */}
+                            {/*     <NoAccess> */}
+                            {/*         <StyledNavLink to='/foryou' activeClassName='active'> */}
+                            {/*             For You */}
+                            {/*         </StyledNavLink> */}
+                            {/*     </NoAccess> */}
+                            {/* </NavItem> */}
+                            <NavItem>
+                                <StyledNavLink to='/discover' activeClassName='active'>
+                                    Discover
+                                </StyledNavLink>
+                            </NavItem>
                         </NavList>
                     </NavRoutes>
                     <NavList moveRight>

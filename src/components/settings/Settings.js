@@ -10,6 +10,13 @@ import BuddiProfile from './BuddiProfile';
 
 const Settings = () => {
     const [userInfo, setUserInfo] = useState({});
+
+    // eslint-disable-next-line
+    const userProfileImg =
+        !_.isEmpty(userInfo) && userInfo.user.profile_Image
+            ? userInfo.user.profile_Image
+            : userInfo.default_image;
+
     const USER_TOKEN = localStorage.getItem('token');
     useEffect(() => {
         const CONFIG = {
@@ -67,7 +74,7 @@ const Settings = () => {
                                     <SS.SettingsDivider />
                                     <BuddiProfile
                                         user_profile={userInfo.user}
-                                        profile_img={userInfo.default_image}
+                                        profile_img={userProfileImg}
                                     />
                                 </SS.SettingsCard>
 

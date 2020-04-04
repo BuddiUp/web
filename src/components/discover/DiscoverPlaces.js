@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
-import yelp from '../../apis/yelp';
 import { cardSettings } from './slider.settings';
 import { SliderContainer, SliderLink } from './SliderStyles';
 import { NoAccess, Container } from '../../global-styles';

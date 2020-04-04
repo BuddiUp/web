@@ -37,7 +37,7 @@ const DiscoverSlider = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // dispatch(discoverNear(userData));
+        dispatch(discoverNear(userData));
     }, [dispatch, userData]);
 
     const GenProfileCard = () => {
@@ -45,11 +45,14 @@ const DiscoverSlider = () => {
             const { id, name, age, city, state, user_uuid } = discoveredUsers.usersNear[
                 key
             ];
+            const userProfileImg = discoveredUsers.usersNear[key].profile_Image
+                ? discoveredUsers.usersNear[key].profile_Image
+                : discoveredUsers.default_image;
 
             return (
                 <Style.SliderLink to={`/user/${user_uuid}`} key={id}>
                     <Style.SliderItem>
-                        <Style.ProfileImage profileImage={testFace}>
+                        <Style.ProfileImage profileImage={userProfileImg}>
                             <Style.ProfileFade>
                                 <Style.ProfileContent>
                                     <Style.ProfileName>

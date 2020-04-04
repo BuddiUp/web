@@ -4,7 +4,7 @@ import { Icon } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import FOG from 'vanta/dist/vanta.fog.min';
-import { DiscoverCategory, CategoryDescription } from '../discover/Discover';
+import { DiscoverCategory } from '../discover/Discover';
 import { Container, Maintenance } from '../../global-styles';
 import { CategoryHeader, CategoryText } from '../globalUI/GlobalUI';
 import { viewAll } from '../../store/actions/action.discover';
@@ -41,6 +41,12 @@ const BackBtn = styled(Link)`
     }
 `;
 
+export const CategoryDescription = styled.p`
+    margin-top: 4px;
+    font-size: 18px;
+    color: ${(props) => props.theme.gray500};
+`;
+
 const ViewAll = () => {
     const userData = useSelector((state) => state.authReducer.user);
     const fetchedUsers = useSelector((state) => state.discoverReducer);
@@ -74,7 +80,7 @@ const ViewAll = () => {
         return () => {
             if (vantaEffect) vantaEffect.destroy();
         };
-    }, [vantaEffect]);
+    }, [vantaEffect, dispatch, fetchedUsers]);
 
     // * Delete later *
     const TempGen = () => {
@@ -107,7 +113,7 @@ const ViewAll = () => {
             return (
                 <Style.SliderLink to={`/user/${user_uuid}`} key={id}>
                     <Style.SliderItem>
-                        <Style.ProfileImage profileImage={testFace}>
+                        <Style.ProfileImage profileImage={fetchedUsers.default_image}>
                             <Style.ProfileFade>
                                 <Style.ProfileContent>
                                     <Style.ProfileName>
@@ -154,7 +160,8 @@ const ViewAll = () => {
                         </BackBtn>
                     </div>
                     <DiscoverCategory>Viewing all buddies</DiscoverCategory>
-                    <CategoryDescription>Near 94109</CategoryDescription>
+                    {/* eslint-disable-next-line */}
+                    <CategoryDescription>Near {userData.zipcode}</CategoryDescription>
                     <ProfileGrid>{TempGen()}</ProfileGrid>
                 </Container>
             </ViewContainer>

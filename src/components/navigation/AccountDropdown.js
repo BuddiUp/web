@@ -30,8 +30,8 @@ const UserProfileBtn = styled.button`
 
     color: ${(props) => props.theme.gray800};
     font-weight: 600;
-    letter-spacing: 0.5px;
     text-decoration: none;
+    letter-spacing: 0.5px;
     &:hover {
         cursor: pointer;
         color: ${(props) => props.theme.primary};
@@ -115,7 +115,9 @@ const AccountDropdown = () => {
     const dispatch = useDispatch();
     const { user, userImage } = useSelector((state) => ({
         user: state.authReducer.user,
-        userImage: state.authReducer.default_image
+        userImage: state.authReducer.user.profile_Image
+            ? state.authReducer.user.profile_Image
+            : state.authReducer.default_image
     }));
 
     const handleClick = (e) => {
