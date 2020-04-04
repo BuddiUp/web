@@ -9,6 +9,7 @@ import updateObject from './updateObject';
 const INIT_STATE = {
     usersNear: {},
     allUsers: {},
+    default_image: '',
     error: null,
     loading: false
 };
@@ -27,14 +28,16 @@ const discoverFail = (state, action) =>
 
 const discoverNear = (state, action) =>
     updateObject(state, {
-        usersNear: action.payload,
+        usersNear: action.payload.userProfiles,
+        default_image: action.payload.default_image,
         error: null,
         loading: false
     });
 
 const discoverAll = (state, action) =>
     updateObject(state, {
-        allUsers: action.payload,
+        allUsers: action.payload.userProfiles,
+        default_image: action.payload.default_image,
         error: null,
         loading: false
     });

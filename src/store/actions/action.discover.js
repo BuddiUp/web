@@ -42,7 +42,7 @@ export const discoverNear = (userData) => (dispatch) => {
     buddiup
         .post('/api/auth/search', DISCOVER_SETTINGS, CONFIG)
         .then((res) => {
-            dispatch(fetchNear(res.data.userProfiles));
+            dispatch(fetchNear(res.data));
         })
         .catch((err) => {
             dispatch(discoverFail(err));
@@ -71,10 +71,9 @@ export const viewAll = (userData) => (dispatch) => {
     buddiup
         .post('/api/auth/search', DISCOVER_SETTINGS, CONFIG)
         .then((res) => {
-            dispatch(fetchAll(res.data.userProfiles));
+            dispatch(fetchAll(res.data));
         })
         .catch((err) => {
             dispatch(discoverFail(err));
         });
 };
-
